@@ -1,0 +1,60 @@
+
+<div class="container">
+  <div class="col s12 m7">
+    <h5 class="header">Faça login ou cadastre-se!</h5>
+    
+  </div>
+</div>
+
+<div class="container card" style=" margin:0 auto; margin-top: 25px; background-color:#82b1ff ">
+ 
+  <section>
+
+
+    <div class="row" style="margin:0 auto; background-color:#82b1ff ">
+
+      <div class="col s4">
+           
+
+        <div class="col s4" style="margin-left: 25px; background: #2962ff; ">
+            
+          <div class="card-panel" style="margin-top:150px; ">
+            <label for="first_name">Email</label>
+            <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="text" class="validate">
+
+            <label for="first_name">Senha</label>
+
+            <input [(ngModel)]="usuario.senha" placeholder="Senha" id="first_name" type="password" class="validate">
+
+
+
+            <a (click)="fazerLogin()" class="waves-effect waves-light btn-small blue lighten-1">Login</a>
+          </div>
+            
+        </div>
+        
+        <div class="col s6" style=" margin-left: 50px; background-color:#2962ff ">
+
+          <div class="card-panel" style="margin-top:150px;">
+
+
+            <label for="first_name">Email</label>
+
+            <input [(ngModel)]="usuario.email" placeholder="Placeholder" id="first_name" type="text" class="validate">
+
+            <label for="first_name">Senha</label>
+            <input [(ngModel)]="usuario.senha" placeholder="Placeholder" id="first_name" type="password"
+              class="validate">
+
+            <a (click)="cadastrar()" class="waves-effect waves-light btn-small blue lighten-1">cadastar</a>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </section>
+</div>

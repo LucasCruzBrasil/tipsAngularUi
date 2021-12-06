@@ -1,0 +1,62 @@
+<div class="container" >
+    <form class="row g-3 needs-validation" novalidate [formGroup]="form">
+
+        <div class="container">
+            <div class="col-sm-12" style="margin-top: 50px;">
+                 <div class="col-sm-12">
+                    <label for="nome">Ecolha uma pessoa</label>
+
+                     
+                    <select class="form-select form-control" aria-label="Default select example" formControlName="id_gruja">
+                           <option  *ngFor="let gruja of grujas" [value]="gruja.id_gruja" id="id_gruja">{{gruja.id_gruja}}</option>
+                    </select> 
+
+
+                </div> 
+                <div class="col-sm-12">
+                    <label for="nome">Ecolha um colaborador</label>
+
+                     
+                   <select class="form-control" aria-label="Default select example" formControlName="id_colaborador" >
+                           <option  *ngFor="let colaborador of colaboradores" [value]="colaborador.id_colaborador" id="id_colaborador">{{colaborador.nome}}</option>
+
+                    </select>  
+
+
+                </div>
+
+                <label for="nome">Valor</label>
+                <input id="valor" type="number" class="form-control"  value="valor"
+                    formControlName="valor" placeholder="Digite o Valor"
+                    [ngClass]="{ 'is-invalid': submitted && hasError('valor')}">
+
+
+
+            </div>
+            <div class="col-sm-12">
+                <label for="nome">Data</label>
+                <input id="data" type="date" data-date-format="dd-mm-yyyy" class="form-control"  value="data"
+                    formControlName="data" placeholder="Digite a Data"
+                    [ngClass]="{ 'is-invalid': submitted && hasError('data')}" >
+
+
+
+
+            </div>
+            
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+              {{''}}
+              {{''}}
+            <button type="submit" class="btn btn-default" >Cancelar</button>
+        </div>
+        <div>
+  
+
+          
+        </div>
+
+    </form>
+
+
+
+</div>

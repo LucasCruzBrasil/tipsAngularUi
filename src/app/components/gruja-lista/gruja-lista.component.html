@@ -1,0 +1,61 @@
+<app-dashboard></app-dashboard>
+<app-filtro></app-filtro>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<div class="container card" style="margin:0 auto; margin-top: 20px;">
+ 
+<table class="table table-bordered" style="margin-top: 50px;">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Data</th>
+        <th scope="col">Alterar</th>
+        <th scope="col">Apagar</th>
+
+
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let gruja of grujas">
+        <th scope="row">{{gruja.nome}}</th>
+        <td>R$ {{gruja.valor}},00</td>
+        <td>{{gruja.data | date:'longDate'}}</td>
+      
+        <td><button type="button"  class=" #0091ea light-blue accent-4 btn waves-effect waves-light" (click)="getUpToUpDate(gruja.id_gruja)" ><i class="material-icons text-center">create</i></button></td>
+
+        <td><button (click)="onDelete(gruja)"  class="btn waves-effect waves-light " type="submit" name="action" style="background-color: #FF6742;">
+          <i class="material-icons text-center">delete_forever</i>
+        </button></td>
+
+        
+<!--         <td><button type="button" routerLink="Novo" class="btn waves-effect waves-light btn-small"></button></td>
+ -->         
+      </tr>
+
+      
+    </tbody>
+
+    
+  </table>
+  
+</div>
+
+   <ng-template #deleteModel>
+    <div class="modal-body text-center">
+      <p>Deseja mesmo apagar ? </p>
+      <button type="button" class="btn btn-default" (click)="onConfirmeDelete(gorjetaSelecionada.id_gruja)"  >Sim</button>
+      {{gorjetaSelecionada.id_gruja}}
+      <button type="button" class="btn btn-primary" (click)="onDeclinedelete()" >Não</button>
+    </div>
+  </ng-template> 
+
+
+  

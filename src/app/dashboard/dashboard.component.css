@@ -1,0 +1,30 @@
+.menu{
+    border: 1px solid darkblue;
+    width:auto;
+}
+
+.menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#333;
+    list-style:none;
+}
+
+.menu ul li { display: inline; }
+
+.menu ul li  {
+    padding: 2px 10px;
+    display: inline-block;
+
+    /* visual do link */
+    
+    color: #fff;
+    text-decoration: none;
+    
+}
+
+.sair{
+    float: right;
+    color: #fff;
+    margin-right: 50px;
+}

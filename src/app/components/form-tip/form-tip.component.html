@@ -1,0 +1,66 @@
+<div class="container">
+
+    <div class="row align-items-center  col-lg-4">
+
+        <div class="col">
+            <p>Cartão de Creditos
+            </p>
+            <form #f="ngForm" >
+
+                <div class="input-group mb-3">
+
+                    <span class="input-group-text">$</span>
+                    <span class="input-group-text">{{valorCredito}}</span>
+                    <input type="number" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" name="valorCredito" [(ngModel)]="valorCredito">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon1" (click)="calculoCredito(valorCredito)">Inserir Taxa</button>
+
+
+                    
+                </div>
+            </form>
+
+            <div class="col">
+                <p>Cartão de Débito
+                <p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <span class="input-group-text">{{valorDebito}}</span>
+                    <input type="text" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" name="valorDebito" [(ngModel)]="valorDebito">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="calculoDebito(valorDebito)">Inserir Taxa</button>
+
+                </div>
+            </div>
+            <div class="col">
+                <p>Dinheiro
+                <p>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <span class="input-group-text">{{valorDinheiro}}</span>
+                    <input type="number" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" name="valorDinheiro" [(ngModel)]="valorDinheiro">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="calculoDinheiro(valorDinheiro)">Inserir Dinheiro</button>
+
+                </div>
+            </div>
+
+            <div class="col">
+                <p>Tamanho da Equipe
+                <p>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Quantidade de Pessoas</span>
+
+                    <input type="text" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
