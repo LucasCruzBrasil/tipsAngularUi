@@ -1,20 +1,20 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormColaboradorComponent } from './components/colaborador/form-colaborador/form-colaborador.component';
-import { FormComponent } from './components/form/form/form.component';
+
 import { GrujaListaComponent } from './components/gruja-lista/gruja-lista.component';
 import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  {path:'', component:LoginComponent,
+  {path:'', component:LoginComponent
   
 } ,
 {
-  path:'dashboard',
-  loadChildren:()=> import('./dashboard/dashboard/dashboard.module').then((m) => m.DashboardModule) 
+  path:'dashboard', component: DashboardComponent,
+ loadChildren:()=> import('./dashboard/dashboard/dashboard.module').then((m) => m.DashboardModule) 
 } 
- 
 
+ 
 
 
 

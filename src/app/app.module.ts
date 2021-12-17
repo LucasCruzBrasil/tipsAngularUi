@@ -10,18 +10,28 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule, DatePickerComponent } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CommonModule } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard/dashboard.module';
+import { FormTipComponent } from './components/form-tip/form-tip.component';
+import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from './shared/shared.module';
+import { FormColaboradorComponent } from './components/colaborador/form-colaborador/form-colaborador.component';
+import { FiltroComponent } from './components/filtro/filtro/filtro.component';
+import { FormComponent } from './components/form/form/form.component';
+import { GrujaListaComponent } from './components/gruja-lista/gruja-lista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-     
-     
+    FormTipComponent,
+    
+    
+    
 
   ],
   imports: [
@@ -30,11 +40,14 @@ import { DashboardModule } from './dashboard/dashboard/dashboard.module';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ModalModule,
+    ModalModule.forRoot(),
     BsDatepickerModule,
     BrowserAnimationsModule,
     DashboardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    SharedModule,
+
   ],
 
 

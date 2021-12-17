@@ -7,37 +7,31 @@ import { FormColaboradorComponent } from 'src/app/components/colaborador/form-co
 import { FiltroComponent } from 'src/app/components/filtro/filtro/filtro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { FormTipComponent } from 'src/app/components/form-tip/form-tip.component';
-import { LoginComponent } from 'src/app/components/login/login.component';
 import { FormComponent } from 'src/app/components/form/form/form.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AppModule } from 'src/app/app.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 
 
 @NgModule({
   declarations: [
-   
-    FormColaboradorComponent,
-   
-    FiltroComponent,
-    FormTipComponent,
-   
-    FormComponent,
+    GrujaListaComponent,
     DashboardComponent,
-    GrujaListaComponent
-    
-   
+    FiltroComponent,
+    FormColaboradorComponent,
+    FormComponent,
   ],
+
+
   imports: [
-    
     CommonModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
-    
-    
+    ReactiveFormsModule,
+    RouterModule,
+    DashboardRoutingModule
   ]
 
 })
