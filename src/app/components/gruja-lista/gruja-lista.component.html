@@ -29,7 +29,7 @@
     <tbody>
       <tr *ngFor = "let gruja of grujas">
         <th scope="row">{{gruja.nome}}</th>
-        <td>R$ {{gruja.valor}},00</td>
+        <td>R$ {{gruja.valor}}</td>
         <td>{{gruja.data | date:'longDate'}}</td>
       
         <td><button type="button"  class=" #0091ea light-blue accent-4 btn waves-effect waves-light" (click)="getUpToUpDate(gruja.id_gruja)" ><i class="material-icons text-center">create</i></button></td>
