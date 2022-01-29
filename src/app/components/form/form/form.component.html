@@ -6,11 +6,11 @@
         <div class="container">
             <div class="col-sm-12" style="margin-top: 50px;">
                  <div class="col-sm-12 ">
-                    <label for="nome">Ecolha uma pessoa para editar</label>
+                    <label for="nome" *ngIf="mostrarInput">Ecolha uma pessoa para editar</label>
 
                      
-                    <select class="form-select form-control" aria-label="Default select example" formControlName="id_gruja">
-                           <option  *ngFor="let gruja of grujas" [value]="gruja.id_gruja" id="id_gruja">{{gruja.nome}}</option>
+                    <select  class="form-select form-control" aria-label="Default select example" formControlName="id_gruja" *ngIf="mostrarInput" >
+                           <option  *ngFor="let gruja of grujas" [value]="gruja.id_gruja" id="id_gruja">{{gruja.valor}}, {{gruja.nome}}, {{gruja.data |date:"dd/MM/yy"}}</option>
                     </select> 
 
 

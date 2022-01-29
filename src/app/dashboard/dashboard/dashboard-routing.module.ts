@@ -1,4 +1,4 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormColaboradorComponent } from 'src/app/components/colaborador/form-colaborador/form-colaborador.component';
 import { FormComponent } from 'src/app/components/form/form/form.component';
@@ -6,6 +6,7 @@ import { GrujaResolverGuard } from 'src/app/components/form/form/guards/gruja-re
 import { GrujaListaComponent } from 'src/app/components/gruja-lista/gruja-lista.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { GraficoComponent } from 'src/app/graficos/grafico/grafico.component';
 
 const routes: Routes = [
   {
@@ -14,11 +15,13 @@ const routes: Routes = [
 
 
   {
-    path: 'Tips',  component: GrujaListaComponent
+    path: 'grafico', component: GraficoComponent
   },
   {
     path: 'colaborador', component: FormColaboradorComponent
-  }
+  },
+  { path: 'Tips', component:GrujaListaComponent }
+ 
 
   , {
     path: 'Tips/Novo', component: FormComponent,

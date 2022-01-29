@@ -36,7 +36,7 @@ export class GrujaService {
     return this.http.get<Gruja>(this.URL + '/gruja')
       .pipe(
         tap(console.log)
-
+        
       )
 
   }

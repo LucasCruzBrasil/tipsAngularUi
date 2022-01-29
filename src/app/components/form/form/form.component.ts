@@ -23,13 +23,14 @@ export class FormComponent implements OnInit {
   submitted = false;
   id: number;
   x: any;
-
+  mostrarInput:boolean = false;
   constructor(
     private fb: FormBuilder,
     private service: GrujaService,
     private router: Router,
     private route: ActivatedRoute,
     private modal: AlertService
+    
   ) { }
 
   ngOnInit() {
@@ -38,8 +39,12 @@ export class FormComponent implements OnInit {
 
 
     const gorjeta = this.route.snapshot.data['gorjeta']
-
-    this.form = this.fb.group(
+    
+   if (this.route.snapshot.params['id_gruja'] > 0){
+          this.mostrarInput = true;
+   }
+   
+     this.form = this.fb.group(
       {
 
         id_gruja: [gorjeta.id_gruja, Validators.required],
@@ -48,12 +53,21 @@ export class FormComponent implements OnInit {
         data: [gorjeta.data, Validators.required]
       })
 
-    console.log(this.form.value)
+    console.log(this.form.valueChanges)
+
+    
+    
+
 
   }
 
 
-
+  analizeInput(){
+    if(this.form.value.id_gruja){
+      this.mostrarInput =false;
+      
+    }
+  }
 
   listaColaborador() {
     this.service.listColaborador().subscribe(
@@ -80,6 +94,7 @@ export class FormComponent implements OnInit {
       let msgError = 'Erro ao criar curso, tente novamente!';
 
       if (this.form.value.id_gruja) {
+        
         this.service.upDate(this.form.value).subscribe(
           sucesso => this.modal.sucess('Update', 'Atualizado com sucesso '),
 
@@ -104,7 +119,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  
+
 
   onCancel() {
     this.submitted = false;

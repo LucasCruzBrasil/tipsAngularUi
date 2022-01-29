@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { GrujaListaComponent } from './components/gruja-lista/gruja-lista.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GraficoComponent } from './graficos/grafico/grafico.component';
 
 const routes: Routes = [
   {path:'', component:LoginComponent
   
 } ,
 {
-  path:'dashboard', component: DashboardComponent,
+  path:'dashboard', component:GraficoComponent,
  loadChildren:()=> import('./dashboard/dashboard/dashboard.module').then((m) => m.DashboardModule) 
 } 
 

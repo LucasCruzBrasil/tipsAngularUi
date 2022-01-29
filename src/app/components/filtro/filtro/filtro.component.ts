@@ -5,6 +5,8 @@ import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { Colaborador } from 'src/app/model/colaborador';
 import { Filtro } from 'src/app/model/filtro';
 import { Gruja } from 'src/app/model/gruja';
+import { Resposta } from 'src/app/model/resposta';
+import { ColaboradorServiceService } from 'src/app/service/colaborador-service.service';
 import { FiltroService } from 'src/app/service/filtro.service';
 import { GrujaService } from 'src/app/service/gruja.service';
 
@@ -21,10 +23,16 @@ export class FiltroComponent implements OnInit {
   filtros: Filtro[]=[];
   form:FormGroup;
   queryField = new FormControl();
-  
+  nome:string;
+  respostas: Resposta[]
   results$:Observable<any>
+  public chave = false;
   
-  constructor(private filtroService: FiltroService, private grujaService: GrujaService, private fb:FormBuilder) { }
+  constructor(
+    private filtroService: FiltroService, 
+    private grujaService: GrujaService, 
+    private fb:FormBuilder,
+    private server: ColaboradorServiceService) { }
   
 
 
@@ -55,6 +63,12 @@ onDigit() {
     gorjetas => this.filtros = gorjetas.json
   )
 }
- 
+somaValorPeloNome(nome) {
+    
+  this.server.somaValorPeloNomeServer(nome).subscribe(
+    o => this.respostas = o.gorjetas
+  )
+  this.chave = true;
+}
 }
 

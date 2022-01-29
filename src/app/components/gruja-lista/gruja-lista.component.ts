@@ -24,7 +24,8 @@ export class GrujaListaComponent implements OnInit {
   gorjetaSelecionada: Gruja;
   alertService: AlertService;
   upDateModalref: BsModalRef;
-
+  public paginaAtual = 1;
+  
   @ViewChild('deleteModel') deleteModal;
 
   colaborador: Colaborador[];

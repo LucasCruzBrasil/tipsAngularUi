@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppModule } from 'src/app/app.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { GraficoComponent } from 'src/app/graficos/grafico/grafico.component';
+import { GraficosService } from 'src/app/graficos/grafico/graficos.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -22,6 +25,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FiltroComponent,
     FormColaboradorComponent,
     FormComponent,
+    GraficoComponent
   ],
 
 
@@ -31,8 +35,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
-    DashboardRoutingModule
-  ]
-
+    DashboardRoutingModule,
+    NgxPaginationModule
+  ],
+  providers: [GraficosService]
 })
 export class DashboardModule { }
