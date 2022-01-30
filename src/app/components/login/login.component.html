@@ -1,34 +1,35 @@
-
-
-
 <div class="container card" style=" margin:0 auto; margin-top: 25px; ">
- 
+
   <section>
 
 
     <div class="row" style="margin:0 auto; ">
 
       <div class="col s4">
-           
+        <form [formGroup]="meuFormGroup">
 
-        <div class="col s12" style="background: #2962ff; margin: 0 auto;">
-            
-          <div class="card-panel" >
-            <label for="first_name">Email</label>
-            <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="text" class="validate">
+          <div class="col s12" style="background: #2962ff; margin: 0 auto;">
 
-            <label for="first_name">Senha</label>
+            <div class="card-panel">
+              <label for="first_name">Email</label>
+              <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="text" class="validate" formControlName="email">
+              <span *ngIf="meuFormGroup.controls.email.errors">
+                Campo obrigatório
+             </span>
+              <label for="first_name">Senha</label>
 
-            <input [(ngModel)]="usuario.senha" placeholder="Senha" id="first_name" type="password" class="validate">
+              <input [(ngModel)]="usuario.senha" placeholder="Senha" id="first_name" type="password" class="validate" formControlName="senha">
 
+              <span *ngIf="meuFormGroup.controls.senha.errors">
+                Campo de senha obrigatório !!
+             </span>
 
+              <a (click)="fazerLogin()" class="waves-effect waves-light btn-small blue lighten-1" >Login</a>
+            </div>
 
-            <a (click)="fazerLogin()" class="waves-effect waves-light btn-small blue lighten-1">Login</a>
           </div>
-            
-        </div>
-        
-      <!--   <div class="col s6" style=" margin-left: 50px; background-color:#2962ff ">
+
+          <!--   <div class="col s6" style=" margin-left: 50px; background-color:#2962ff ">
 
           <div class="card-panel" style="margin-top:150px;">
 
@@ -44,8 +45,8 @@
             <a (click)="cadastrar()" class="waves-effect waves-light btn-small blue lighten-1">cadastar</a>
           </div>
 
-        </div> -->
-
+          </div> -->
+        </form>
 
       </div>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { title } from 'process';
 import { Usuario } from 'src/app/model/usuario';
@@ -13,37 +14,52 @@ import { LoginService } from 'src/app/service/login.service';
 export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
-
+  meuFormGroup: FormGroup;
 
   constructor(
     private loginService: LoginService,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.usuario = new Usuario()
+
+    this.meuFormGroup = this.formBuilder.group({
+      email: ['email', Validators.required],
+      senha: ['senha', Validators.required]
+
+    })
+
+
   }
   fazerLogin() {
-    this.loginService.fazerLogin(this.usuario).subscribe((data) => {
-        this.router.navigate(['dashboard']);
-    },
-      (httpError) => {
-        this.alertService.error(httpError.error.mensagem);
-      }
 
-    )
+    if (this.meuFormGroup.valid) {
+      console.log("Formulário válido", this.meuFormGroup.value);
+      this.loginService.fazerLogin(this.usuario).subscribe((data) => {
+        this.router.navigate(['dashboard']);
+      },
+        (httpError) => {
+          this.alertService.error(httpError.error.mensagem);
+        }
+
+      )
+    } console.log("Formulário inválido");
+
+
   }
 
-  cadastrar(){
+  cadastrar() {
     this.loginService.cadastrarUsuario(this.usuario).subscribe(
       secesso => this.alertService.sucess('Cadastro', 'Cadastro realizado com sucesso'),
-     
+
       (httpError) => {
         this.alertService.error(httpError.error.mensagem);
       }
 
     )
   }
-  
+
 }
