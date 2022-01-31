@@ -39,14 +39,16 @@ export class LoginComponent implements OnInit {
     if (this.meuFormGroup.valid) {
       console.log("Formulário válido", this.meuFormGroup.value);
       this.loginService.fazerLogin(this.usuario).subscribe((data) => {
+        this.alertService.sucess("logado","Bem vindo");
         this.router.navigate(['dashboard']);
+
       },
         (httpError) => {
           this.alertService.error(httpError.error.mensagem);
         }
 
       )
-    }  this.alertService.error("Prencha o formulário", "Atenção");
+    }  
 
 
   }
