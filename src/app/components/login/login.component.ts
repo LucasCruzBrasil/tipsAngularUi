@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
 
       )
-    } console.log("Formulário inválido");
+    }  this.alertService.error("Prencha o formulário", "Atenção");
 
 
   }

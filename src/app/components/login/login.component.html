@@ -13,16 +13,16 @@
             <div class="card-panel">
               <label for="first_name">Email</label>
               <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="text" class="validate" formControlName="email">
-              <span *ngIf="meuFormGroup.controls.email.errors">
+            <!--   <span *ngIf="meuFormGroup.controls.email.errors">
                 Campo obrigatório
-             </span>
+             </span> -->
               <label for="first_name">Senha</label>
 
               <input [(ngModel)]="usuario.senha" placeholder="Senha" id="first_name" type="password" class="validate" formControlName="senha">
 
-              <span *ngIf="meuFormGroup.controls.senha.errors">
+             <!--  <span *ngIf="meuFormGroup.controls.senha.errors">
                 Campo de senha obrigatório !!
-             </span>
+             </span> -->
 
               <a (click)="fazerLogin()" class="waves-effect waves-light btn-small blue lighten-1" >Login</a>
             </div>
