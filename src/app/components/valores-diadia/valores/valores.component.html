@@ -41,9 +41,47 @@
                     </div>
                     <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action">Salvar
                         <i class="material-icons right">send</i>
-                      </button>
+                    </button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Cartão</th>
+                        <th>Dinheiro</th>
+                        <th>Pix</th>
+                        <th>Pic-Pay</th>
+                        <th>Total</th>
+                        <th>Qtd-Pessoas</th>
+                        <th>Valor Individual</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr
+                        *ngFor=" let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+                        <td>{{valor.data_valor | date:"dd/MM/yy"}}</td>
+                        <td>{{valor.valor_cartao}}</td>
+                        <td>{{valor.valor_dinheiro}}</td>
+                        <td>{{valor.valor_pix}}</td>
+                        <td>{{valor.valor_pic_pay}}</td>
+                        <td>{{valor.total}}</td>
+                        <td>{{valor.qtd_pessoas}}</td>
+                        <td>{{valor.valor_individual}}</td>
+                    </tr>
+
+                </tbody>
+                <div style="float: right;">
+                    <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+                </div>
+            </table>
         </div>
     </div>
 </div>
