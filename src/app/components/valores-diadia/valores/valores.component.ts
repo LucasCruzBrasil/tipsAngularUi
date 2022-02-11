@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Valores } from 'src/app/model/valor';
+import { ValoresServiceService } from 'src/app/service/valores-service.service';
 
 @Component({
   selector: 'app-valores',
@@ -8,12 +10,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ValoresComponent implements OnInit {
 
-
+  valores:Valores
   formValores: FormGroup
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service:ValoresServiceService) { }
    
   ngOnInit(): void {
+     this.service.listaValores().subscribe(
+          data => this.valores = data.valores
+     )
+
 
     this.formValores = this.fb.group({
       valor_cartao: [null],
@@ -31,5 +37,7 @@ export class ValoresComponent implements OnInit {
   salvarValores(){
     
   }
+
+
       
 }

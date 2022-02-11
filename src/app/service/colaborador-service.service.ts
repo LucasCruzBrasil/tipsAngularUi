@@ -30,7 +30,7 @@ export class ColaboradorServiceService {
 
   somaValorPeloNomeServer(nome){
     console.log(nome)
-    return this.http.get('http://localhost:3000/gruja/v/'+ nome).pipe(
+    return this.http.get('http://localhost:3000/gruja/soma/'+ nome).pipe(
        tap(console.log)
     )
   }
