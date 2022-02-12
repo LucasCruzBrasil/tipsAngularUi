@@ -49,17 +49,19 @@
 
     <div class="row">
         <div class="col s12">
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Dia</th>
-                        <th>Cartão</th>
-                        <th>Dinheiro</th>
-                        <th>Pix</th>
-                        <th>Pic-Pay</th>
-                        <th>Total</th>
-                        <th>Pessoas</th>
-                        <th>Valor Individual</th>
+                        <th scope="col">Dia</th>
+                        <th scope="col">Cartão</th>
+                        <th scope="col">Dinheiro</th>
+                        <th scope="col">Pix</th>
+                        <th scope="col">Pic-Pay</th>
+                        <th scope="col"> Total</th>
+                        <th scope="col">Pessoas</th>
+                        <th scope="col">Valor Individual</th>
+                        <th scope="col">Alterar</th>
+                        <th scope="col">Apagar</th>
 
                     </tr>
                 </thead>
@@ -67,14 +69,16 @@
                 <tbody>
                     <tr
                         *ngFor=" let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
-                        <td>{{valor.data_valor | date:"dd/MM/yy"}}</td>
-                        <td>{{valor.valor_cartao}}</td>
-                        <td>{{valor.valor_dinheiro}}</td>
-                        <td>{{valor.valor_pix}}</td>
-                        <td>{{valor.valor_pic_pay}}</td>
-                        <td>{{valor.total}}</td>
-                        <td>{{valor.qtd_pessoas}}</td>
-                        <td>{{valor.valor_individual  | currency : 'BRL'}}</td>
+                        <td class="text-center">{{valor.data_valor | date:"dd/MM/yy"}}</td>
+                        <td class="text-center">{{valor.valor_cartao}}</td>
+                        <td class="text-center">{{valor.valor_dinheiro}}</td>
+                        <td class="text-center">{{valor.valor_pix}}</td>
+                        <td class="text-center">{{valor.valor_pic_pay}}</td>
+                        <td class="text-center">{{valor.total}}</td>
+                        <td class="text-center"> {{valor.qtd_pessoas}}</td>
+                        <td class="text-center">{{valor.valor_individual  | currency : 'BRL'}}</td>
+                        <td class="text-center"><i class="material-icons text-center">create</i></td>
+                        <td class="text-center"><i class="material-icons text-center">delete_forever</i></td>
                     </tr>
 
                 </tbody>
