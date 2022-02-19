@@ -1,9 +1,5 @@
-
-
-
-
 <div class="container">
-    
+
     <div class="row">
         <div class="col s12 card">
             <div class="row">
@@ -12,46 +8,50 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">payment</i>
                             <input id="icon_prefix" type="text" class="validate" formControlName="valor_cartao">
-                           <!--  <label for="icon_prefix">Cartão</label> -->
+                            <!--  <label for="icon_prefix">Cartão</label> -->
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">local_atm</i>
                             <input id="icon_telephone" type="text" class="validate" formControlName="valor_dinheiro">
-                           <!--  <label for="icon_telephone">Dinheiro</label> -->
+                            <!--  <label for="icon_telephone">Dinheiro</label> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">swap_calls</i>
                             <input id="icon_prefix" type="text" class="validate" formControlName="valor_pix">
-                          <!--   <label for="icon_prefix">Pix</label> -->
+                            <!--   <label for="icon_prefix">Pix</label> -->
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">tag_faces</i>
                             <input id="icon_telephone" type="text" class="validate" formControlName="valor_pic_pay">
-                          <!--   <label for="icon_telephone">Pic-pay</label> -->
+                            <!--   <label for="icon_telephone">Pic-pay</label> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">date_range</i>
-                            <input id="icon_prefix" type="date" class="validate" formControlName="data_valor">
-                       <!--      <label for="icon_prefix">Data</label> -->
+                            <input id="icon_prefix" type="text"  class="datepicker" formControlName="data_valor">
+                            <!--      <label for="icon_prefix">Data</label> -->
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">group</i>
                             <input id="icon_telephone" type="text" class="validate" formControlName="qtd_pessoas">
-                          <!--   <label for="icon_telephone">Pessoas</label> -->
+                            <!--   <label for="icon_telephone">Pessoas</label> -->
                         </div>
                     </div>
-                    <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" (click)="salvarValores()">Salvar
-                        <i class="material-icons right">send</i>
-                    </button>
-                    {{''}}
-                    {{''}}
-                    <button  *ngIf="botaoValor"class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Atualizar
-                        <i class="material-icons right">create</i>
-                    </button>
+                    <div>
+                        <button *ngIf="botaoValorSalvar" class="accent-4 btn waves-effect waves-light blue" type="submit" name="action"
+                            (click)="salvarValores()">Salvar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        {{''}}
+                        {{''}}
+                        <button *ngIf="botaoValorAtrualizar"(click)="atualizarValor(valores)"
+                            class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Atualizar
+                            <i class="material-icons right">create</i>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -86,11 +86,13 @@
                         <td class="text-center">{{valor.valor_pic_pay}}</td>
                         <td class="text-center">{{valor.total}}</td>
                         <td class="text-center"> {{valor.qtd_pessoas}}</td>
-                        <td class="text-center">{{valor.valor_individual  | currency : 'BRL'}}</td>
-                        <td class="text-center"><a type="submit" (click)="editarValor(valor)" ><i class="material-icons text-center">create</i></a></td>
-                        <td class="text-center"><a (click)="deletarValor()"><i class="material-icons text-center">delete_forever</i></a></td>
+                        <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
+                        <td class="text-center"><a type="submit" (click)="editarValor(valor)"><i
+                                    class="material-icons text-center">create</i></a></td>
+                        <td class="text-center"><a (click)="deletarValor()"><i
+                                    class="material-icons text-center">delete_forever</i></a></td>
                     </tr>
-                          
+
                 </tbody>
                 <div style="float: right;">
                     <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
@@ -99,12 +101,11 @@
         </div>
     </div>
 
-    <ng-template #deleteModel style="border: 1px solid tomato;"> 
+    <ng-template #deleteModel style="border: 1px solid tomato;">
         <div class="modal-body text-center">
             <p>Do you want to confirm?</p>
-            <button type="button" class="btn btn-default" >Yes</button>
-            <button type="button" class="btn btn-primary" >No</button>
-          </div>
-       
-     </ng-template> 
+            <button type="button" class="btn btn-default">Yes</button>
+            <button type="button" class="btn btn-primary">No</button>
+        </div>
 
+    </ng-template>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { Valores } from '../model/valor';
 
 @Injectable({
@@ -28,6 +29,10 @@ export class ValoresServiceService {
   carregarPeloId(id_valor){
     return this.http.get<Valores>(this.URL + '/valores/'+ id_valor).pipe(tap(console.log))
 
+  }
+
+  upDateValor(valor) :Observable<any> {
+    return this.http.patch<any>(this.URL+ '/valores/', valor).pipe(tap(console.log))
   }
 
 }

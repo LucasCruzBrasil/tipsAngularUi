@@ -3,6 +3,7 @@ import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ZipOperator } from 'rxjs/internal/observable/zip';
 import { Valores } from 'src/app/model/valor';
 import { AlertService } from 'src/app/service/alert.service';
 import { ValoresServiceService } from 'src/app/service/valores-service.service';
@@ -17,19 +18,22 @@ export class ValoresComponent implements OnInit {
   valores: Valores[];
   v: Valores;
   formValores: FormGroup
-  botaoValor: boolean = false;
-  
+  botaoValorAtrualizar: boolean = false;
+  botaoValorSalvar: boolean = true;
+  id: number;
   public paginaAtual = 1;
-  
+
   deleteModelRef: BsModalRef;
 
   @ViewChild('deleteModel') deleteModal;
   @ViewChild('editModal') editModal;
+  @ViewChild('salvarEdit') editarForm;
 
   constructor(
     private service: ValoresServiceService,
     private alertService: AlertService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService) {
   }
 
@@ -37,13 +41,15 @@ export class ValoresComponent implements OnInit {
   ngOnInit(): void {
 
     this.formValores = new FormGroup({
-      //id_valor:new FormControl(''),
+
+
       valor_cartao: new FormControl(''),
       valor_dinheiro: new FormControl(''),
       valor_pix: new FormControl(''),
       valor_pic_pay: new FormControl(''),
       data_valor: new FormControl(''),
-      qtd_pessoas: new FormControl('')
+      qtd_pessoas: new FormControl(''),
+      id_valor: new FormControl('')
 
     })
 
@@ -70,13 +76,21 @@ export class ValoresComponent implements OnInit {
   }
 
   editarValor(valor) {
+
     console.log(valor);
     this.service.carregarPeloId(valor.id_valor).subscribe(
-      (data) => {
+      data => {
+
+        this.valores = data
         this.upDateForm(valor)
-        this.botaoValor = true;
+        this.botaoValorAtrualizar = true
+        this.botaoValorSalvar = false
+ 
+         
+
       }
     )
+
 
   }
 
@@ -88,12 +102,33 @@ export class ValoresComponent implements OnInit {
       valor_pix: valores['valor_pix'],
       valor_pic_pay: valores['valor_pic_pay'],
       qtd_pessoas: valores['qtd_pessoas'],
-      data_valor: valores['data_valor']
+      data_valor: valores['data_valor'],
+      id_valor: valores['id_valor']
 
     })
 
   }
 
+  atualizarValor(valor: Valores[]) {
+    let result$ = this.service.upDateValor(this.formValores.value);
+    result$.subscribe(
+     result => {
+      this.alertService.sucess('Update', 'Atualizado com sucesso ')
+      this.formValores.reset()
+       this.onRefresh()
+       this.botaoValorAtrualizar = false
+       this.botaoValorSalvar = true
+       
+     }
+    )
+  }
+  
+  onRefresh(){
+
+    this.service.listaValores().subscribe(
+      valores => this.valores = valores.valores
+    )
+  }
 }
 
 
