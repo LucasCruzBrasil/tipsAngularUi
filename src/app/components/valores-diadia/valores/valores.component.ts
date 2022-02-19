@@ -64,8 +64,10 @@ export class ValoresComponent implements OnInit {
     console.log(this.formValores.value);
     this.service.salvarValor(this.formValores.value).subscribe(
       (res) => {
+        this.onRefresh();
         this.router.navigate(['dashboard'])
         this.alertService.sucess("Valor Salvo", "Resposta");
+        this.formValores.reset()
       }
 
     )
