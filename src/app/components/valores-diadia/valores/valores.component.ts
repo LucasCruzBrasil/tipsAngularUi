@@ -14,7 +14,7 @@ import { ValoresServiceService } from 'src/app/service/valores-service.service';
   styleUrls: ['./valores.component.css']
 })
 export class ValoresComponent implements OnInit {
-
+  
   valores: Valores[];
   v: Valores;
   formValores: FormGroup
@@ -72,9 +72,24 @@ export class ValoresComponent implements OnInit {
 
     )
   }
+  onDelete(valores) {
 
-  deletarValor() {
+   this.valores = valores; 
+
     this.deleteModelRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' })
+  }
+
+  deletarValor(id:number) {
+    console.log(id)
+    this.service.deleteValor(id).subscribe(
+      result => {
+        console.log(id);
+        console.log('excluído com sucesso', id)
+        this.modalService.hide();
+        this.onRefresh();
+      }
+    )
+
   }
 
   editarValor(valor) {

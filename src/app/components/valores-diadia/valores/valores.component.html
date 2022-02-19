@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">date_range</i>
-                            <input id="icon_prefix" type="text"  class="datepicker" formControlName="data_valor">
+                            <input id="icon_prefix" type="date"  formControlName="data_valor">
                             <!--      <label for="icon_prefix">Data</label> -->
                         </div>
                         <div class="input-field col s6">
@@ -89,7 +89,7 @@
                         <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
                         <td class="text-center"><a type="submit" (click)="editarValor(valor)"><i
                                     class="material-icons text-center">create</i></a></td>
-                        <td class="text-center"><a (click)="deletarValor()"><i
+                        <td class="text-center"><a (click)="onDelete(valor)"><i
                                     class="material-icons text-center">delete_forever</i></a></td>
                     </tr>
 
@@ -104,7 +104,10 @@
     <ng-template #deleteModel style="border: 1px solid tomato;">
         <div class="modal-body text-center">
             <p>Do you want to confirm?</p>
-            <button type="button" class="btn btn-default">Yes</button>
+            <button type="button" (click)="deletarValor(valores['id_valor'])" class="btn btn-default">Yes</button>
+            {{''}}
+            {{''}}
+
             <button type="button" class="btn btn-primary">No</button>
         </div>
 
