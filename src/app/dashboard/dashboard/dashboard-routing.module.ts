@@ -7,6 +7,7 @@ import { GrujaListaComponent } from 'src/app/components/gruja-lista/gruja-lista.
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { GraficoComponent } from 'src/app/graficos/grafico/grafico.component';
+import { ValoresComponent } from 'src/app/components/valores-diadia/valores/valores.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,13 @@ const routes: Routes = [
     path: 'Tips/editar/:id_gruja', component: FormComponent,
     resolve: { gorjeta: GrujaResolverGuard }
   }
+   ,
 
+  {
+    path: 'valores', component: ValoresComponent,
+    resolve: { gorjeta: GrujaResolverGuard }
+  }
+ 
 
 ];
 
