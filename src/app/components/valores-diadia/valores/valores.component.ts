@@ -146,6 +146,13 @@ export class ValoresComponent implements OnInit {
       valores => this.valores = valores.valores
     )
   }
+
+  limparForm(){
+     this.formValores.reset()
+     this.botaoValorAtrualizar = false
+     this.botaoValorSalvar = true
+     this.onRefresh();
+  }
 }
 
 
