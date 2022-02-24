@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
+import { Equipe } from '../model/equipe';
 import { Valores } from '../model/valor';
 
 @Injectable({
@@ -50,6 +51,10 @@ export class ValoresServiceService {
       catchError(this.handleError)
     )
 
+  }
+
+  getEquipe(){
+   return this.http.get<Equipe>(this.URL + '/equipe').pipe(tap(console.log))
   }
 
 

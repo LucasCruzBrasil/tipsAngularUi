@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ZipOperator } from 'rxjs/internal/observable/zip';
+import { Equipe } from 'src/app/model/equipe';
 import { Valores } from 'src/app/model/valor';
 import { AlertService } from 'src/app/service/alert.service';
 import { ValoresServiceService } from 'src/app/service/valores-service.service';
@@ -15,6 +14,7 @@ import { ValoresServiceService } from 'src/app/service/valores-service.service';
 })
 export class ValoresComponent implements OnInit {
   
+  equipe:Equipe[]
   valores: Valores[];
   v: Valores;
   formValores: FormGroup
@@ -52,13 +52,22 @@ export class ValoresComponent implements OnInit {
       id_valor: new FormControl('')
 
     })
+     
+    this.carregarListaEquipe();
 
-
+    
     this.service.listaValores().subscribe(
       valores => this.valores = valores.valores
     )
-  }
 
+    
+  }
+  
+  carregarListaEquipe(){
+    this.service.getEquipe().subscribe(
+      equipe => this.equipe = equipe.valores_equipe
+    )
+  }
 
   salvarValores() {
     console.log(this.formValores.value);
