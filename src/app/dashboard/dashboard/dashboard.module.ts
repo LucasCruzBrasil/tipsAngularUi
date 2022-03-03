@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
 import { DashboardComponent } from '../dashboard.component';
 import { GrujaListaComponent } from 'src/app/components/gruja-lista/gruja-lista.component';
@@ -15,8 +15,10 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { GraficoComponent } from 'src/app/graficos/grafico/grafico.component';
 import { GraficosService } from 'src/app/graficos/grafico/graficos.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ValoresComponent } from 'src/app/components/valores-diadia/valores/valores.component';
+import localePT from '@angular/common/locales/pt';
 
-
+registerLocaleData(localePT);
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FiltroComponent,
     FormColaboradorComponent,
     FormComponent,
-    GraficoComponent
+    GraficoComponent,
+    ValoresComponent
+   
   ],
 
 

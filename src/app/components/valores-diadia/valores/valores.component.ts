@@ -2,7 +2,9 @@ import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { map } from 'rxjs/operators';
 import { Equipe } from 'src/app/model/equipe';
+import { Iequipe } from 'src/app/model/Iequipe';
 import { Valores } from 'src/app/model/valor';
 import { AlertService } from 'src/app/service/alert.service';
 import { ValoresServiceService } from 'src/app/service/valores-service.service';
@@ -12,10 +14,13 @@ import { ValoresServiceService } from 'src/app/service/valores-service.service';
   templateUrl: './valores.component.html',
   styleUrls: ['./valores.component.css']
 })
+
+
 export class ValoresComponent implements OnInit {
-  
-  equipe:Equipe[]
-  valores: Valores[];
+
+  mascara: Iequipe[]
+  equipes:Equipe[];
+  valores: Valores[]
   v: Valores;
   formValores: FormGroup
   botaoValorAtrualizar: boolean = false;
@@ -52,22 +57,36 @@ export class ValoresComponent implements OnInit {
       id_valor: new FormControl('')
 
     })
-     
-    this.carregarListaEquipe();
 
-    
+    this.service.getEquipe().subscribe(
+     res => this.equipes = res.valores_equipe
+      
+      )
+      
+     
+
     this.service.listaValores().subscribe(
       valores => this.valores = valores.valores
     )
 
-    
+
   }
-  
-  carregarListaEquipe(){
+
+ /*  carregarListaEquipe() {
     this.service.getEquipe().subscribe(
-      equipe => this.equipe = equipe.valores_equipe
+      res => {
+        this.equipes = res.valores_equipe
+
+
+
+      }
+
+
+
+
+
     )
-  }
+  } */
 
   salvarValores() {
     console.log(this.formValores.value);
@@ -83,12 +102,12 @@ export class ValoresComponent implements OnInit {
   }
   onDelete(valores) {
 
-   this.valores = valores; 
+    this.valores = valores;
 
     this.deleteModelRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' })
   }
 
-  deletarValor(id:number) {
+  deletarValor(id: number) {
     console.log(id)
     this.service.deleteValor(id).subscribe(
       result => {
@@ -111,8 +130,8 @@ export class ValoresComponent implements OnInit {
         this.upDateForm(valor)
         this.botaoValorAtrualizar = true
         this.botaoValorSalvar = false
- 
-         
+
+
 
       }
     )
@@ -138,29 +157,29 @@ export class ValoresComponent implements OnInit {
   atualizarValor(valor: Valores[]) {
     let result$ = this.service.upDateValor(this.formValores.value);
     result$.subscribe(
-     result => {
-      this.alertService.sucess('Update', 'Atualizado com sucesso ')
-      this.formValores.reset()
-       this.onRefresh()
-       this.botaoValorAtrualizar = false
-       this.botaoValorSalvar = true
-       
-     }
+      result => {
+        this.alertService.sucess('Update', 'Atualizado com sucesso ')
+        this.formValores.reset()
+        this.onRefresh()
+        this.botaoValorAtrualizar = false
+        this.botaoValorSalvar = true
+
+      }
     )
   }
-  
-  onRefresh(){
+
+  onRefresh() {
 
     this.service.listaValores().subscribe(
       valores => this.valores = valores.valores
     )
   }
 
-  limparForm(){
-     this.formValores.reset()
-     this.botaoValorAtrualizar = false
-     this.botaoValorSalvar = true
-     this.onRefresh();
+  limparForm() {
+    this.formValores.reset()
+    this.botaoValorAtrualizar = false
+    this.botaoValorSalvar = true
+    this.onRefresh();
   }
 }
 
