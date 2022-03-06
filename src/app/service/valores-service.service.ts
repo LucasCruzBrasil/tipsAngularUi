@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, take, tap } from 'rxjs/operators';
+import { catchError, map, reduce, take, tap } from 'rxjs/operators';
 import { Equipe } from '../model/equipe';
 import { Iequipe } from '../model/Iequipe';
 import { Valores } from '../model/valor';
@@ -11,6 +11,7 @@ import { Valores } from '../model/valor';
 })
 export class ValoresServiceService {
   valores: Valores[];
+  v:Valores
 
   public URL = '/api'
 
@@ -58,6 +59,11 @@ export class ValoresServiceService {
    return this.http.get<Equipe>(this.URL + '/equipe').pipe(tap(console.log))
   }
 
+  listaValorCartaoServer() {
+    return this.http.get<Valores[]>(this.URL + '/valores').pipe(
+      tap(console.log)
+    )
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

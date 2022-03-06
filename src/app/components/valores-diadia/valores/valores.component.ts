@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { map } from 'rxjs/operators';
+import { map, reduce } from 'rxjs/operators';
 import { Equipe } from 'src/app/model/equipe';
 import { Iequipe } from 'src/app/model/Iequipe';
 import { Valores } from 'src/app/model/valor';
@@ -17,9 +18,14 @@ import { ValoresServiceService } from 'src/app/service/valores-service.service';
 
 
 export class ValoresComponent implements OnInit {
-
+  cartao: number;
+  dinheiro: number;
+  pix: number;
+  picPay: number;
+  vales: number;
+  total: number;
   mascara: Iequipe[]
-  equipes:Equipe[];
+  equipes: Equipe[];
   valores: Valores[]
   v: Valores;
   formValores: FormGroup
@@ -35,6 +41,7 @@ export class ValoresComponent implements OnInit {
   @ViewChild('salvarEdit') editarForm;
 
   constructor(
+    private http: HttpClient,
     private service: ValoresServiceService,
     private alertService: AlertService,
     private router: Router,
@@ -58,12 +65,14 @@ export class ValoresComponent implements OnInit {
 
     })
 
+    this.listaTotal();
+
     this.service.getEquipe().subscribe(
-     res => this.equipes = res.valores_equipe
-      
-      )
-      
-     
+      res => this.equipes = res.valores_equipe
+
+    )
+
+
 
     this.service.listaValores().subscribe(
       valores => this.valores = valores.valores
@@ -72,21 +81,6 @@ export class ValoresComponent implements OnInit {
 
   }
 
- /*  carregarListaEquipe() {
-    this.service.getEquipe().subscribe(
-      res => {
-        this.equipes = res.valores_equipe
-
-
-
-      }
-
-
-
-
-
-    )
-  } */
 
   salvarValores() {
     console.log(this.formValores.value);
@@ -180,6 +174,34 @@ export class ValoresComponent implements OnInit {
     this.botaoValorAtrualizar = false
     this.botaoValorSalvar = true
     this.onRefresh();
+  }
+
+  listaTotal() {
+    this.service.listaValorCartaoServer().subscribe(
+      res => {
+        this.cartao = res['valores'].map(
+          res => res.valor_cartao).reduce((a, b) => a + b, 0);
+        this.dinheiro = res['valores'].map(
+          res => res.valor_dinheiro).reduce((a, b) => a + b, 0);
+        this.pix = res['valores'].map(
+          res => res.valor_pix).reduce((a, b) => a + b, 0);
+        this.picPay = res['valores'].map(
+          res => res.valor_pic_pay).reduce((a, b) => a + b, 0);
+
+        this.service.getEquipe().subscribe(
+          res => {
+            this.vales = res['valores_equipe'].map(
+              res => res.pessoa_vale).reduce((a, b) => a + b, 0);
+            this.total = this.cartao + this.dinheiro + this.pix + this.picPay - (this.vales);
+            console.log(this.total)
+
+          })
+
+
+
+      }
+
+    )
   }
 }
 
