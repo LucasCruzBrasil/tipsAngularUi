@@ -14,5 +14,6 @@ export class Equipe {
             pessoa_vale:string
             valor_do_dia:number
             valor_individual:number
+            setor:string
 
 }
