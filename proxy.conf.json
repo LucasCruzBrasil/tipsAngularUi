@@ -1,6 +1,6 @@
 {
     "/api":{
-        "target":"https://sheltered-earth-17183.herokuapp.com/",
+        "target":"http://localhost:3000",
         "secure":false,
         "logLevel": "debug",
         "pathRewrite": {
