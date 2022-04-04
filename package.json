@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,6 +25,7 @@
     "bootstrap": "^5.0.0-beta3",
     "bootstrap-icons": "^1.7.1",
     "chart.js": "^3.7.0",
+    "express": "^4.17.3",
     "materialize-css": "^1.0.0-rc.2",
     "ngrok": "^4.3.1",
     "ngx-bootstrap": "^7.1.0",
@@ -36,6 +37,10 @@
     "sweetalert2": "^11.1.9",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
+  },
+  "engines":{
+    "node":"16.4.1",
+    "npm":"7.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.3",
