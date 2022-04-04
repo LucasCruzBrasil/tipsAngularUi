@@ -13,7 +13,7 @@ export class ValoresServiceService {
   valores: Valores[];
   v:Valores
 
-  public URL = 'https://sheltered-earth-17183.herokuapp.com/'
+  public URL = '/api'
 
   constructor(private http: HttpClient) { }
   // Headers 
@@ -23,7 +23,7 @@ export class ValoresServiceService {
   }
 
   listaValores() {
-    return this.http.get<Valores>(this.URL + '/valores').pipe(tap(console.log))
+    return this.http.get<Valores>(this.URL + 'valores').pipe(tap(console.log))
   }
 
   salvarValor(valores: Valores[]) {
