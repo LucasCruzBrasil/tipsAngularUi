@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Colaborador } from '../model/colaborador';
+import { Equipe } from '../model/equipe';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColaboradorServiceService {
+   equipe:Equipe[];
 
   public URL = '/api'
   constructor(private http: HttpClient) { }
@@ -35,4 +37,16 @@ export class ColaboradorServiceService {
     )
   }
 
-}
+
+  insereColabradorNaEquipe(equipe:Equipe[]){
+    
+      return this.http.post(this.URL + '/equipe/', equipe) .pipe(
+        tap(console.log)
+  
+      )
+  
+  
+    }
+  
+  }
+

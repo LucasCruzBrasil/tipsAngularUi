@@ -75,13 +75,16 @@ export class GrujaService {
   }
 
   create(gruja: Gruja[]) {
-    return this.http.post(this.URL + '/gruja/', gruja)
+    return this.http.post(this.URL + '/gruja/', gruja) .pipe(
+      tap(console.log)
+
+    )
 
 
   }
 
-  carregaPeloId(id) {
-    return this.http.get<Gruja>(this.URL + '/gruja/'+ id)
+  carregaPeloId(id_gruja) {
+    return this.http.get<Gruja>(this.URL + '/gruja/v/'+ id_gruja).pipe(tap(console.log))
      }
 
      upDate(id_gruja): Observable<any> {

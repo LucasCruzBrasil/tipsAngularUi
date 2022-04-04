@@ -1,9 +1,9 @@
 <div class="row card" style="margin-top: 5px;">
   <form [formGroup]="formEquipe">
     <div class="col s3">
-      <span class="card-title center">Dias</span>
-      <select class="form-select" aria-label="Default select example" style="margin-top:4px;"
-        formControlName="id_valor">
+
+      <p class="card-title center">Dias</p>
+      <select class="form-select" aria-label="Default select example" formControlName="id_valor">
         <option selected>Escolha o dia</option>
         <option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor | date:'EEEE, d MMMM' : ''
           : 'pt-BR'}}</option>
@@ -12,7 +12,7 @@
     </div>
 
     <div class=" col s3">
-      <span class="card-title center">Pessoas</span>
+      <p class="card-title center">Pessoas</p>
       <select class="form-select form-control" aria-label="Default select example" formControlName="id_colaborador">
         <option *ngFor="let colaboradores of colaborador" [value]="colaboradores.id_colaborador" id="id_colaborador">
 
@@ -23,7 +23,7 @@
     </div>
 
     <div class=" col s3">
-      <span class="card-title center">Vale</span>
+      <p class="card-title center">Vale</p>
       <input type="number" formControlName="pessoa_vale">
 
     </div>
@@ -41,96 +41,127 @@
 
 
 
-<mat-card>
-<div class="mat-elevation-z8">
-  <mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nome" #input>
+</mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!--- Note that these columns can be defined in any order.
+  <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="Nome">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let equipes"> {{equipes.nome}} </td>
-    </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="Nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let equipes"> {{equipes.nome}} </td>
+  </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="Data">
-      <th mat-header-cell *matHeaderCellDef> Data </th>
-      <td mat-cell *matCellDef="let equipes"> {{equipes.data_valor | date}} </td>
-    </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="Data">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let equipes"> {{equipes.data_valor | date}} </td>
+  </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Total">
-      <th mat-header-cell *matHeaderCellDef> Valor do dia </th>
-      <td mat-cell *matCellDef="let equipes"> {{equipes.valor_do_dia | currency : 'BRL'}} </td>
-    </ng-container>
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Total">
+    <th mat-header-cell *matHeaderCellDef> Valor do dia </th>
+    <td mat-cell *matCellDef="let equipes"> {{equipes.valor_do_dia | currency : 'BRL'}} </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Individual">
-      <th mat-header-cell *matHeaderCellDef> Valor Individual </th>
-      <td mat-cell *matCellDef="let equipes"> {{equipes.valor_individual | currency : 'BRL'}} </td>
-    </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Individual">
+    <th mat-header-cell *matHeaderCellDef> Valor Individual </th>
+    <td mat-cell *matCellDef="let equipes"> {{equipes.valor_individual | currency : 'BRL'}} </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">Não a valor para esse nome! "{{input.value}}"</td>
+  </tr>
+</table>
 
-  <mat-paginator
-    (page)="handlePageEvent($event)"
-    [length]="length"
-    [pageSize]="pageSize"
-    [showFirstLastButtons]="showFirstLastButtons"
-    [pageSizeOptions]="pageSizeOptions"
-    [pageIndex]="pageIndex"
-    aria-label="Select page">
-   </mat-paginator>
-</div>
-</mat-card>
-<!-- <div class="mdc-data-table">
-    <div class="mdc-data-table__table-container">
-      <table class="mdc-data-table__table" aria-label="Dessert calories">
-        <thead>
-          <tr class="mdc-data-table__header-row">
-            <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Dessert</th>
-            <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Carbs (g)</th>
-            <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Protein (g)</th>
-            <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Comments</th>
-          </tr>
-        </thead>
-        <tbody class="mdc-data-table__content">
-          <tr class="mdc-data-table__row">
-            <th class="mdc-data-table__cell" scope="row">Frozen yogurt</th>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
-            <td class="mdc-data-table__cell">Super tasty</td>
-          </tr>
-          <tr class="mdc-data-table__row">
-            <th class="mdc-data-table__cell" scope="row">Ice cream sandwich</th>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
-            <td class="mdc-data-table__cell">I like ice cream more</td>
-          </tr>
-          <tr class="mdc-data-table__row">
-            <th class="mdc-data-table__cell" scope="row">Eclair</th>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
-            <td class="mdc-data-table__cell">New filing flavor</td>
-          </tr>
-        </tbody>
-      </table>
+<mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+  [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex"
+  aria-label="Select page">
+</mat-paginator>
+
+<div class="row">
+  <div class="col s6">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <input placeholder="*Nome" id="first_name" type="text" class="validate" [(ngModel)]="nome">
+          <label for="first_name">Digite um nome para consultar valores</label>
+
+          <button style="float: right;" class="btn blue darken-4" type="submit" (click)="filtro(nome)">Buscar
+            <i class="material-icons right">search</i>
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
     </div>
+
   </div>
 
+  <div class="col s6" *ngIf="mostraPesquisa">
 
- -->
+
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <blockquote>
+            {{text}}
+          </blockquote>
+          <ul class="collection" *ngFor="let listas of lista">
+            <li class="collection-item avatar">
+              <i class="material-icons circle">account_circle</i>
+              
+              
+              <p style="margin-top: 5px;"><i class="material-icons left">date_range</i> {{listas.data_valor | date}}</p>
+              <hr>
+              <p><i class="material-icons left">local_atm</i>{{listas.valor_individual | currency : 'BRL'}}
+              </p>
+              <p>{{listas.vale_do_dia}}</p>
+              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+          </ul>
+
+          <ul class="collection">
+            <li>
+
+              <p class="center">Total Bruto: {{BrutoPessoa | currency : 'BRL'}} </p>
+            </li>
+            <li>
+
+
+              <p class="center">Vale da Semana: {{valePessoa}} </p>
+            </li>
+            <li>
+
+
+              <p class="center">Total Líquido: {{liquidoPessoa | currency : 'BRL'}} </p>
+            </li>
+          </ul>
+
+
+
+
+        </div>
+
+      </div>
+      <p class="badge center text-black flow-text" style="font-size: small;">{{textoFiltro}}</p>
+
+    </div>
+  </div>
+</div>

@@ -115,8 +115,7 @@ export class ValoresComponent implements OnInit {
   }
 
   editarValor(valor) {
-
-    console.log(valor);
+      console.log(valor);
     this.service.carregarPeloId(valor.id_valor).subscribe(
       data => {
 
@@ -124,18 +123,12 @@ export class ValoresComponent implements OnInit {
         this.upDateForm(valor)
         this.botaoValorAtrualizar = true
         this.botaoValorSalvar = false
-
-
-
       }
     )
-
-
   }
-
+  
   upDateForm(valores: Valores[]) {
-
-    this.formValores.patchValue({
+   this.formValores.patchValue({
       valor_cartao: valores['valor_cartao'],
       valor_dinheiro: valores['valor_dinheiro'],
       valor_pix: valores['valor_pix'],
@@ -145,8 +138,7 @@ export class ValoresComponent implements OnInit {
       id_valor: valores['id_valor']
 
     })
-
-  }
+ }
 
   atualizarValor(valor: Valores[]) {
     let result$ = this.service.upDateValor(this.formValores.value);

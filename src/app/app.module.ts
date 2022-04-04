@@ -1,4 +1,3 @@
-import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,18 +16,15 @@ import { CommonModule } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard/dashboard.module';
 import { FormTipComponent } from './components/form-tip/form-tip.component';
 import { RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from './shared/shared.module';
-import { FormColaboradorComponent } from './components/colaborador/form-colaborador/form-colaborador.component';
-import { FiltroComponent } from './components/filtro/filtro/filtro.component';
-import { FormComponent } from './components/form/form/form.component';
-import { GrujaListaComponent } from './components/gruja-lista/gruja-lista.component';
+import { EquipeComponent } from './components/equipe/equipe/equipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    FormTipComponent,
+    LoginComponent, 
+    FormTipComponent
+    
     
     
     

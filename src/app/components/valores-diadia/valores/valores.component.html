@@ -2,7 +2,6 @@
 
 
 <div class="container">
-
     <div class="row">
         <div class="col s12 card" style="margin-top: 15px;">
             <div class="row">
@@ -67,6 +66,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col s1">
             <div class="card">
@@ -106,7 +106,7 @@
         <div class="col s1">
             <div class="card">
                 <span class="card-title center">Total</span>
-                <p class="flow-text center red-text"> {{total}}</p>
+                <p class="flow-text center red-text"> {{total | currency : 'BRL'}}</p>
             </div>
 
         </div>
@@ -158,39 +158,11 @@
 
         </div>
     </div>
+    <app-equipe></app-equipe>
 
 
-    <div class="row">
-        <div class="container">
-            <div class="s4" >
-                <table>
-                    <thead>
-                        <tr >
-                            <th>Nome</th>
-                            <th>Valor Individual</th>
-                            <th>Data</th>
-
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let equipe of equipes">
-                            <td>{{equipe.nome}}</td>
-                            
-                            <td>{{equipe.valor_individual | currency : 'BRL'}}</td>
-                            <td>{{equipe.data_valor  | date:'EEEE, d MMMM'  : '' : 'pt-BR' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="s4 ">
-
-            </div>
-            <div class="s4">
-
-            </div>
-        </div>
-    </div>
+    
+    
 
 
 

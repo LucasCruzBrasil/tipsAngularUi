@@ -48,7 +48,7 @@
         <div class="card-panel">
           <p style="font-size: 20px;">Valor Total:</p>
 
-          <p class=" red-text" style="font-size: 30px; ">{{gruja.total | currency}} </p>
+          <p class=" red-text" style="font-size: 30px; ">{{gruja.total | currency }} </p>
         </div>
 
       </div>
@@ -95,7 +95,7 @@
           <span class="card-title white-black">{{filtro.nome}}</span>
           <p class="white-black">Data: {{filtro.data | date:'longDate'}}<i
               class="material-icons right right">event_available</i></p>
-          <p class="white-black"> Valor R$: {{filtro.valor}},00<i class="material-icons right">attach_money</i></p>
+          <p class="white-black"> Valor: {{filtro.valor  | currency : 'BRL'}}<i class="material-icons right">attach_money</i></p>
         </div>
 
       </div>

@@ -81,7 +81,7 @@ export class GrujaListaComponent implements OnInit {
   getUpToUpDate(id) {
     console.log(id)
    this.router.navigate(['editar', id], {relativeTo: this.route})
-
+     console.log( this.router.navigate(['editar', id], {relativeTo: this.route}))
   }
 
 
