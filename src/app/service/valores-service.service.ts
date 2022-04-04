@@ -13,7 +13,7 @@ export class ValoresServiceService {
   valores: Valores[];
   v:Valores
 
-  public URL = '/api'
+  public URL = 'https://sheltered-earth-17183.herokuapp.com/'
 
   constructor(private http: HttpClient) { }
   // Headers 
