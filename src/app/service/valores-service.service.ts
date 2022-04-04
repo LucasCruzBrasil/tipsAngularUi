@@ -24,6 +24,8 @@ export class ValoresServiceService {
 
   listaValores() {
     return this.http.get<Valores>(this.URL + '/valores').pipe(tap(console.log))
+
+    
   }
 
   salvarValor(valores: Valores[]) {
@@ -39,7 +41,9 @@ export class ValoresServiceService {
   }
 
   upDateValor(valor): Observable<any> {
-    return this.http.patch<any>(this.URL + '/valores/', valor).pipe(tap(console.log))
+    return this.http.patch<any>(this.URL + '/valores/', valor).pipe(tap(console.log)
+    ,catchError(this.handleError)
+    )
   }
 
   //delete
