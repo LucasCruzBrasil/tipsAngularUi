@@ -23,7 +23,7 @@ export class ValoresServiceService {
   }
 
   listaValores() {
-    return this.http.get<Valores>('https://sheltered-earth-17183.herokuapp.com/valores' ).pipe(tap(console.log))
+    return this.http.get<Valores>(this.URL + '/valores').pipe(tap(console.log))
   }
 
   salvarValor(valores: Valores[]) {
