@@ -10,7 +10,7 @@ import { Equipe } from '../model/equipe';
 export class ColaboradorServiceService {
    equipe:Equipe[];
 
-  public URL = '/api'
+  public URL = 'https://app-lucaback-end.herokuapp.com'
   constructor(private http: HttpClient) { }
 
   public upload(form) {
