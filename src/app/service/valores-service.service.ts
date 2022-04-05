@@ -23,7 +23,7 @@ export class ValoresServiceService {
   }
 
   listaValores() {
-    return this.http.get<Valores>(this.URL + '/valores').pipe(tap(console.log))
+    return this.http.get<Valores>('https://app-lucaback-end.herokuapp.com/valores').pipe(tap(console.log))
 
     
   }
