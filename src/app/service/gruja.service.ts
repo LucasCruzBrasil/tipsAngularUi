@@ -22,7 +22,7 @@ export class GrujaService {
   grujas: Gruja[];
   colaboradores: Colaborador
 
-  public URL = '/api'
+  public URL = 'https://app-lucaback-end.herokuapp.com'
   constructor(private http: HttpClient) { }
 
   // Headers 
