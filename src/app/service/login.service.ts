@@ -12,10 +12,10 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   public fazerLogin (usuario: Usuario):Observable<ResponseLogin>{
-     return this.httpClient.post<ResponseLogin>('http://localhost:3000/usuarios/login', usuario)
+     return this.httpClient.post<ResponseLogin>('https://sheltered-earth-17183.herokuapp.com/usuarios/login', usuario)
   }
 
   public cadastrarUsuario(usuario: Usuario){
-       return this.httpClient.post('http://localhost:3000/usuarios/cadastro', usuario)
+       return this.httpClient.post('https://sheltered-earth-17183.herokuapp.com/usuarios/cadastro', usuario)
   }
 }
