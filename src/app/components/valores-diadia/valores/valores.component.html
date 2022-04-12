@@ -140,7 +140,7 @@
                         <td class="text-center">{{valor.valor_dinheiro}}</td>
                         <td class="text-center">{{valor.valor_pix}}</td>
                         <td class="text-center">{{valor.valor_pic_pay}}</td>
-                        <td class="text-center">{{valor.total}}</td>
+                        <td class="text-center">{{valor.total | currency : 'BRL'}}</td>
                         <td class="text-center"> {{valor.qtd_pessoas}}</td>
                         <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
                         <td class="text-center"><a type="submit" (click)="editarValor(valor)"><i
