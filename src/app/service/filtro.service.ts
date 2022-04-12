@@ -9,7 +9,7 @@ import { Filtro } from '../model/filtro';
 export class FiltroService {
 
   constructor(private httpClient: HttpClient) { }
-  private readonly URL = '/api'
+  private readonly URL = 'https://app-lucaback-end.herokuapp.com'
   buscarId(){
      return this.httpClient.get<Filtro>(this.URL + '/:id_colaborador').
      pipe(

@@ -10,6 +10,7 @@ import { Usuario } from '../model/usuario';
 export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
+  public URL = '/api'
 
   public fazerLogin (usuario: Usuario):Observable<ResponseLogin>{
      return this.httpClient.post<ResponseLogin>('https://app-lucaback-end.herokuapp.com/usuarios/login', usuario)

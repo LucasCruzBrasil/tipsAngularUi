@@ -9,10 +9,10 @@ export class GraficosService {
 
   constructor(private service: HttpClient) { }
 
-  public URL = '/api'
+  public URL = 'https://app-lucaback-end.herokuapp.com'
 
   dayliForecast() {
-    return this.service.get(this.URL + '/gruja').pipe(
+    return this.service.get(this.URL + '/valores').pipe(
       map(result => result)
     )
 
