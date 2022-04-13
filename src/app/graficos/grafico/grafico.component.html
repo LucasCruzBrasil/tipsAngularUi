@@ -1,4 +1,13 @@
 <app-dashboard></app-dashboard>
+<script>  document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+    hoverEnabled: false
+  });
+});
+</script>   
+
 <div class="container" style="max-width: 900px; max-height:900px;">
     <canvas id="canvas">{{ chart}}</canvas>
   </div>

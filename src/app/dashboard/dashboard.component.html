@@ -3,8 +3,8 @@
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
+<!-- Compiled and minified JavaScript -->
+      
 <nav>
     <div class="nav-wrapper blue accent-3">
       <a  class="brand-logo"><i class=" large material-icons right">cloud</i></a>
@@ -16,6 +16,20 @@
       </ul>
     </div>
   </nav>
+  
+  <div class="fixed-action-btn">
+    
+
+    <a class="btn-floating btn-large blue accent-3">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating blue" routerLinkActive="active"  routerLink="/Tips"><i class="material-icons">search</i></a></li>
+      <li><a class="btn-floating blue" routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
+      <li><a class="btn-floating blue" routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
+      <li><a class="btn-floating blue" routerLinkActive="active"  routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
+    </ul>
+  </div>
 <!--  <app-form-colaborador></app-form-colaborador>   -->
 <!-- <router-outlet></router-outlet>
  -->
