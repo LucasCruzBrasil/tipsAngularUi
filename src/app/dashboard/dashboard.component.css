@@ -1,30 +1,58 @@
-.menu{
-    border: 1px solid darkblue;
-    width:auto;
-}
 
-.menu ul {
-    padding:0px;
-    margin:0px;
-    background-color:#333;
-    list-style:none;
-}
 
-.menu ul li { display: inline; }
 
-.menu ul li  {
-    padding: 2px 10px;
-    display: inline-block;
 
-    /* visual do link */
-    
+/*Criando o label */
+label[for=”bt_menu”] {
+    padding: 5px;
+    background-color: #222;
     color: #fff;
-    text-decoration: none;
-    
+    font-family: Arial;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    height: 50px;
 }
 
-.sair{
-    float: right;
-    color: #fff;
-    margin-right: 50px;
+#bt_menu {
+    display: none;
+}
+
+label[for=”bt_menu”] {
+    display: none;
+}
+
+/*Deixando o Menu Responsivo */
+@media(max-width: 800px) {
+    label[for=”bt_menu”] {
+        display: block;
+    }
+
+    #bt_menu:checked~.menu {
+        margin-left: 0;
+    }
+
+    .menu {
+        margin-top: 5px;
+        margin-left: -100%;
+        transition: all .4s;
+    }
+
+    .menu ul li {
+        width: 100%;
+        float: none;
+    }
+
+    .menu ul ul {
+        position: static;
+        overflow: hidden;
+        max-height: 0;
+        transition: all 4s;
+    }
+
+    .menu ul li:hover ul {
+        height: auto;
+        max-height: 200px;
+    }
+
 }

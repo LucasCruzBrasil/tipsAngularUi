@@ -25,7 +25,6 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
-
 registerLocaleData(localePT);
 
 @NgModule({
@@ -58,6 +57,7 @@ registerLocaleData(localePT);
     MatInputModule,
     MatPaginatorModule,
     MatCardModule
+
     
     
 

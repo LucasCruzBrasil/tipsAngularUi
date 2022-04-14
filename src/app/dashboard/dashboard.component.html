@@ -1,35 +1,66 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ 
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+ 
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-      
-<nav>
-    <div class="nav-wrapper blue accent-3">
-      <a  class="brand-logo"><i class=" large material-icons right">cloud</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a routerLinkActive="active"  routerLink="/Tips"><i class="material-icons">search</i></a></li>
+ 
+</head>
+<body>
+  
+   <nav>
+    <div class="nav-wrapper  blue accent-3">
+      <a class="brand-logo"><i class=" large material-icons right">cloud</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
         <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
         <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-        <li><a routerLinkActive="active"  routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
+        <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
+      </ul>
+      
+      <ul class="sidenav">
+        <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
+        <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
+        <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
+        <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
+      </ul>
+    </div>
+  
+  </nav> 
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
       </ul>
     </div>
   </nav>
-  
-  <div class="fixed-action-btn">
-    
 
-    <a class="btn-floating btn-large blue accent-3">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating blue" routerLinkActive="active"  routerLink="/Tips"><i class="material-icons">search</i></a></li>
-      <li><a class="btn-floating blue" routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-      <li><a class="btn-floating blue" routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
-      <li><a class="btn-floating blue" routerLinkActive="active"  routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
-    </ul>
-  </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+  </ul>
+  
+  
+
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+</body>
+
+
+</html>
+
 <!--  <app-form-colaborador></app-form-colaborador>   -->
 <!-- <router-outlet></router-outlet>
  -->
