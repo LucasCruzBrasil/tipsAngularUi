@@ -56,7 +56,8 @@ registerLocaleData(localePT);
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    
 
     
     
