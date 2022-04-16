@@ -1,15 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
  
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
- 
+
+
+
+
+
+
 
  
-</head>
-<body>
+
+
   
    <!-- <nav>
     <div class="nav-wrapper  blue accent-3">
@@ -56,10 +59,34 @@
 
   <script type="text/javascript" src="js/materialize.min.js"></script>
 
-</body>
+
+  
+ 
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon >menu</mat-icon>
+      </button>
+      
+      <h1>Projeto Tips</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
+        <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
+       
+        <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
+        <a mat-button routerLink="/grafico"><i class="material-icons">assessment</i> </a>
+         
+  
+      </div>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+      </mat-toolbar-row>
+  </mat-toolbar>
 
 
-</html>
 
 <!--  <app-form-colaborador></app-form-colaborador>   -->
 <!-- <router-outlet></router-outlet>

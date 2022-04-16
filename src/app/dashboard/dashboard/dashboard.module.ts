@@ -22,6 +22,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -57,7 +63,14 @@ registerLocaleData(localePT);
     MatInputModule,
     MatPaginatorModule,
     MatCardModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule
     
+  
 
     
     
