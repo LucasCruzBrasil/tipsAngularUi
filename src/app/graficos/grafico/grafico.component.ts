@@ -25,21 +25,21 @@ export class GraficoComponent implements OnInit {
   ngOnInit(): void {
     this.service.dayliForecast().subscribe(res => {
       //console.log(res)
-      let nome = res['valores'].map(res => res.total);
+      let total = res['valores'].map(res => res.total);
       let valor = res['valores'].map(res => res.valor_cartao);
-      let dt = res['valores'].map(res => res.valor_dinheiro);
-      let valor_individual = res['valores'].map(res => res.qtd_pessoas);
+      let dt = res['valores'].map(res => res.data_valor);
+      let valor_individual = res['valores'].map(res => res.valor_individual);
 
      
 
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
-          labels: nome,
+          labels: dt,
           datasets: [
             {
-              label:"Valor Dinheiro",
-              data:dt,
+              label:"Total",
+              data:total,
               borderColor: "blue",
               fill: true
             },
@@ -51,7 +51,7 @@ export class GraficoComponent implements OnInit {
             }, 
             
             {
-              label:"Quantidade de Pessoas",
+              label:"Valor individual",
               data: valor_individual,
               borderColor: "red",
               fill: true
@@ -64,7 +64,7 @@ export class GraficoComponent implements OnInit {
           scales: {
             
             y: {
-              max: 700,
+              max: 1000,
               min: 0,
               ticks: {
                   stepSize:1

@@ -4,7 +4,7 @@ export interface Valores {
     valor_dinheiro:number
     valor_pix:number
     valor_pic_pay:number
-    data_valor:Date
+    data_valor:string
     qtd_pessoas:number
     total:number
     valor_individual:number

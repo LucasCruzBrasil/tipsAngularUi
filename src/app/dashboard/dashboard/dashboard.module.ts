@@ -66,7 +66,7 @@ registerLocaleData(localePT);
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    BrowserAnimationsModule,
+    
     MatMenuModule,
     MatButtonModule
     
