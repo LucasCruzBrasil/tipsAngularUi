@@ -25,9 +25,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -66,10 +68,11 @@ registerLocaleData(localePT);
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    
+    MatGridListModule,
     MatMenuModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatListModule,
+    MatTabsModule
   
 
     

@@ -23,6 +23,7 @@ export class GraficoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.service.dayliForecast().subscribe(res => {
       //console.log(res)
       let total = res['valores'].map(res => res.total);

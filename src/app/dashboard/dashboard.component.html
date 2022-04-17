@@ -1,91 +1,59 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
- 
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="js/materialize.min.js"></script>
 
 
 
 
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
 
+    <h1>Projeto Tips</h1>
+    <span class="menu-spacer"></span>
+    <div>
+   <!--    <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
+      <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
 
- 
+      <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
+      <a mat-button routerLink="/grafico"><i class="material-icons">assessment</i> </a>
+ -->
 
-
-  
-   <!-- <nav>
-    <div class="nav-wrapper  blue accent-3">
-      <a class="brand-logo"><i class=" large material-icons right">cloud</i></a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
-        <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
-      </ul>
-      
-      <ul class="sidenav">
-        <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
-        <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
-      </ul>
     </div>
-  
-  </nav>  -->
+  </mat-toolbar-row>
 
- <!--  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
-        <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-        <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
-      </ul>
-    </div>
-  </nav>
+  <mat-toolbar-row>
+    <span style="font-size: 12px;">Teste da minha primeira api</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li><a routerLinkActive="active" routerLink="/Tips"><i class="material-icons">search</i></a></li>
-    <li><a routerLinkActive="active" routerLink="/valores"><i class="material-icons">credit_card</i></a></li>
-    <li><a routerLinkActive="active" [routerLink]="['/colaborador']"><i class="material-icons">group_add</i></a></li>
-    <li><a routerLinkActive="active" routerLink="/grafico"><i class="material-icons">assessment</i></a></li>
-  </ul>
-  
-   -->
+      <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
+      <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
 
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+      <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
+      <a mat-button routerLink="/grafico"><i class="material-icons">assessment</i> </a>
 
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <mat-tab-group>
+        <mat-tab label="Estatística"> <app-grafico></app-grafico></mat-tab>
+        <mat-tab label="Valores"><app-valores></app-valores> </mat-tab>
+        <mat-tab label="Equipe"><app-equipe></app-equipe> </mat-tab>
 
-  
- 
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button mat-icon-button>
-        <mat-icon >menu</mat-icon>
-      </button>
+      </mat-tab-group>
       
-      <h1>Projeto Tips</h1>
-      <span class="menu-spacer"></span>
-      <div>
-        <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
-        <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
-       
-        <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
-        <a mat-button routerLink="/grafico"><i class="material-icons">assessment</i> </a>
-         
-  
-      </div>
-    </mat-toolbar-row>
-  
-    <mat-toolbar-row>
-        <span style="font-size: 12px;">Teste da minha primeira api</span>
-      </mat-toolbar-row>
-  </mat-toolbar>
-
+      
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
 <!--  <app-form-colaborador></app-form-colaborador>   -->
