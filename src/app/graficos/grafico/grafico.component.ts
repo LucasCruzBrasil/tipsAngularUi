@@ -29,6 +29,7 @@ export class GraficoComponent implements OnInit {
       let total = res['valores'].map(res => res.total);
       let valor = res['valores'].map(res => res.valor_cartao);
       let dt = res['valores'].map(res => res.data_valor);
+    
       let valor_individual = res['valores'].map(res => res.valor_individual);
 
      
@@ -36,7 +37,7 @@ export class GraficoComponent implements OnInit {
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
-          labels: dt,
+          labels: ['segunda','terça', 'quarta', 'quinta', 'sexta', 'sabado','domingo'],
           datasets: [
             {
               label:"Total",
@@ -64,7 +65,10 @@ export class GraficoComponent implements OnInit {
         options: {
           scales: {
             
+            
             y: {
+              
+              
               max: 1000,
               min: 0,
               ticks: {
@@ -73,6 +77,7 @@ export class GraficoComponent implements OnInit {
           },
             x: {
               stacked: false
+              
             }
           }
         }

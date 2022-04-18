@@ -70,7 +70,7 @@
       <div class="col s3" *ngFor="let filtro of filtros">
         <div class="card-panel">
           <span class="card-title white-black">{{filtro.nome}}</span>
-          <p class="white-black">Data: {{filtro.data | date:'longDate'}}<i
+          <p class="white-black">Data: {{filtro.data }}<i
               class="material-icons right right">event_available</i></p>
           <p class="white-black"> Valor: {{filtro.valor  | currency : 'BRL'}}<i class="material-icons right">attach_money</i></p>
         </div>

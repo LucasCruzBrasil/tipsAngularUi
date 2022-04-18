@@ -134,7 +134,7 @@
                 <tbody>
                     <tr
                         *ngFor="let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index ">
-                        <td class="text-center">{{valor.data_valor | date:"dd/MM/yy"}}</td>
+                        <td class="text-center">{{valor.data_valor }}</td>
                         <td class="text-center">{{valor.valor_cartao}}</td>
                         <td class="text-center">{{valor.valor_dinheiro}}</td>
                         <td class="text-center">{{valor.valor_pix}}</td>

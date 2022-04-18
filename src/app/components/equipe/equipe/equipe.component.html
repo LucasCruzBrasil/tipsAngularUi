@@ -5,8 +5,7 @@
       <p class="card-title center">Dias</p>
       <select class="form-select" aria-label="Default select example" formControlName="id_valor">
         <option selected>Escolha o dia</option>
-        <option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor | date:'EEEE, d MMMM' : ''
-          : 'pt-BR'}}</option>
+        <option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor}}</option>
 
       </select>
     </div>

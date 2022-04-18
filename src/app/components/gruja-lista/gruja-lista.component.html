@@ -37,7 +37,7 @@
       <tr *ngFor = "let gruja of grujas| paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
         <th scope="row">{{gruja.nome}}</th>
         <td>R$ {{gruja.valor}}</td>
-        <td>{{gruja.data | date:"dd/MM/yy"}}</td>
+        <td>{{gruja.data}}</td>
       
         <td><button type="button"  class=" #0091ea light-blue accent-4 btn waves-effect waves-light" (click)="getUpToUpDate(gruja.id_gruja)" ><i class="material-icons text-center">create</i></button></td>
 

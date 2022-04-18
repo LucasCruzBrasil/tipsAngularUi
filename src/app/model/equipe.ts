@@ -1,3 +1,4 @@
+import { DateFormatter } from "ngx-bootstrap/datepicker"
 import { Valores } from "./valor"
 
 
@@ -7,7 +8,7 @@ export class Equipe {
             valor_cartao: number
             valor_pix: number
             valor_pic_pay: number
-            data_valor: string = new Date().toDateString();
+            data_valor:string = new Date().toDateString();
             qtd_pessoas: number
             id_equipe:number
             id_valor:number
