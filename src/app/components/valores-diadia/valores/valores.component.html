@@ -159,9 +159,73 @@
     </div>
   
 
+    <div class="container" style="margin-top: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-   
-    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> Data </th>
+          <td mat-cell *matCellDef="let valores"> {{valores.data_valor | date}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="valor_cartao">
+          <th mat-header-cell *matHeaderCellDef> Cartão </th>
+          <td mat-cell *matCellDef="let valores"> {{valores.valor_cartao | currency : 'BRL'}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="valor_dinheiro">
+          <th mat-header-cell *matHeaderCellDef> Dinheiro </th>
+          <td mat-cell *matCellDef="let valores"> {{valores.valor_dinheiro | currency : 'BRL'}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="valor_pix">
+          <th mat-header-cell *matHeaderCellDef> Pix </th>
+          <td mat-cell *matCellDef="let valores"> {{valores.valor_pix | currency : 'BRL'}} </td>
+        </ng-container>
+
+        <!-- ANOTHER COLUMN -->
+        <ng-container matColumnDef="valor_pic_pay">
+            <th mat-header-cell *matHeaderCellDef> Pic Pay </th>
+            <td mat-cell *matCellDef="let valores"> {{valores.valor_pic_pay | currency : 'BRL'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_total">
+            <th mat-header-cell *matHeaderCellDef> Valor Total </th>
+            <td mat-cell *matCellDef="let valores"> {{valores.total | currency : 'BRL'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="qtd_pessoas">
+            <th mat-header-cell *matHeaderCellDef>Pessoas</th>
+            <td mat-cell *matCellDef="let valores"> {{valores.qtd_pessoas}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_individual">
+            <th mat-header-cell *matHeaderCellDef>Individual</th>
+            <td mat-cell *matCellDef="let valores"> {{valores.valor_individual | currency: 'BRL'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="botao_alterar">
+            <th mat-header-cell *matHeaderCellDef>Editar</th>
+            <td mat-cell *matCellDef="let valores"> <a type="submit" (click)="editarValor(valores)"><i
+                class="material-icons text-center">create</i></a> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="botao_deletar">
+            <th mat-header-cell *matHeaderCellDef>Deletar</th>
+            <td mat-cell *matCellDef="let valores"> <a (click)="onDelete(valores)"><i
+                class="material-icons text-center">delete_forever</i></a></td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>  
+    </div>
 
 
 

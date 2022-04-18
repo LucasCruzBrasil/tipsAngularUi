@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { map, reduce } from 'rxjs/operators';
@@ -8,6 +9,7 @@ import { Equipe } from 'src/app/model/equipe';
 import { Iequipe } from 'src/app/model/Iequipe';
 import { Valores } from 'src/app/model/valor';
 import { AlertService } from 'src/app/service/alert.service';
+import { ColaboradorServiceService } from 'src/app/service/colaborador-service.service';
 import { ValoresServiceService } from 'src/app/service/valores-service.service';
 
 @Component({
@@ -31,17 +33,31 @@ export class ValoresComponent implements OnInit {
   formValores: FormGroup
   botaoValorAtrualizar: boolean = false;
   botaoValorSalvar: boolean = true;
+
   id: number;
+  dataSource: any;
   public paginaAtual = 1;
 
   deleteModelRef: BsModalRef;
-
+  displayedColumns: string[] = [
+    'valor_cartao', 
+    'valor_dinheiro', 
+    'valor_pix', 
+    'valor_pic_pay', 
+    'valor_total',
+    'qtd_pessoas',
+    'valor_individual',
+    'botao_alterar',
+    'botao_deletar'
+  ];
   @ViewChild('deleteModel') deleteModal;
   @ViewChild('editModal') editModal;
   @ViewChild('salvarEdit') editarForm;
 
   constructor(
     private http: HttpClient,
+    private colaboradorService: ColaboradorServiceService,
+
     private service: ValoresServiceService,
     private alertService: AlertService,
     private router: Router,
@@ -75,7 +91,12 @@ export class ValoresComponent implements OnInit {
 
 
     this.service.listaValores().subscribe(
-      valores => this.valores = valores.valores
+      valores => {
+        this.valores = valores.valores,
+        this.dataSource = new MatTableDataSource(this.valores);
+
+      }
+     
     )
 
 
