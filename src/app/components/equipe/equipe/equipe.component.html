@@ -1,7 +1,7 @@
 <div class="row card container" style="margin: 0 auto; margin-top: 20px;">
   <form [formGroup]="formEquipe">
    
-    <div class="col s12 m3">
+    <div class="col s12 m3" style="margin-top: 10px;">
     
       <mat-form-field appearance="legacy">
         <mat-label>Escolha o dia</mat-label>
@@ -18,7 +18,8 @@
       </select> -->
     </div>
 
-    <div class=" col s12 m3">
+    <div class=" col s12 m3" style="margin-top: 10px;">
+     
       <mat-form-field appearance="legacy">
         <mat-label>Escolha o colaborador</mat-label>
         <mat-select formControlName="id_colaborador">
@@ -38,17 +39,18 @@
       </select> -->
     </div>
 
-    <div class=" col s12 m3">
+    <div class=" col s12 m3" style="margin-top: 10px;">
       
+     
     
-      <input type="number" formControlName="pessoa_vale">
-      <mat-label>Valor do Vale</mat-label>
+      <input type="number" formControlName="pessoa_vale" placeholder="Lançar Vale">
+     
     </div>
 
     <div class="col s12 m3">
       <div class="example-button-row">
         
-        <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" (click)="insereColaboradorNaEquipe()"  style="margin-top: 15%;">
+        <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" (click)="insereColaboradorNaEquipe()"  style="margin-top: 10%;">
           Adicionar
           <i class="material-icons right">send</i></button>
       
