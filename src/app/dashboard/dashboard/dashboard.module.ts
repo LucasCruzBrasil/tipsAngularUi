@@ -30,6 +30,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -72,7 +73,8 @@ registerLocaleData(localePT);
     MatMenuModule,
     MatButtonModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   
 
     

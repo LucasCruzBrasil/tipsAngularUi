@@ -1,39 +1,65 @@
 <div class="row card container" style="margin: 0 auto; margin-top: 20px;">
   <form [formGroup]="formEquipe">
+   
     <div class="col s12 m3">
-
-      <p class="card-title center">Dias</p>
+    
+      <mat-form-field appearance="legacy">
+        <mat-label>Escolha o dia</mat-label>
+        <mat-select formControlName="id_valor">
+          <mat-option value="one">Escolha o dia</mat-option>
+          <mat-option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+     <!--  <p class="card-title center">Dias</p>
       <select class="form-select" aria-label="Default select example" formControlName="id_valor">
         <option selected>Escolha o dia</option>
         <option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor}}</option>
 
-      </select>
+      </select> -->
     </div>
 
     <div class=" col s12 m3">
-      <p class="card-title center">Pessoas</p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Escolha o colaborador</mat-label>
+        <mat-select formControlName="id_colaborador">
+          <mat-option value="one">Escolha o dia</mat-option>
+          <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.id_colaborador" id="id_colaborador">
+
+            {{colaboradores.nome}} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--  <p class="card-title center">Pessoas</p>
       <select class="form-select form-control" aria-label="Default select example" formControlName="id_colaborador">
         <option *ngFor="let colaboradores of colaborador" [value]="colaboradores.id_colaborador" id="id_colaborador">
 
           {{colaboradores.nome}}
 
         </option>
-      </select>
+      </select> -->
     </div>
 
     <div class=" col s12 m3">
-      <p class="card-title center">Vale</p>
+      
+    
       <input type="number" formControlName="pessoa_vale">
-
+      <mat-label>Valor do Vale</mat-label>
     </div>
 
     <div class="col s12 m3">
-      <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" style="margin-top: 25%;"
+      <div class="example-button-row">
+        
+        <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" (click)="insereColaboradorNaEquipe()"  style="margin-top: 15%;">
+          Adicionar
+          <i class="material-icons right">send</i></button>
+      
+        
+      </div>
+    <!--   <button class="accent-4 btn waves-effect waves-light blue" type="submit" name="action" style="margin-top: 25%;"
         (click)="insereColaboradorNaEquipe()">
         ADD
         <i class="material-icons right">send</i>
       </button>
-
+ -->
     </div>
   </form>
 </div>
