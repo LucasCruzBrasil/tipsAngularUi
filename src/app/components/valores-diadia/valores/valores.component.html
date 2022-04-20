@@ -111,13 +111,15 @@
         </div>
       
       </div>
-     
+
     <div class="row">
+      
         <div class="col s12 m6 card">
+           
             <table class="table responsive-table" style="margin-top:20px;">
                 <thead>
                     <tr >
-                        <th scope="col">Dia</th>
+                        <th scope="col">Dia</th> 
                         <th scope="col">Cartão</th>
                         <th scope="col">Dinheiro</th>
                         <th scope="col">Pix</th>
@@ -130,11 +132,11 @@
 
                     </tr>
                 </thead>
-
+               
                 <tbody>
                     <tr
                         *ngFor="let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index ">
-                        <td class="text-center">{{valor.data_valor }}</td>
+                        <td class="text-center">{{valor.data_valor}}</td> 
                         <td class="text-center">{{valor.valor_cartao}}</td>
                         <td class="text-center">{{valor.valor_dinheiro}}</td>
                         <td class="text-center">{{valor.valor_pix}}</td>
@@ -149,16 +151,19 @@
                     </tr>
 
                 </tbody>
+               
                 <div style="float: right;">
                     <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
                 </div>
             </table>
-
+          
 
         </div>
+
+     
     </div>
   
-
+    
    
 
 

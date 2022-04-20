@@ -33,11 +33,10 @@ export class ValoresComponent implements OnInit {
   formValores: FormGroup
   botaoValorAtrualizar: boolean = false;
   botaoValorSalvar: boolean = true;
-
+  dias:any;
   id: number;
   dataSource: any;
   public paginaAtual = 1;
-
   deleteModelRef: BsModalRef;
   displayedColumns: string[] = [
     'valor_cartao', 
@@ -64,7 +63,14 @@ export class ValoresComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: BsModalService) {
   }
-
+  
+  dateToIsoFormat(date: Date): string {
+    if ( date ) {
+      return new Date(date).toISOString().split('T')[0];
+    }
+    
+    return null;
+  }
 
   ngOnInit(): void {
 
@@ -94,16 +100,25 @@ export class ValoresComponent implements OnInit {
 
     this.service.listaValores().subscribe(
       valores => {
-        this.valores = valores.valores,
+        this.valores = valores.valores
         this.dataSource = new MatTableDataSource(this.valores);
-
-      }
+        //this.valores['data_valor'] = valores['valores'].map(res => res.data_valor.split("T")[0])
+      },
+      
      
     )
-
-
+ 
+       this.listaData()
   }
-
+   
+  listaData() {
+    this.service.listaValores().subscribe(
+      res => {
+        this.dias =res['valores'].map(res => res.data_valor.split("T")[0])
+        console.log(this.dias)
+      }
+    )
+  }
 
   salvarValores() {
     console.log(this.formValores.value);
