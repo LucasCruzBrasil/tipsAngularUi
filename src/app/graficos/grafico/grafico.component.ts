@@ -5,6 +5,7 @@ import { GraficosService } from './graficos.service';
 import { Chart, registerables } from 'chart.js';
 import { Valores } from 'src/app/model/valor';
 import { Equipe } from 'src/app/model/equipe';
+import { splitAtColon } from '@angular/compiler/src/util';
 Chart.register(...registerables);
 
 @Component({
@@ -20,24 +21,25 @@ export class GraficoComponent implements OnInit {
 
   constructor(private service: GraficosService) { }
 
-
+ 
 
   ngOnInit(): void {
     
     this.service.dayliForecast().subscribe(res => {
-      //console.log(res)
+     
       let total = res['valores'].map(res => res.total);
       let valor = res['valores'].map(res => res.valor_cartao);
-      let dt = res['valores'].map(res => res.data_valor);
-    
+      let dt = res['valores'].map(res => res.data_valor.split("T")[0]);
+     
       let valor_individual = res['valores'].map(res => res.valor_individual);
 
      
 
       this.chart = new Chart('canvas', {
+
         type: 'line',
         data: {
-          labels: ['segunda','terça', 'quarta', 'quinta', 'sexta', 'sabado','domingo'],
+          labels:dt,
           datasets: [
             {
               label:"Total",

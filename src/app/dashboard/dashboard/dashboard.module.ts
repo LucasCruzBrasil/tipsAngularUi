@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 
 import { DashboardComponent } from '../dashboard.component';
@@ -82,6 +82,8 @@ registerLocaleData(localePT);
 
 
   ],
-  providers: [GraficosService]
+  providers: [GraficosService,
+ { provide: LOCALE_ID, useValue: 'pt-br' } 
+  ]
 })
 export class DashboardModule { }

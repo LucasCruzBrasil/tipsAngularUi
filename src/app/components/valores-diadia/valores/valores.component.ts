@@ -84,7 +84,9 @@ export class ValoresComponent implements OnInit {
     this.listaTotal();
 
     this.service.getEquipe().subscribe(
-      res => this.equipes = res.valores_equipe
+      res =>{
+         this.equipes = res.valores_equipe
+        }
 
     )
 
