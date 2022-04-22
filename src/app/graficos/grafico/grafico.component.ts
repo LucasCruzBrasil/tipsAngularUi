@@ -30,8 +30,10 @@ export class GraficoComponent implements OnInit {
       let total = res['valores'].map(res => res.total);
       let valor = res['valores'].map(res => res.valor_cartao);
       let dt = res['valores'].map(res => res.data_valor.split("T")[0]);
-     
+      let dinheiro = res['valores'].map(res => res.valor_dinheiro);
       let valor_individual = res['valores'].map(res => res.valor_individual);
+      let valor_pix = res['valores'].map(res => res.valor_pix);
+
 
      
 
@@ -60,6 +62,20 @@ export class GraficoComponent implements OnInit {
               borderColor: "red",
               fill: true
             }, 
+            {
+              label:"Valor Dinheiro",
+              data: dinheiro,
+              borderColor: "purple",
+              fill: true
+            }, 
+             
+            {
+              label:"Valor Pix",
+              data:valor_pix,
+              borderColor: "black",
+              fill: true
+            }, 
+            
           ]
         }, 
         
