@@ -7,7 +7,7 @@
         <mat-label>Escolha o dia</mat-label>
         <mat-select formControlName="id_valor">
           <mat-option value="one">Escolha o dia</mat-option>
-          <mat-option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor}}</mat-option>
+          <mat-option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor |date : 'dd/MM/yyyy ' : '+00:00'}}</mat-option>
         </mat-select>
       </mat-form-field>
      <!--  <p class="card-title center">Dias</p>
@@ -86,7 +86,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="Data">
       <th mat-header-cell *matHeaderCellDef> Data </th>
-      <td mat-cell *matCellDef="let equipes"> {{equipes.data_valor | date}} </td>
+      <td mat-cell *matCellDef="let equipes"> {{equipes.data_valor |date : 'dd/MM/yyyy ' : '+00:00'}} </td>
     </ng-container>
 
     <!-- Weight Column -->
