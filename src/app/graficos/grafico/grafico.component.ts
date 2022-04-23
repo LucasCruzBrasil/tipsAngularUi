@@ -87,7 +87,7 @@ export class GraficoComponent implements OnInit {
             y: {
               
               
-              max: 1000,
+              max: 1900,
               min: 0,
               ticks: {
                   stepSize:1
