@@ -73,7 +73,8 @@ export class EquipeComponent implements OnInit, AfterViewInit {
     this.formEquipe = new FormGroup({
       id_valor: new FormControl(''),
       id_colaborador: new FormControl(''),
-      pessoa_vale: new FormControl('')
+      pessoa_vale: new FormControl(''),
+      porcentagem: new FormControl('')
     })
 
 

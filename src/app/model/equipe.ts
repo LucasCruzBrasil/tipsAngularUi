@@ -16,5 +16,6 @@ export class Equipe {
             valor_do_dia:number
             valor_individual:number
             setor:string
+            porcentagem:number
 
 }

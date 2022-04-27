@@ -19,7 +19,7 @@ export class Valores {
     qtd_pessoas:number
     total:number
     valor_individual:number
-
+     
     setor:string
 
     
