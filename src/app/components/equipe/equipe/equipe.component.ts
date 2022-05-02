@@ -54,7 +54,7 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   textoFiltro:string
   results: string[];
   formEquipe: FormGroup
-  displayedColumns: string[] = ['Nome', 'Data', 'Total', 'Individual']
+  displayedColumns: string[] = ['Nome', 'Data', 'Total', 'Individual', 'Alterar', 'Deletar']
   dataSource: any;
   BrutoPessoa: number
   liquidoPessoa: number
