@@ -10,6 +10,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Data } from '@angular/router';
+import { AlertService } from 'src/app/service/alert.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 interface X {
   nome: string,
@@ -60,10 +62,15 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   liquidoPessoa: number
   valePessoa: any
   mostraPesquisa: boolean = false;
+  deleteModelRef: BsModalRef;
 
+  @ViewChild('deleteModel') deleteModal;
   constructor(
     private service: ValoresServiceService,
     private colaboradorService: ColaboradorServiceService,
+    private alertService: AlertService,
+    private modalService: BsModalService
+
   ) { }
 
 
@@ -160,5 +167,10 @@ export class EquipeComponent implements OnInit, AfterViewInit {
        
         }
     )
+  }
+
+  onDelete(equipe) {
+    this.equipe = equipe;
+    this.deleteModelRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' })
   }
 }

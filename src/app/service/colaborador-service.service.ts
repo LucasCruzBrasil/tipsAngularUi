@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Colaborador } from '../model/colaborador';
 import { Equipe } from '../model/equipe';
 
@@ -12,6 +13,16 @@ export class ColaboradorServiceService {
 
   public URL = 'https://app-lucaback-end.herokuapp.com'
   constructor(private http: HttpClient) { }
+
+  deletaColaboradorNaEquipe(id): Observable<any> {
+    return this.http.delete<any>(this.URL + '/equipe/' + id).pipe(
+      map(
+        retorno => retorno
+      ),
+      catchError(this.handleError)
+    )
+    
+  }
 
   public upload(form) {
     console.log(form)
@@ -37,7 +48,19 @@ export class ColaboradorServiceService {
     )
   }
 
-
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Erro ocorreu no lado do client
+      errorMessage = error.error.message;
+    } else {
+      // Erro ocorreu no lado do servidor
+      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  };
+ 
   insereColabradorNaEquipe(equipe:Equipe[]){
     
       return this.http.post(this.URL + '/equipe/', equipe) .pipe(
@@ -50,3 +73,4 @@ export class ColaboradorServiceService {
   
   }
 
+ 
