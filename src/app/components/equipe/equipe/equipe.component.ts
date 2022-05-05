@@ -9,9 +9,10 @@ import { ValoresServiceService } from 'src/app/service/valores-service.service';
 import { OrderModule } from 'ngx-order-pipe';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Data } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from 'src/app/service/alert.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 interface X {
   nome: string,
@@ -52,8 +53,9 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   valor: Valores[]
   colaborador: Colaborador[];
   equipe: Equipe[]
+  equipeSelecionada: Equipe
   text: string;
-  textoFiltro:string
+  textoFiltro: string
   results: string[];
   formEquipe: FormGroup
   displayedColumns: string[] = ['Nome', 'Data', 'Total', 'Individual', 'Alterar', 'Deletar']
@@ -65,11 +67,14 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   deleteModelRef: BsModalRef;
 
   @ViewChild('deleteModel') deleteModal;
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
+
   constructor(
     private service: ValoresServiceService,
     private colaboradorService: ColaboradorServiceService,
     private alertService: AlertService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    public dialog: MatDialog
 
   ) { }
 
@@ -124,7 +129,7 @@ export class EquipeComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  
+
   onReFresh() {
     this.service.getEquipe().subscribe(
       res => {
@@ -141,36 +146,59 @@ export class EquipeComponent implements OnInit, AfterViewInit {
     this.pageIndex = event.pageIndex;
   }
 
-  
+
   filtro(nome) {
     this.mostraPesquisa = true;
     this.text = nome;
     this.service.getEquipe().subscribe(
-      
-      res => {
-          this.lista = res['valores_equipe'].filter(res => res.nome == nome)
 
-          this.BrutoPessoa = res['valores_equipe'].filter(res => res.nome == nome).map(res => res.valor_individual).reduce((a, b) => a + b, 0);
-          this.valePessoa = res['valores_equipe'].filter(res => res.nome == nome).map(res => res.pessoa_vale).reduce((a, b) => a + b, 0);
-          console.log(this.valePessoa)
-          this.liquidoPessoa = this.BrutoPessoa - this.valePessoa
-         
-          if(this.liquidoPessoa > 0) {
-            this.textoFiltro = 'Esses são os valores da semana'
-          } else {
-            this.textoFiltro = 'Esse nome não existe na tabela'
+      res => {
+        this.lista = res['valores_equipe'].filter(res => res.nome == nome)
+
+        this.BrutoPessoa = res['valores_equipe'].filter(res => res.nome == nome).map(res => res.valor_individual).reduce((a, b) => a + b, 0);
+        this.valePessoa = res['valores_equipe'].filter(res => res.nome == nome).map(res => res.pessoa_vale).reduce((a, b) => a + b, 0);
+        console.log(this.valePessoa)
+        this.liquidoPessoa = this.BrutoPessoa - this.valePessoa
+
+        if (this.liquidoPessoa > 0) {
+          this.textoFiltro = 'Esses são os valores da semana'
+        } else {
+          this.textoFiltro = 'Esse nome não existe na tabela'
         }
-          console.log(this.liquidoPessoa)
-       
-         
-        
-       
-        }
+        console.log(this.liquidoPessoa)
+
+
+
+
+      }
     )
   }
 
   onDelete(equipe) {
-    this.equipe = equipe;
+    this.equipeSelecionada = equipe;
     this.deleteModelRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' })
   }
+
+  atualiza() {
+     
+  }
+
+  onConfirmeDelete(id: number): void {
+    console.log(id);
+    this.colaboradorService.deletaColaboradorNaEquipe(id).subscribe(
+      result => {
+        console.log(id);
+        console.log('excluído com sucesso', id)
+        this.modalService.hide();
+        this.onReFresh();
+      }
+    )
+
+
+  }
+
+  onDeclinedelete() {
+    this.deleteModelRef.hide();
+  }
+ 
 }

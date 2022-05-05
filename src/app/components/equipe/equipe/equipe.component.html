@@ -1,3 +1,4 @@
+
 <div class="row card container" style="margin: 0 auto; margin-top: 20px;">
   <form [formGroup]="formEquipe">
    
@@ -111,7 +112,7 @@
 
     <ng-container matColumnDef="Deletar">
       <th mat-header-cell *matHeaderCellDef> Deletar </th>
-      <td mat-cell *matCellDef="let equipes"> <a (click)="onDelete(equipes)"></a><mat-icon>delete_sweep</mat-icon> </td>
+      <td mat-cell *matCellDef="let equipes"> <a (click)="onDelete(equipes)"><mat-icon>delete_sweep</mat-icon> </a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -206,14 +207,13 @@
   </div>
 </div>
 
-<ng-template #deleteModel style="border: 1px solid tomato;">
+<ng-template #deleteModel>
   <div class="modal-body text-center">
-      <p>Do you want to confirm?</p>
-      <button type="button" class="btn btn-default">Yes</button>
-      {{''}}
-      {{''}}
-
-      <button type="button" class="btn btn-primary">No</button>
+    <p>Deseja mesmo apagar ? </p>
+     <button type="button" class="btn btn-default" (click)="onConfirmeDelete(equipeSelecionada.id_equipe)"  >Sim</button>
+    {{equipeSelecionada.id_equipe}}
+    <button type="button" class="btn btn-primary" (click)="onDeclinedelete()" >Não</button> 
   </div>
+</ng-template> 
 
-</ng-template>
+
