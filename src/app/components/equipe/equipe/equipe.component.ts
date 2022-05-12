@@ -65,8 +65,11 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   valePessoa: any
   mostraPesquisa: boolean = false;
   deleteModelRef: BsModalRef;
-
+  editModalRef: BsModalRef;
+  
   @ViewChild('deleteModel') deleteModal;
+  @ViewChild('editModel') editModal;
+
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
 
   constructor(
@@ -179,7 +182,9 @@ export class EquipeComponent implements OnInit, AfterViewInit {
     this.deleteModelRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' })
   }
 
-  atualiza() {
+  onEdit(equipe) {
+    this.equipeSelecionada = equipe;
+    this.editModalRef = this.modalService.show(this.editModal, {class: 'modal-sm'})
      
   }
 
