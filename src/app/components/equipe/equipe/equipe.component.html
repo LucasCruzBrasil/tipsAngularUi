@@ -217,9 +217,23 @@
 </ng-template> 
 
 <ng-template #editModel>
-  <div class="modal-body text-center">
-   <p>Componente em produção, desculpe pelos transtornos</p>
-  </div>
+  <form class="example-form" [formGroup]="formEquipeModel">
+    <mat-form-field class="example-full-width" appearance="fill" >
+      <p>Porcentagem</p>
+      <input    type="number" formControlName="porcentagem" name="porcentagem">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" >
+      <mat-label>Vale</mat-label>
+      <p>Vale</p>
+      <input  type="number" formControlName="pessoa_vale" name="pessoa_vale">
+    </mat-form-field>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="atualizarValorEquipe(equipe)">Salvar</button>
+      {{" "}}
+      <button mat-raised-button color="warn" (click)="fecharModal()">Cancelar</button>
+    </div>
+  </form>
+  
 </ng-template> 
 
 

@@ -12,6 +12,7 @@ import { Valores } from '../model/valor';
 export class ValoresServiceService {
   valores: Valores[];
   v:Valores
+  equipe:Equipe[]
 
   public URL = 'https://app-lucaback-end.herokuapp.com'
 
@@ -42,9 +43,19 @@ export class ValoresServiceService {
     return this.http.get<Valores>(this.URL + '/valores/' + id_valor).pipe(tap(console.log))
 
   }
+  carregarEquipePeloId(id_equipe) {
+    return this.http.get<Equipe>(this.URL + '/equipe/' + id_equipe).pipe(tap(console.log))
+
+  }
 
   upDateValor(valor): Observable<any> {
     return this.http.patch<any>(this.URL + '/valores/', valor).pipe(tap(console.log)
+    ,catchError(this.handleError)
+    )
+  }
+
+  upDateValorEquipe(equipe): Observable<any> {
+    return this.http.patch<any>(this.URL + '/equipe/', equipe).pipe(tap(console.log)
     ,catchError(this.handleError)
     )
   }

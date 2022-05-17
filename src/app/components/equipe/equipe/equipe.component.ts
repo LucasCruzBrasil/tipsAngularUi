@@ -58,6 +58,7 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   textoFiltro: string
   results: string[];
   formEquipe: FormGroup
+  formEquipeModel:FormGroup
   displayedColumns: string[] = ['Nome', 'Data', 'Total', 'Individual', 'Alterar', 'Deletar']
   dataSource: any;
   BrutoPessoa: number
@@ -90,6 +91,12 @@ export class EquipeComponent implements OnInit, AfterViewInit {
       id_colaborador: new FormControl(''),
       pessoa_vale: new FormControl(''),
       porcentagem: new FormControl('')
+    })
+
+    this.formEquipeModel = new FormGroup ({
+      pessoa_vale: new FormControl(''),
+      porcentagem: new FormControl(''),
+      id_equipe: new FormControl('')
     })
 
 
@@ -185,7 +192,43 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   onEdit(equipe) {
     this.equipeSelecionada = equipe;
     this.editModalRef = this.modalService.show(this.editModal, {class: 'modal-sm'})
+    this.service.carregarEquipePeloId(equipe.id_equipe).subscribe(
+      data => {
+        this.equipe = data
+        this.upDateForm(equipe)
+      }
+    )
      
+  }
+
+ 
+
+  atualizarValorEquipe(equipe: Equipe[]) {
+    console.log(equipe)
+    let result$ = this.service.upDateValorEquipe(this.formEquipeModel.value)
+      result$.subscribe( 
+        result => {
+          console.log(result);
+          this.alertService.sucess('Update', 'Atualizado com sucesso ')
+          this.formEquipeModel.reset()
+          this.onReFresh();
+          this.modalService.hide();
+
+      })
+    
+  }
+
+  upDateForm(equipe: Equipe[]) {
+    this.formEquipeModel.patchValue({
+       porcentagem: equipe['porcentagem'],
+       pessoa_vale: equipe['pessoa_vale'],
+       id_equipe: equipe['id_equipe']
+ 
+     })
+  }
+
+  fecharModal(){
+    this.modalService.hide();
   }
 
   onConfirmeDelete(id: number): void {
