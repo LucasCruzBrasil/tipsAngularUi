@@ -8,7 +8,7 @@
         <mat-label>Escolha o dia</mat-label>
         <mat-select formControlName="id_valor">
           <mat-option value="one">Escolha o dia</mat-option>
-          <mat-option *ngFor="let valores of valor" [value]="valores.id_valor">{{valores.data_valor |date : 'dd/MM/yyyy ' : '+00:00'}}</mat-option>
+          <mat-option *ngFor="let valores of valores$" [value]="valores.id_valor">{{valores.data_valor | date : 'dd/MM/yyyy ' : '+00:00' }}</mat-option>
         </mat-select>
       </mat-form-field>
      <!--  <p class="card-title center">Dias</p>
@@ -123,7 +123,7 @@
       <td class="mat-cell" colspan="4">Não a valor para esse nome! "{{input.value}}"</td>
     </tr>
   </table>
-
+    {{informacaoFilho}}
   <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
     [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex"
     aria-label="Select page">

@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Injectable, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, reduce, take, tap } from 'rxjs/operators';
 import { Equipe } from '../model/equipe';
 import { Iequipe } from '../model/Iequipe';
@@ -10,34 +10,45 @@ import { Valores } from '../model/valor';
   providedIn: 'root'
 })
 export class ValoresServiceService {
+
+  private ServiceBehaviorSubject = new BehaviorSubject<string>(`Dio - Egypt`);
+
   valores: Valores[];
-  v:Valores
-  equipe:Equipe[]
+  v: Valores
+  equipe: Equipe[]
 
   public URL = 'https://app-lucaback-end.herokuapp.com'
 
   constructor(private http: HttpClient) { }
+
+
+
   // Headers 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 
   }
 
-  listaValores() {
-    return this.http.get<Valores>(this.URL + '/valores').pipe(
-      tap(console.log)
-    
-      )
+  eventoValor(valor: string) {
+    this.ServiceBehaviorSubject.next(valor);
+  }
 
-    
+  retornoValor() {
+    return this.ServiceBehaviorSubject;
+  }
+
+  listaValores(): Observable<Valores[]> {
+    return this.http.get<Valores[]>(this.URL + '/valores').pipe(
+      tap(console.log)
+    )
   }
 
   salvarValor(valores: Valores[]) {
+    this.ServiceBehaviorSubject.next('')
     return this.http.post(this.URL + '/valores', valores).pipe(
       tap(console.log)
     )
-
-  }
+}
 
   carregarPeloId(id_valor) {
     return this.http.get<Valores>(this.URL + '/valores/' + id_valor).pipe(tap(console.log))
@@ -50,13 +61,13 @@ export class ValoresServiceService {
 
   upDateValor(valor): Observable<any> {
     return this.http.patch<any>(this.URL + '/valores/', valor).pipe(tap(console.log)
-    ,catchError(this.handleError)
+      , catchError(this.handleError)
     )
   }
 
   upDateValorEquipe(equipe): Observable<any> {
     return this.http.patch<any>(this.URL + '/equipe/', equipe).pipe(tap(console.log)
-    ,catchError(this.handleError)
+      , catchError(this.handleError)
     )
   }
 
@@ -73,8 +84,8 @@ export class ValoresServiceService {
 
   }
 
-  getEquipe(){
-   return this.http.get<Equipe>(this.URL + '/equipe').pipe(tap(console.log))
+  getEquipe() {
+    return this.http.get<Equipe>(this.URL + '/equipe').pipe(tap(console.log))
   }
 
   listaValorCartaoServer() {

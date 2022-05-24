@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { map, reduce } from 'rxjs/operators';
 import { Equipe } from 'src/app/model/equipe';
 import { Iequipe } from 'src/app/model/Iequipe';
 import { Valores } from 'src/app/model/valor';
 import { AlertService } from 'src/app/service/alert.service';
 import { ColaboradorServiceService } from 'src/app/service/colaborador-service.service';
 import { ValoresServiceService } from 'src/app/service/valores-service.service';
+import { EventEmitter } from  '@angular/core'
 
 @Component({
   selector: 'app-valores',
@@ -28,7 +28,8 @@ export class ValoresComponent implements OnInit {
   total: number;
   mascara: Iequipe[]
   equipes: Equipe[];
-  valores: Valores[]
+  valores: Valores[];
+  
   v: Valores;
   formValores: FormGroup
   botaoValorAtrualizar: boolean = false;
@@ -49,9 +50,14 @@ export class ValoresComponent implements OnInit {
     'botao_alterar',
     'botao_deletar'
   ];
+ 
+  @Output() enviarValorParaOpai = new EventEmitter();
+  @Output() atualizaGrafico = new EventEmitter();
+
   @ViewChild('deleteModel') deleteModal;
   @ViewChild('editModal') editModal;
   @ViewChild('salvarEdit') editarForm;
+ 
 
   constructor(
     private http: HttpClient,
@@ -71,6 +77,8 @@ export class ValoresComponent implements OnInit {
     
     return null;
   }
+
+
 
   ngOnInit(): void {
 
@@ -100,7 +108,7 @@ export class ValoresComponent implements OnInit {
 
     this.service.listaValores().subscribe(
       valores => {
-        this.valores = valores.valores
+        this.valores = valores['valores']
         this.dataSource = new MatTableDataSource(this.valores);
         //this.valores['data_valor'] = valores['valores'].map(res => res.data_valor.split("T")[0])
       },
@@ -120,15 +128,20 @@ export class ValoresComponent implements OnInit {
     )
   }
 
+  
+
   salvarValores() {
     console.log(this.formValores.value);
     this.service.salvarValor(this.formValores.value).subscribe(
       (res) => {
-        this.onRefresh();
-        this.router.navigate(['dashboard'])
+       this.enviarValorParaOpai.emit(res);
+       this.atualizaGrafico.emit(res);
+       //this.router.navigate(['dashboard']);
         this.alertService.sucess("Valor Salvo", "Resposta");
-        this.formValores.reset()
-      }
+        this.formValores.reset();
+        this.onRefresh();
+      },
+      
 
     )
   }
@@ -195,7 +208,7 @@ export class ValoresComponent implements OnInit {
   onRefresh() {
 
     this.service.listaValores().subscribe(
-      valores => this.valores = valores.valores
+      valores => this.valores = valores['valores']
     )
   }
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { filter, map, tap } from 'rxjs/operators';
 import { Colaborador } from 'src/app/model/colaborador';
@@ -35,6 +35,8 @@ interface X {
 export class EquipeComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+
 
 
 
@@ -50,7 +52,8 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   lista: X[];
   nome: string
   data: Date[]
-  valor: Valores[]
+  valores$: Valores[]
+
   colaborador: Colaborador[];
   equipe: Equipe[]
   equipeSelecionada: Equipe
@@ -68,6 +71,7 @@ export class EquipeComponent implements OnInit, AfterViewInit {
   deleteModelRef: BsModalRef;
   editModalRef: BsModalRef;
   
+  @Input() informacaoFilho : string;
   @ViewChild('deleteModel') deleteModal;
   @ViewChild('editModel') editModal;
 
@@ -102,8 +106,8 @@ export class EquipeComponent implements OnInit, AfterViewInit {
 
     this.service.listaValores().subscribe(
       res => {
-        this.valor = res.valores
-        console.log(this.valor);
+        this.valores$ = res['valores']
+      
 
       }
     )
@@ -138,7 +142,14 @@ export class EquipeComponent implements OnInit, AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  
+  atulaizaValor(){
+    this.service.listaValores().subscribe(
+     res => {
+      this.valores$ = res['valores'];
+     }
+    )
+   }
 
   onReFresh() {
     this.service.getEquipe().subscribe(
@@ -147,6 +158,9 @@ export class EquipeComponent implements OnInit, AfterViewInit {
           this.dataSource = new MatTableDataSource(this.equipe);
         this.dataSource.paginator = this.paginator;
       })
+
+
+
   }
 
 

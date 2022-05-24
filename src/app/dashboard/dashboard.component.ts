@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { EquipeComponent } from '../components/equipe/equipe/equipe.component';
+import { GraficoComponent } from '../graficos/grafico/grafico.component';
 import { GraficosService } from '../graficos/grafico/graficos.service';
 import { Colaborador } from '../model/colaborador';
 import { Equipe } from '../model/equipe';
 import { Gruja } from '../model/gruja';
 import { Valores } from '../model/valor';
+import { ValoresServiceService } from '../service/valores-service.service';
 Chart.register(...registerables);
 
 
@@ -16,16 +19,29 @@ Chart.register(...registerables);
 export class DashboardComponent implements OnInit {
   valores: Valores[]
   gruja: Gruja[];
-  chart: any;
   equipe: Equipe[];
+ 
+   @ViewChild(EquipeComponent) filhoEquipe: EquipeComponent
+   @ViewChild(GraficoComponent) filhoGrafico: GraficoComponent
 
-  constructor(private service: GraficosService) { }
+  constructor() { }
 
   ngOnInit(): void {
+       
+ }
+ 
+ valor(valor){
+  this.filhoEquipe.atulaizaValor();
 
+ }
 
-
-  }
+  valorB(valorB) {
+    console.log(valorB)
+    this.filhoGrafico.atualizaValorGrafico();
+   
+ } 
+ 
+  
 }
 
 
