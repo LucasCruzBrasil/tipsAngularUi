@@ -164,6 +164,10 @@ export class ValoresComponent implements OnInit {
     )
 
   }
+ 
+  fecharModal(){
+    this.modalService.hide();
+  }
 
   editarValor(valor) {
       console.log(valor);
