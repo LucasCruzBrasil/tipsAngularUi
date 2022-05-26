@@ -224,15 +224,18 @@ export class ValoresComponent implements OnInit {
   }
 
   listaTotal() {
-    this.service.listaValorCartaoServer().subscribe(
+    this.service.listaValores().subscribe(
       res => {
         this.cartao = res['valores'].map(
           res => res.valor_cartao).reduce((a, b) => a + b, 0);
-        this.dinheiro = res['valores'].map(
+      
+          this.dinheiro = res['valores'].map(
           res => res.valor_dinheiro).reduce((a, b) => a + b, 0);
-        this.pix = res['valores'].map(
+       
+          this.pix = res['valores'].map(
           res => res.valor_pix).reduce((a, b) => a + b, 0);
-        this.picPay = res['valores'].map(
+        
+          this.picPay = res['valores'].map(
           res => res.valor_pic_pay).reduce((a, b) => a + b, 0);
 
         this.service.getEquipe().subscribe(

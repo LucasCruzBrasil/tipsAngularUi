@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { EquipeComponent } from '../components/equipe/equipe/equipe.component';
+import { ValoresComponent } from '../components/valores-diadia/valores/valores.component';
 import { GraficoComponent } from '../graficos/grafico/grafico.component';
 import { GraficosService } from '../graficos/grafico/graficos.service';
 import { Colaborador } from '../model/colaborador';
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
  
    @ViewChild(EquipeComponent) filhoEquipe: EquipeComponent
    @ViewChild(GraficoComponent) filhoGrafico: GraficoComponent
-
+   @ViewChild(ValoresComponent) filhoValor: ValoresComponent
   constructor() { }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
  
  valor(valor){
   this.filhoEquipe.atulaizaValor();
+  this.filhoValor.listaTotal();
 
  }
 
