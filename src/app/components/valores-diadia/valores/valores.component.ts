@@ -156,6 +156,8 @@ export class ValoresComponent implements OnInit {
     console.log(id)
     this.service.deleteValor(id).subscribe(
       result => {
+        this.enviarValorParaOpai.emit(result);
+        this.atualizaGrafico.emit(result);
         console.log(id);
         console.log('excluído com sucesso', id)
         this.modalService.hide();
@@ -199,6 +201,8 @@ export class ValoresComponent implements OnInit {
     let result$ = this.service.upDateValor(this.formValores.value);
     result$.subscribe(
       result => {
+        this.enviarValorParaOpai.emit();
+        this.atualizaGrafico.emit();
         this.alertService.sucess('Update', 'Atualizado com sucesso ')
         this.formValores.reset()
         this.onRefresh()

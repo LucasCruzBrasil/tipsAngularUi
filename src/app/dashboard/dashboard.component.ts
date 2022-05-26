@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
  
  valor(valor){
   this.filhoEquipe.atulaizaValor();
+  this.filhoEquipe.onReFresh();
   this.filhoValor.listaTotal();
 
  }
