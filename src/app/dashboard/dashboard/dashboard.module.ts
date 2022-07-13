@@ -32,6 +32,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PixComponent } from 'src/app/components/pix-integracao/pix/pix.component';
 
 
 
@@ -46,7 +47,8 @@ registerLocaleData(localePT);
     FormComponent,
     GraficoComponent,
     ValoresComponent,
-    EquipeComponent
+    EquipeComponent,
+    PixComponent
 
 
 

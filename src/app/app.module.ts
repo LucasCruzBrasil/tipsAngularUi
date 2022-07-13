@@ -28,6 +28,7 @@ import { EquipeComponent } from './components/equipe/equipe/equipe.component';
     
     
     
+    
 
   ],
   imports: [
@@ -42,7 +43,7 @@ import { EquipeComponent } from './components/equipe/equipe/equipe.component';
     DashboardModule,
     ReactiveFormsModule,
     RouterModule,
-    SharedModule,
+    SharedModule
 
   ],
 

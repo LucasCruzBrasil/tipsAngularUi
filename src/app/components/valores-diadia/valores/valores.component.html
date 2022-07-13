@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 card" style="margin-top: 15px;">
+        <div class="col s12 card" style="margin-top: 15px;" id="dashboard">
             <div class="row">
                 <form class="col s12" [formGroup]="formValores">
                     <div class="row">
@@ -147,7 +147,7 @@
                         <td class="text-center">{{valor.total | currency : 'BRL'}}</td>
                         <td class="text-center"> {{valor.qtd_pessoas}}</td>
                         <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
-                        <td class="text-center"><a type="submit" (click)="editarValor(valor)"><i
+                        <td class="text-center" href="#dashboard"><a type="submit" (click)="editarValor(valor)"><i
                                     class="material-icons text-center">create</i></a></td>
                         <td class="text-center"><a (click)="onDelete(valor)"><i
                                     class="material-icons text-center">delete_forever</i></a></td>

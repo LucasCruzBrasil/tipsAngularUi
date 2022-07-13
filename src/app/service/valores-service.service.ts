@@ -3,7 +3,6 @@ import { Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, reduce, take, tap } from 'rxjs/operators';
 import { Equipe } from '../model/equipe';
-import { Iequipe } from '../model/Iequipe';
 import { Valores } from '../model/valor';
 
 @Injectable({
