@@ -2,37 +2,37 @@
 
     <div class="row">
         <div class="col s12 m6">
-            <div class="input-field col s12  m8 card">
+            <div class="input-field col s12  m8 card" [formGroup]="formPix">
 
                 <div class="input-field">
                     <i class="material-icons prefix">local_atm</i>
-                    <input id="icon_prefix" type="number" class="validate">
-                    <label for="icon_prefix">Valor</label>
+                    <input placeholder="Valor da gorjeta" id="icon_prefix" type="number" class="validate" formControlName="transaction_amount">
+                    <label for="icon_prefix"></label>
                 </div>
 
                 <div class="input-field">
                     <i class="material-icons prefix">favorite_border</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Descrição</label>
+                    <input placeholder="Colaborador" id="icon_prefix" type="text" class="validate" formControlName="description">
+                    <label for="icon_prefix"></label>
                 </div>
                
                 <div class="input-field">
                     <i class="material-icons prefix">card_membership</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Email</label>
+                    <input placeholder="email" id="icon_prefix" type="email" class="validate" formControlName="email">
+                    <label for="icon_prefix"></label>
                 </div>
 
 
                 <div class="input-field">
                     <i class="material-icons prefix">perm_identity</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Nome</label>
+                    <input  placeholder="Nome" id="icon_prefix" type="text" class="validate" formControlName="first_name">
+                    <label for="icon_prefix"></label>
                 </div>
 
                 <div class="input-field">
                     <i class="material-icons prefix">perm_identity</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Sobrenome</label>
+                    <input  placeholder="Sobrenome" id="icon_prefix" type="text" class="validate" formControlName="last_name" >
+                    <label for="icon_prefix"></label>
                 </div>
 
                 <div class="input-field">
@@ -43,12 +43,12 @@
 
                 <div class="input-field">
                    
-                    <input id="icon_prefix" type="number" class="validate">
-                    <label for="icon_prefix">Número</label>
+                    <input id="icon_prefix"  placeholder="numero" type="number" class="validate" formControlName="number">
+                    <label for="icon_prefix"></label>
                 </div>
              
                 <div class="input-field">
-                    <button class="btn waves-effect waves-light black" type="submit" name="action">Gerar Qr
+                    <button class="btn waves-effect waves-light black" type="submit" name="action" (click)="gerarQr(pix)">Gerar Qr
                         <i class="material-icons right">send</i>
                     </button>
 

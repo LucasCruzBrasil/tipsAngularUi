@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Pix } from 'src/app/model/pix';
+import { PixService } from 'src/app/service/pix.service';
 
 @Component({
   selector: 'app-pix',
@@ -6,10 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pix.component.css']
 })
 export class PixComponent implements OnInit {
-
-  constructor() { }
+  
+  formPix: FormGroup
+  pix: Pix;
+ 
+  constructor(private pixService: PixService) { }
 
   ngOnInit(): void {
+
+    this.formPix = new FormGroup({
+
+
+      transaction_amount: new FormControl(''),
+      description: new FormControl(''),
+      payment_method_id: new FormControl('Pix'),
+      email: new FormControl(''),
+      first_name: new FormControl(''),
+      last_name: new FormControl(''),
+      type: new FormControl('CPF'),
+      number: new FormControl('')
+      
+
+    })
+  }
+
+  gerarQr(pix: Pix){
+    console.log(this.formPix.value);
+    
+    this.pixService.QrServer(this.formPix.value).subscribe(
+      res => {
+        console.log(res);
+      }
+    )
   }
 
 }
