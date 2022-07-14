@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Pix } from 'src/app/model/pix';
+import { AlertService } from 'src/app/service/alert.service';
 import { PixService } from 'src/app/service/pix.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class PixComponent implements OnInit {
   formPix: FormGroup
   pix: Pix;
  
-  constructor(private pixService: PixService) { }
+  constructor(private pixService: PixService, private alertService: AlertService) { }
 
   ngOnInit(): void {
 
@@ -35,12 +36,13 @@ export class PixComponent implements OnInit {
 
   gerarQr(pix: Pix){
     console.log(this.formPix.value);
+    this.pix = this.formPix.value;
+    this.pixService.QrServer(this.pix).subscribe(
+     res => console.log(res)
+    ),(httpError) => {
+      this.alertService.error(httpError.error.mensagem);
+    }
     
-    this.pixService.QrServer(this.formPix.value).subscribe(
-      res => {
-        console.log(res);
-      }
-    )
   }
 
 }
