@@ -4,7 +4,7 @@ export class Pix {
     description: string;
     payment_method_id: "pix"
     payer: {
-        email: string,
+        email: any,
         first_name: string,
         last_name: string,
         identification: {
