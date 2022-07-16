@@ -15,7 +15,7 @@ export class PixService {
 
   constructor(private http: HttpClient) { }
 
-  QrServer(pix: Pix) {
+  QrServer(pix: Pix[]) {
     return this.http.post(this.URL + '/process_payment', pix).pipe(
       tap(console.log)
     )

@@ -4,16 +4,38 @@ import { Pix } from 'src/app/model/pix';
 import { AlertService } from 'src/app/service/alert.service';
 import { PixService } from 'src/app/service/pix.service';
 
+
+
+export interface Ipix {
+  transaction_amount: number;
+  description: string;
+  payment_method_id: "pix"
+  payer: {
+      email: string,
+      first_name: string,
+      last_name: string,
+      identification: {
+          type: "CPF",
+          number: number
+      }
+  }
+}
+
+
+
 @Component({
   selector: 'app-pix',
   templateUrl: './pix.component.html',
   styleUrls: ['./pix.component.css']
 })
+
+
 export class PixComponent implements OnInit {
-  
+  payer: FormGroup
   formPix: FormGroup
-  pix: Pix;
- 
+  identification:FormGroup
+  pix: Pix[];
+  m: Ipix[];
   constructor(private pixService: PixService, private alertService: AlertService) { }
 
   ngOnInit(): void {
@@ -24,25 +46,63 @@ export class PixComponent implements OnInit {
       transaction_amount: new FormControl(''),
       description: new FormControl(''),
       payment_method_id: new FormControl('Pix'),
+      
+      payer: new FormGroup({
       email: new FormControl(''),
       first_name: new FormControl(''),
       last_name: new FormControl(''),
-      type: new FormControl('CPF'),
-      number: new FormControl('')
       
+      identification: new FormGroup({
+        type: new FormControl('CPF'),
+        number: new FormControl('')
+      })
 
-    })
+      })
+      
+      
+        
+
+      })
+    
   }
 
-  gerarQr(pix: Pix){
+  creatForm(pix: Ipix){
+    this.formPix = new FormGroup({
+
+
+      transaction_amount: new FormControl(''),
+      description: new FormControl(''),
+      payment_method_id: new FormControl('Pix'),
+      
+      payer: new FormGroup({
+      email: new FormControl(''),
+      first_name: new FormControl(''),
+      last_name: new FormControl(''),
+      
+      identification: new FormGroup({
+        type: new FormControl('CPF'),
+        number: new FormControl('')
+      })
+
+      })
+      
+      
+        
+
+      })
+    
+
+  }
+
+  gerarQr(pix: Pix[]) {
     console.log(this.formPix.value);
-    this.pix = this.formPix.value;
-    this.pixService.QrServer(this.pix).subscribe(
-     res => console.log(res)
-    ),(httpError) => {
+     this.m = this.formPix.value;
+    this.pixService.QrServer(this.m).subscribe(
+
+    ), (httpError) => {
       this.alertService.error(httpError.error.mensagem);
     }
-    
+
   }
 
 }
