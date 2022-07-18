@@ -1,8 +1,24 @@
 <div class="container">
 
+
     <div class="row">
         <div class="col s12 m6">
-            <div class="input-field col s12  m8 card" [formGroup]="formPix">
+            <div class="card grey darken-4">
+                <div class="card-content white-text">
+                    <span class="card-title">Gerar uma Tips :)</span>
+                    <p>
+                        prencha o formulário para gerar o QR de pagamento.</p>
+                </div>
+                <div class="card-action">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field col s12  card" [formGroup]="formPix">
 
                 <div class="input-field">
                     <i class="material-icons prefix">local_atm</i>
@@ -45,34 +61,54 @@
                             </i>
                             <label for="icon_prefix">CPF</label>
                         </div>
-    
+
                         <div class="input-field">
-    
+
                             <input id="icon_prefix" placeholder="numero" type="number" class="validate"
                                 formControlName="number">
                             <label for="icon_prefix"></label>
                         </div>
+
+
+
+                        <div class="input-field">
+                            <button class="btn waves-effect waves-light black" type="submit" name="action"
+                                (click)="gerarQr(pix)">Gerar Qr
+                                <i class="material-icons right">send</i>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
-               
-                <div class="input-field">
-                    <button class="btn waves-effect waves-light black" type="submit" name="action"
-                        (click)="gerarQr(pix)">Gerar Qr
-                        <i class="material-icons right">send</i>
-                    </button>
-
-                </div>
-
             </div>
-
-
-
-
-
-
-
-
         </div>
 
+    </div>
+
+    <!--  <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <img src="data:image/png;base64,{{qr}}">
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img src="data:image/png;base64,{{qr}}">
+                    <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
