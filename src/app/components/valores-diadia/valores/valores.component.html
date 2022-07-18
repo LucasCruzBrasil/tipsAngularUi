@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div>
-                        <button *ngIf="botaoValorSalvar" class="accent-4 btn waves-effect waves-light blue"
+                        <button *ngIf="botaoValorSalvar" class="accent-4 btn waves-effect waves-light grey darken-4"
                             type="submit" name="action" (click)="salvarValores()">Salvar
                             <i class="material-icons right">send</i>
                         </button>
@@ -71,42 +71,42 @@
 
     <div class="row">
         <div class="col s12 m6">
-            <div class="card  light-blue accent-4">
+            <div class="card  grey darken-4">
                 <span class="card-title center white-text">Cartão</span>
                 <p class="flow-text center white-text">{{cartao | currency : 'BRL'}}</p>
             </div>
 
         </div>
         <div class="col s12 m6">
-            <div class="card light-green accent-4">
+            <div class="card grey darken-4">
                 <span class="card-title center white-text">Dinheiro</span>
                 <p class="flow-text center white-text">{{dinheiro | currency : 'BRL'}}</p>
             </div>
 
         </div>
         <div class="col s12 m6">
-            <div class="card deep-purple accent-4">
+            <div class="card grey darken-4">
                 <span class="card-title center white-text">Pix</span>
                 <p class="flow-text center white-text">{{pix | currency : 'BRL'}}</p>
             </div>
 
         </div>
         <div class="col s12 m6">
-            <div class="card  light-green accent-3">
+            <div class="card  grey darken-4">
                 <span class="card-title center white-text">PicPay</span>
                 <p class="flow-text center white-text">{{picPay | currency : 'BRL'}}</p>
             </div>
 
         </div>
         <div class="col s12 m6">
-            <div class="card deep-orange accent-4">
+            <div class="card grey darken-4">
                 <span class="card-title center white-text">Vales</span>
                 <p class="flow-text center white-text">{{vales | currency : 'BRL'}}</p>
             </div>
 
         </div>
         <div class="col s12 m6">
-            <div class="card red accent-4">
+            <div class="card grey darken-4">
                 <span class="card-title center white-text">Total</span>
                 <p class="flow-text center white-text"> {{total | currency : 'BRL'}}</p>
             </div>

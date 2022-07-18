@@ -55,19 +55,22 @@
                             formControlName="last_name">
                         <label for="icon_prefix"></label>
                     </div>
-                    <div formGroupName="identification">
+                      
+                    <div  formGroupName="identification">
                         <div class="input-field">
                             <i class="material-icons prefix">confirmation_number
                             </i>
-                            <label for="icon_prefix">CPF</label>
-                        </div>
-
-                        <div class="input-field">
-
-                            <input id="icon_prefix" placeholder="numero" type="number" class="validate"
-                                formControlName="number">
+                            <input id="icon_prefix" placeholder="CPF" type="number" class="validate"
+                            formControlName="number">
                             <label for="icon_prefix"></label>
                         </div>
+                      
+                        <!-- <div class="input-field" style="border: 1px solid red">
+
+                            <input id="icon_prefix"  type="number" class="validate"
+                                formControlName="number">
+                            <label for="icon_prefix"></label>
+                        </div> -->
 
 
 
@@ -94,12 +97,12 @@
         </div>
     </div> -->
 
-    <div class="row">
+    <div class="row" *ngIf="on">
         <div class="col s12 m7">
             <div class="card">
                 <div class="card-image">
                     <img src="data:image/png;base64,{{qr}}">
-                    <span class="card-title">Card Title</span>
+                 
                 </div>
                 <div class="card-content">
                     <p>I am a very simple card. I am good at containing small bits of information.

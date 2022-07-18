@@ -40,6 +40,8 @@ export class PixComponent implements OnInit {
   m: Ipix[];
   respostaPix: responsePix
   qr:responsePix['qrCodeBase64']
+  on: boolean = false;
+
 
   constructor(private pixService: PixService, private alertService: AlertService) { }
 
@@ -102,6 +104,7 @@ export class PixComponent implements OnInit {
 
       res => {
         this.respostaPix = res
+        this.on = true;
         this.qr = this.respostaPix.qrCodeBase64
         console.log(this.qr); 
       }
