@@ -10,7 +10,7 @@
                         prencha o formulário para gerar o QR de pagamento.</p>
                 </div>
                 <div class="card-action">
-                   
+
                 </div>
             </div>
         </div>
@@ -25,6 +25,11 @@
                     <input placeholder="Valor da gorjeta" id="icon_prefix" type="number" class="validate"
                         formControlName="transaction_amount">
                     <label for="icon_prefix"></label>
+                    <div *ngIf="formPix.get('transaction_amount')?.errors && formPix.get('transaction_amount').touched"
+                        class="alert alert-danger">
+                        È preciso informar o valor :)
+                    </div>
+
                 </div>
 
                 <div class="input-field">
@@ -32,6 +37,11 @@
                     <input placeholder="Colaborador" id="icon_prefix" type="text" class="validate"
                         formControlName="description">
                     <label for="icon_prefix"></label>
+                    <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
+                        class="alert alert-danger">
+                        È preciso escolher o colaborador
+                    </div>
+
                 </div>
                 <div formGroupName="payer">
                     <div class="input-field">
@@ -39,6 +49,11 @@
                         <input placeholder="email" id="icon_prefix" type="email" class="validate"
                             formControlName="email">
                         <label for="icon_prefix"></label>
+
+                        <div *ngIf="formPix.get('payer.email').touched && formPix.get('payer.email')?.errors"
+                            class="alert alert-danger">
+                            Email invalido
+                        </div>
                     </div>
 
 
@@ -47,6 +62,10 @@
                         <input placeholder="Nome" id="icon_prefix" type="text" class="validate"
                             formControlName="first_name">
                         <label for="icon_prefix"></label>
+                        <div *ngIf="formPix.get('payer.first_name').touched && formPix.get('payer.first_name')?.errors"
+                            class="alert alert-danger">
+                            Nome obrigatorio
+                        </div>
                     </div>
 
                     <div class="input-field">
@@ -54,17 +73,27 @@
                         <input placeholder="Sobrenome" id="icon_prefix" type="text" class="validate"
                             formControlName="last_name">
                         <label for="icon_prefix"></label>
+
+                        <div *ngIf="formPix.get('payer.last_name').touched && formPix.get('payer.last_name')?.errors"
+                            class="alert alert-danger">
+                            Nome obrigatorio
+                        </div>
                     </div>
-                      
-                    <div  formGroupName="identification">
+
+                    <div formGroupName="identification">
                         <div class="input-field">
                             <i class="material-icons prefix">confirmation_number
                             </i>
-                            <input id="icon_prefix" placeholder="CPF" type="number" class="validate"
-                            formControlName="number">
+                            <input id="icon_prefix" placeholder="CPF" type="text" class="validate"
+                                formControlName="number">
                             <label for="icon_prefix"></label>
+                            
+                            <div *ngIf="formPix.get('payer.identification.number').touched && formPix.get('payer.identification.number')?.errors"
+                            class="alert alert-danger">
+                            CPF invalido
                         </div>
-                      
+                        </div>
+
                         <!-- <div class="input-field" style="border: 1px solid red">
 
                             <input id="icon_prefix"  type="number" class="validate"
@@ -76,7 +105,9 @@
 
                         <div class="input-field">
                             <button class="btn waves-effect waves-light black" type="submit" name="action"
-                                (click)="gerarQr(pix)">Gerar Qr
+                                (click)="gerarQr(pix)" 
+                                [disabled]="formPix.invalid">Gerar Qr
+                                
                                 <i class="material-icons right">send</i>
                             </button>
 
@@ -102,7 +133,7 @@
             <div class="card">
                 <div class="card-image">
                     <img src="data:image/png;base64,{{qr}}">
-                 
+
                 </div>
                 <div class="card-content">
                     <p>I am a very simple card. I am good at containing small bits of information.
