@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ListaPagamentos } from '../model/listaPagamentos';
 import { Pix } from '../model/pix';
 
 @Injectable({
@@ -17,6 +18,12 @@ export class PixService {
 
   QrServer(pix: Pix[]) {
     return this.http.post(this.URL + '/process_payment', pix).pipe(
+      tap(console.log)
+    )
+  }
+
+  listaValores(): Observable<ListaPagamentos[]> {
+    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos').pipe(
       tap(console.log)
     )
   }

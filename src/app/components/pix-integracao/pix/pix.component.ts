@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ListaPagamentos } from 'src/app/model/listaPagamentos';
 import { Pix } from 'src/app/model/pix';
 import { responsePix } from 'src/app/model/responsePix';
 import { AlertService } from 'src/app/service/alert.service';
@@ -42,12 +43,12 @@ export class PixComponent implements OnInit {
   respostaPix: responsePix
   qr: responsePix['qrCodeBase64']
   on: boolean = false;
-
+  listaPagamentos : ListaPagamentos[];
 
   constructor(private pixService: PixService, private alertService: AlertService) { }
 
   ngOnInit(): void {
-
+    this.listaPagamentosCliente();
     this.formPix = new FormGroup( {
 
       transaction_amount: new FormControl('', [Validators.required]),
@@ -97,7 +98,11 @@ export class PixComponent implements OnInit {
 
   }
 
-  
+  listaPagamentosCliente() {
+    this.pixService.listaValores().subscribe(
+      valores => this.listaPagamentos = valores['response']
+    )
+  }
 
   gerarQr(pix: Pix[]) {
     console.log(this.formPix.value);
