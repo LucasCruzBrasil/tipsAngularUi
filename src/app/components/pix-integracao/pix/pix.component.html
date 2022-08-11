@@ -157,17 +157,21 @@
                     <table>
                         <thead>
                           <tr>
-                              <th>Name</th>
-                              <th>Item Name</th>
-                              <th>Item Price</th>
+                              <th>Nome</th>
+                              <th>Valor</th>
+                              <th>Data Criação</th>
+                              <th>Data Aprovação</th>
+
                           </tr>
                         </thead>
                 
                         <tbody>
-                          <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
+                          <tr *ngFor = "let lista of listaPagamentos" >
+                            <td>{{lista.description}}</td>
+                            <td>${{lista.transaction_amount}}</td>
+                            <td>{{lista.date_created}}</td>
+                            <td>{{lista.date_approved}}</td>
+
                           </tr>
                        
                         </tbody>

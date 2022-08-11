@@ -43,7 +43,7 @@ export class PixComponent implements OnInit {
   respostaPix: responsePix
   qr: responsePix['qrCodeBase64']
   on: boolean = false;
-  listaPagamentos : ListaPagamentos[];
+  listaPagamentos: ListaPagamentos[];
 
   constructor(private pixService: PixService, private alertService: AlertService) { }
 
@@ -99,9 +99,7 @@ export class PixComponent implements OnInit {
   }
 
   listaPagamentosCliente() {
-    this.pixService.listaValores().subscribe(
-      valores => this.listaPagamentos = valores['response']
-    )
+    this.pixService.listaValores().subscribe(pagamentos => this.listaPagamentos = pagamentos['pagamentos'])
   }
 
   gerarQr(pix: Pix[]) {
