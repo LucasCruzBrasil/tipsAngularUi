@@ -42,14 +42,18 @@ export class PixComponent implements OnInit {
   m: Ipix[];
   respostaPix: responsePix
   qr: responsePix['qrCodeBase64']
+  external_reference: responsePix
   on: boolean = false;
   listaPagamentos: ListaPagamentos[];
+  listaPagamentosAprovados: ListaPagamentos[];
+
+  buscaPagamentoAprovado: any;
 
   constructor(private pixService: PixService, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.listaPagamentosCliente();
-    this.formPix = new FormGroup( {
+    this.formPix = new FormGroup({
 
       transaction_amount: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -63,7 +67,7 @@ export class PixComponent implements OnInit {
 
         identification: new FormGroup({
           type: new FormControl('CPF'),
-          number: new FormControl('', [Validators.required,Validacoes.ValidaCpf])
+          number: new FormControl('', [Validators.required, Validacoes.ValidaCpf])
         })
 
       })
@@ -99,7 +103,19 @@ export class PixComponent implements OnInit {
   }
 
   listaPagamentosCliente() {
-    this.pixService.listaValores().subscribe(pagamentos => this.listaPagamentos = pagamentos['pagamentos'])
+    this.pixService.listaValores().subscribe(
+      pagamentos => {
+        this.listaPagamentos = pagamentos['pagamentos']
+      }
+    )
+  }
+
+  onRefresh(){
+    this.pixService.listaValores().subscribe(
+      pagamentos => {
+        this.listaPagamentos = pagamentos['pagamentos']
+      }
+    )
   }
 
   gerarQr(pix: Pix[]) {
@@ -111,14 +127,31 @@ export class PixComponent implements OnInit {
 
       res => {
         this.respostaPix = res
+        this.external_reference = res.external_reference
         this.on = true;
         this.qr = this.respostaPix.qrCodeBase64
         console.log(this.qr);
       }
+
     ), (httpError) => {
       this.alertService.error(httpError.error.mensagem);
     }
 
+    this.buscaPagamentoAprovado = setTimeout(() => {
+      this.pixService.carregarPeloId(this.external_reference).subscribe(
+        res => {
+          this.alertService.sucess('Update', 'pagamento concluído com sucesso. ')
+          this.on = false
+          this.formPix.reset();
+          this.onRefresh();
+          console.log('salvou')
+        }
+      )
+
+    }, 50000)
+
   }
+
+
 
 }

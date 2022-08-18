@@ -11,7 +11,7 @@ import { Pix } from '../model/pix';
 export class PixService {
 
   pix: Pix;
-  
+  pagamentos: ListaPagamentos;
   public URL = 'https://api-integracao-mercadopago.herokuapp.com'
 
   constructor(private http: HttpClient) { }
@@ -28,7 +28,17 @@ export class PixService {
     )
   }
  
- 
+  carregarPeloId(id_pagamento): Observable<ListaPagamentos[]> {
+    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento).pipe(tap(console.log))
+
+  }
+
+  //
+  notificaçãoMercadoPago(resposta){
+    return this.http.post(this.URL + '/not', resposta).pipe(
+      tap(console.log)
+    )
+  }
  
  
  

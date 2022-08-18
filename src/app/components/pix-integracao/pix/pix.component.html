@@ -9,6 +9,7 @@
                     <p>
                         prencha o formulário para gerar o QR de pagamento.</p>
                 </div>
+
                 <div class="card-action">
 
                 </div>
@@ -152,30 +153,31 @@
                     <span class="card-title">Lista de Pagamentos :)</span>
                     <p>
                         Pagamentos aprovados .</p>
+                        <hr style="color: white;">
                 </div>
-                <div class="responsive-table white-text">
+                <div class="table responsive-table white-text">
                     <table>
                         <thead>
-                          <tr>
-                              <th>Nome</th>
-                              <th>Valor</th>
-                              <th>Data Criação</th>
-                              <th>Data Aprovação</th>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Data Criação</th>
+                                <th>Data Aprovação</th>
 
-                          </tr>
+                            </tr>
                         </thead>
-                
-                        <tbody>
-                          <tr *ngFor = "let lista of listaPagamentos" >
-                            <td>{{lista.description}}</td>
-                            <td>${{lista.transaction_amount}}</td>
-                            <td>{{lista.date_created}}</td>
-                            <td>{{lista.date_approved}}</td>
 
-                          </tr>
-                       
+                        <tbody>
+                            <tr *ngFor="let lista of listaPagamentos">
+                                <td>{{lista.description}}</td>
+                                <td>${{lista.transaction_amount}}</td>
+                                <td>{{lista.date_created |date : 'dd/MM/yyyy ' : '+00:00'}}</td>
+                                <td>{{lista.date_approved |date : 'dd/MM/yyyy ' : '+00:00'}}</td>
+
+                            </tr>
+
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
         </div>
