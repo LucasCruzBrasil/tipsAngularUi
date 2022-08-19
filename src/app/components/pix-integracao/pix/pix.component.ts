@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { error } from 'protractor';
 import { ListaPagamentos } from 'src/app/model/listaPagamentos';
 import { Pix } from 'src/app/model/pix';
 import { responsePix } from 'src/app/model/responsePix';
@@ -140,11 +141,15 @@ export class PixComponent implements OnInit {
     this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
         res => {
-          this.alertService.sucess('Update', 'pagamento concluído com sucesso. ')
+       
+          this.alertService.sucess('Pago', 'pagamento concluído com sucesso. ')
           this.on = false
           this.formPix.reset();
           this.onRefresh();
           console.log('salvou')
+       
+       
+         
         }
       )
 
