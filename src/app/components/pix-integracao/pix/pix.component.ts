@@ -111,7 +111,7 @@ export class PixComponent implements OnInit {
     )
   }
 
-  onRefresh(){
+  onRefresh() {
     this.pixService.listaValores().subscribe(
       pagamentos => {
         this.listaPagamentos = pagamentos['pagamentos']
@@ -141,15 +141,18 @@ export class PixComponent implements OnInit {
     this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
         res => {
-       
+
           this.alertService.sucess('Pago', 'pagamento concluído com sucesso. ')
           this.on = false
           this.formPix.reset();
           this.onRefresh();
           console.log('salvou')
-       
-       
-         
+        },
+        error => {
+          this.alertService.info('Cancelado', 'pagamento cancelado. ')
+          this.on = false
+          this.formPix.reset();
+          this.onRefresh();
         }
       )
 
