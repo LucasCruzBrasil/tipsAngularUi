@@ -147,13 +147,13 @@ export class PixComponent implements OnInit {
           this.formPix.reset();
           this.onRefresh();
           console.log('salvou')
-        },
+        }/* ,
         error => {
           this.alertService.info('Cancelado', 'pagamento cancelado. ')
           this.on = false
           this.formPix.reset();
           this.onRefresh();
-        }
+        } */
       )
 
     }, 50000)
