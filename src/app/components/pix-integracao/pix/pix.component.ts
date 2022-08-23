@@ -47,6 +47,9 @@ export class PixComponent implements OnInit {
   on: boolean = false;
   listaPagamentos: ListaPagamentos[];
   listaPagamentosAprovados: ListaPagamentos[];
+  recebedorTips: any;
+  valorTips: any;
+  n: any;
 
   buscaPagamentoAprovado: any;
 
@@ -54,6 +57,7 @@ export class PixComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaPagamentosCliente();
+    this.creatForm();
     this.formPix = new FormGroup({
 
       transaction_amount: new FormControl('', [Validators.required]),
@@ -61,9 +65,36 @@ export class PixComponent implements OnInit {
       payment_method_id: new FormControl('Pix'),
 
       payer: new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('teste@gmail.com', [Validators.required, Validators.email]),
 
-        first_name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+        first_name: new FormControl('Teste', [Validators.required, Validators.minLength(1)]),
+        last_name: new FormControl('Testando', [Validators.required, Validators.minLength(1)]),
+
+        identification: new FormGroup({
+          type: new FormControl('CPF'),
+          number: new FormControl('03850973027', [Validators.required, Validacoes.ValidaCpf])
+        })
+
+      })
+
+
+
+
+    })
+
+  }
+
+  creatForm() {
+    this.formPix = new FormGroup({
+
+      transaction_amount: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      payment_method_id: new FormControl('Pix'),
+
+      payer: new FormGroup({
+        email: new FormControl(''/* , [Validators.required, Validators.email] */),
+
+        first_name: new FormControl(''/* , [Validators.required, Validators.minLength(1)] */),
         last_name: new FormControl('', [Validators.required, Validators.minLength(1)]),
 
         identification: new FormGroup({
@@ -76,28 +107,6 @@ export class PixComponent implements OnInit {
 
 
 
-    })
-
-  }
-
-  creatForm(pix: Ipix) {
-    this.formPix = new FormGroup({
-
-      transaction_amount: new FormControl(''),
-      description: new FormControl(''),
-      payment_method_id: new FormControl('Pix'),
-
-      payer: new FormGroup({
-        email: new FormControl(''),
-        first_name: new FormControl(''),
-        last_name: new FormControl(''),
-
-        identification: new FormGroup({
-          type: new FormControl('CPF'),
-          number: new FormControl('')
-        })
-
-      })
     })
 
 
@@ -119,10 +128,30 @@ export class PixComponent implements OnInit {
     )
   }
 
+  resetForm() {
+    this.formPix.reset(
+      {
+        transaction_amount: 0,
+        description: 'Escolha Alguém',
+        payment_method_id: 'PIX',
+        payer: {
+          email: 'lucas@hotmail.com',
+          first_name: 'João',
+          last_name: 'Barcelos',
+          identification: {
+            type: "CPF",
+            number: '37905027038'
+          }
+        }
+      }
+    );
+  }
+
   gerarQr(pix: Pix[]) {
     console.log(this.formPix.value);
 
     this.m = this.formPix.value;
+
 
     this.pixService.QrServer(this.m).subscribe(
 
@@ -131,6 +160,8 @@ export class PixComponent implements OnInit {
         this.external_reference = res.external_reference
         this.on = true;
         this.qr = this.respostaPix.qrCodeBase64
+        this.recebedorTips = this.respostaPix.description
+        this.valorTips = this.respostaPix.amount
         console.log(this.qr);
       }
 
@@ -140,23 +171,25 @@ export class PixComponent implements OnInit {
 
     this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
+       
         res => {
-
           this.alertService.sucess('Pago', 'pagamento concluído com sucesso. ')
           this.on = false
-          this.formPix.reset();
+          this.formPix.reset({ transaction_amount: 0 });
+          this.resetForm();
           this.onRefresh();
           console.log('salvou')
-        }/* ,
+        },
+       
         error => {
           this.alertService.info('Cancelado', 'pagamento cancelado. ')
           this.on = false
-          this.formPix.reset();
+          this.resetForm();
           this.onRefresh();
-        } */
+        }
       )
 
-    }, 50000)
+    }, 40000)
 
   }
 

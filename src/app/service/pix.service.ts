@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { ListaPagamentos } from '../model/listaPagamentos';
 import { Pix } from '../model/pix';
 
@@ -12,6 +12,8 @@ export class PixService {
 
   pix: Pix;
   pagamentos: ListaPagamentos;
+
+
   public URL = 'https://api-integracao-mercadopago.herokuapp.com'
 
   constructor(private http: HttpClient) { }
@@ -27,21 +29,25 @@ export class PixService {
       tap(console.log)
     )
   }
- 
+
   carregarPeloId(id_pagamento): Observable<ListaPagamentos[]> {
-    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento).pipe(tap(console.log))
+    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento).pipe(
+      tap(console.log),
+      catchError(this.handleError)
+
+    )
 
   }
 
   //
-  notificaçãoMercadoPago(resposta){
+  notificaçãoMercadoPago(resposta) {
     return this.http.post(this.URL + '/not', resposta).pipe(
       tap(console.log)
     )
   }
- 
- 
- 
+
+
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

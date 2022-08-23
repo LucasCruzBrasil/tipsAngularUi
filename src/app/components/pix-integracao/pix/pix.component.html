@@ -45,10 +45,10 @@
 
                 </div>
                 <div formGroupName="payer">
-                    <div class="input-field">
+                    <div class="input-field" class="escondido">
                         <i class="material-icons prefix">card_membership</i>
                         <input placeholder="email" id="icon_prefix" type="email" class="validate"
-                            formControlName="email">
+                            formControlName="email" value="teste@gmail.com">
                         <label for="icon_prefix"></label>
 
                         <div *ngIf="formPix.get('payer.email').touched && formPix.get('payer.email')?.errors"
@@ -58,10 +58,10 @@
                     </div>
 
 
-                    <div class="input-field">
+                    <div class="input-field" class="escondido">
                         <i class="material-icons prefix">perm_identity</i>
                         <input placeholder="Nome" id="icon_prefix" type="text" class="validate"
-                            formControlName="first_name">
+                            formControlName="first_name"  value="teste">
                         <label for="icon_prefix"></label>
                         <div *ngIf="formPix.get('payer.first_name').touched && formPix.get('payer.first_name')?.errors"
                             class="alert alert-danger">
@@ -69,10 +69,10 @@
                         </div>
                     </div>
 
-                    <div class="input-field">
+                    <div class="input-field" class="escondido">
                         <i class="material-icons prefix">perm_identity</i>
                         <input placeholder="Sobrenome" id="icon_prefix" type="text" class="validate"
-                            formControlName="last_name">
+                            formControlName="last_name" value="testeano">
                         <label for="icon_prefix"></label>
 
                         <div *ngIf="formPix.get('payer.last_name').touched && formPix.get('payer.last_name')?.errors"
@@ -81,12 +81,12 @@
                         </div>
                     </div>
 
-                    <div formGroupName="identification">
-                        <div class="input-field">
+                    <div formGroupName="identification" >
+                        <div class="input-field" class="escondido">
                             <i class="material-icons prefix">confirmation_number
                             </i>
                             <input id="icon_prefix" placeholder="CPF" type="text" class="validate"
-                                formControlName="number">
+                                formControlName="number" value="25896390537">
                             <label for="icon_prefix"></label>
 
                             <div *ngIf="formPix.get('payer.identification.number').touched && formPix.get('payer.identification.number')?.errors"
@@ -95,17 +95,10 @@
                             </div>
                         </div>
 
-                        <!-- <div class="input-field" style="border: 1px solid red">
-
-                            <input id="icon_prefix"  type="number" class="validate"
-                                formControlName="number">
-                            <label for="icon_prefix"></label>
-                        </div> -->
-
-
+                       
 
                         <div class="input-field">
-                            <button class="btn waves-effect waves-light black" type="submit" name="action"
+                            <button class="btn waves-effect waves-light black pulse" type="submit" name="action"
                                 (click)="gerarQr(pix)" [disabled]="formPix.invalid">Gerar Qr
 
                                 <i class="material-icons right">send</i>
@@ -113,7 +106,8 @@
 
                         </div>
                     </div>
-                </div>
+                </div> 
+              
             </div>
         </div>
 
@@ -136,7 +130,10 @@
 
                 </div>
                 <div class="card-content">
-                    <p>Qr de pagamento gerado </p>
+                    <blockquote>
+                       QR esperando o pagamento gerado para: {{recebedorTips}},<br>
+                       QR no valor de : {{valorTips | currency : 'BRL'}},
+                      </blockquote>
                 </div>
                 <div class="card-action">
 

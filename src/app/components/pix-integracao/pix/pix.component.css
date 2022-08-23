@@ -2,16 +2,19 @@
 .qr_img {
     max-width: 400px;
     max-height: 400px;
+
 }
 
-
+.escondido{
+    display: none;
+}
 
 
 
 @media only screen and (min-width: 320px) and (max-width: 576px) {
     .qr_img {
         width: 100%;
-        padding-left: 23px;
+        
         flex-direction: column-reverse;
     }
 
