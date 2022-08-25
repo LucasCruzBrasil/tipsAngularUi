@@ -98,12 +98,12 @@
                        
 
                         <div class="input-field">
-                            <button class="btn waves-effect waves-light black pulse" type="submit" name="action"
+                            <button class="btn waves-effect waves-light black" type="submit" name="action"
                                 (click)="gerarQr(pix)" [disabled]="formPix.invalid">Gerar Qr
 
                                 <i class="material-icons right">send</i>
                             </button>
-
+                       
                         </div>
                     </div>
                 </div> 
@@ -132,11 +132,16 @@
                 <div class="card-content">
                     <blockquote>
                        QR esperando o pagamento gerado para: {{recebedorTips}},<br>
-                       QR no valor de : {{valorTips | currency : 'BRL'}},
+                       QR no valor de : {{valorTips | currency : 'BRL'}}
                       </blockquote>
+
+
                 </div>
                 <div class="card-action">
-
+                    <button (click)="cancelarQr()" class="btn red accent-4" type="submit" name="action">Cancelar
+                        <i class="material-icons right">close</i>
+                      </button>
+                            
                 </div>
             </div>
         </div>
@@ -144,7 +149,7 @@
 
     <div class="row">
         <div class="col s12 m6">
-            <div class="card">
+            <div class="card grey darken-4">
                 <div class="card-content white-text grey darken-4">
                     <span class="card-title">Lista de Pagamentos :)</span>
                     <p>
@@ -167,8 +172,8 @@
                             <tr *ngFor="let lista of listaPagamentos">
                                 <td>{{lista.description}}</td>
                                 <td>${{lista.transaction_amount}}</td>
-                                <td>{{lista.date_created |date : 'dd/MM/yyyy ' : '+00:00'}}</td>
-                                <td>{{lista.date_approved |date : 'dd/MM/yyyy ' : '+00:00'}}</td>
+                                <td>{{lista.date_created |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}}</td>
+                                <td>{{lista.date_approved |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}}</td>
 
                             </tr>
 

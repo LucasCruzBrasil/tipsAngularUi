@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { error } from 'protractor';
+import { retryWhen } from 'rxjs/operators';
 import { ListaPagamentos } from 'src/app/model/listaPagamentos';
 import { Pix } from 'src/app/model/pix';
 import { responsePix } from 'src/app/model/responsePix';
@@ -171,16 +172,17 @@ export class PixComponent implements OnInit {
 
     this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
-       
+
         res => {
           this.alertService.sucess('Pago', 'pagamento concluído com sucesso. ')
           this.on = false
           this.formPix.reset({ transaction_amount: 0 });
           this.resetForm();
           this.onRefresh();
+         
           console.log('salvou')
         },
-       
+
         error => {
           this.alertService.info('Cancelado', 'pagamento cancelado. ')
           this.on = false
@@ -189,7 +191,12 @@ export class PixComponent implements OnInit {
         }
       )
 
-    }, 40000)
+    }, 10000)
+  }
+
+  cancelarQr() {
+    this.on = false
+    this.onRefresh();
 
   }
 

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { interval, Observable, throwError, TimeInterval, timer } from 'rxjs';
+import { catchError, concatMap, delay, delayWhen, map, retry, retryWhen, take, tap } from 'rxjs/operators';
 import { ListaPagamentos } from '../model/listaPagamentos';
 import { Pix } from '../model/pix';
 
@@ -9,7 +9,6 @@ import { Pix } from '../model/pix';
   providedIn: 'root'
 })
 export class PixService {
-
   pix: Pix;
   pagamentos: ListaPagamentos;
 
@@ -31,20 +30,27 @@ export class PixService {
   }
 
   carregarPeloId(id_pagamento): Observable<ListaPagamentos[]> {
-    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento).pipe(
+    return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento)
+    .pipe(
       tap(console.log),
-      catchError(this.handleError)
-
+      
+      retryWhen(errors =>
+        errors.pipe(
+          // log error message
+          tap(value => console.log('Ainda nao pagou')),
+          // restart in 5 seconds
+          //delayWhen(value => timer(value * 1000))
+        )
+      )
+    
+      /* catchError(this.handleError) */
+  
     )
 
   }
 
   //
-  notificaçãoMercadoPago(resposta) {
-    return this.http.post(this.URL + '/not', resposta).pipe(
-      tap(console.log)
-    )
-  }
+  
 
 
 
