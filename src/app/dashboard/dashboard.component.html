@@ -1,18 +1,18 @@
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript" src="js/materialize.min.js"></script>
- 
+
 
 
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    
+
     <h1>Projeto Tips</h1>
     <span class="menu-spacer"></span>
     <div>
-   <!--    <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
+      <!--    <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
       <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
 
       <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
@@ -28,24 +28,30 @@
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
-  
+
   </mat-sidenav>
   <mat-sidenav-content>
     <div style="height: 88vh;">
       <mat-tab-group>
-        <mat-tab label="Estatística"><app-grafico></app-grafico></mat-tab>
-        <mat-tab label="Valores"><app-valores (atualizaGrafico)="valorB($event)"(enviarValorParaOpai)="valor($event)"></app-valores></mat-tab>
-        <mat-tab label="Equipe"><app-equipe ></app-equipe></mat-tab>
-        <mat-tab label="Colaborador"><app-form-colaborador></app-form-colaborador> </mat-tab>
-        <mat-tab label="Área Pix"><app-pix></app-pix> </mat-tab>
-       </mat-tab-group>
-    
-      
+        <mat-tab label="Estatística">
+          <app-grafico></app-grafico>
+        </mat-tab>
+        <mat-tab label="Valores">
+          <app-valores (atualizaGrafico)="valorB($event)" (enviarValorParaOpai)="valor($event)"></app-valores>
+        </mat-tab>
+        <mat-tab label="Equipe">
+          <app-equipe></app-equipe>
+        </mat-tab>
+        <mat-tab label="Colaborador">
+          <app-form-colaborador></app-form-colaborador>
+        </mat-tab>
+        <mat-tab label="Área Pix">
+          <app-pix></app-pix>
+        </mat-tab>
+      </mat-tab-group>
+
+
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-
-<!--  <app-form-colaborador></app-form-colaborador>   -->
-<!-- <router-outlet></router-outlet>
- -->

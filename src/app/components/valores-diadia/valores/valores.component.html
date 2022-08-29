@@ -167,17 +167,17 @@
     </div>
 
 
+</div>
 
 
+<ng-template #deleteModel style="border: 1px solid tomato;">
+    <div class="modal-body text-center">
+        <p>Do you want to confirm?</p>
+        <button type="button" (click)="deletarValor(valores['id_valor'])" class="btn btn-default">Yes</button>
+        {{''}}
+        {{''}}
 
-    <ng-template #deleteModel style="border: 1px solid tomato;">
-        <div class="modal-body text-center">
-            <p>Do you want to confirm?</p>
-            <button type="button" (click)="deletarValor(valores['id_valor'])" class="btn btn-default">Yes</button>
-            {{''}}
-            {{''}}
+        <button type="button" class="btn btn-primary" (click)="fecharModal()">No</button>
+    </div>
 
-            <button type="button" class="btn btn-primary" (click)="fecharModal()">No</button>
-        </div>
-
-    </ng-template>
+</ng-template>
