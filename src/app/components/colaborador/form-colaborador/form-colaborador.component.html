@@ -49,7 +49,7 @@
 
         <tbody *ngFor="let colaborador of colaboradores">
           <tr>
-            <td> <img [attr.src]="'https://app-lucaback-end.herokuapp.com/'+ colaborador.imagem_colaborador " alt=""
+            <td> <img [attr.src]="colaborador.imagem_colaborador " alt=""
                 class="circle collection-item avatar" style="width:35px; height: 35px;">
             </td>
             <td>{{colaborador.nome}}</td>
