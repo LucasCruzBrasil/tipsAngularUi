@@ -67,7 +67,7 @@ export class FormColaboradorComponent implements OnInit {
     formData.append("nome", this.form.get('nome').value);
 
 
-    this.http.post('https://app-lucaback-end.herokuapp.com/colaborador', formData).subscribe(
+    this.http.post('https://app-lucaback-end.herokuapp.com/colaborador/upload', formData).subscribe(
       (response) => this.alertService.sucess("colaborador criado com sucesso", "resposta"),
       (error) => console.log(error)
     )

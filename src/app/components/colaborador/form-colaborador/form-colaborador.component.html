@@ -1,6 +1,7 @@
 
 <div class="container row col s12 m6 ">
 
+
   <div class="row col s12 m6 l4">
     <div class="col s12 m6 l4 card">
       <blockquote>Cadastro de colaboradores:</blockquote>
@@ -9,21 +10,39 @@
 
 
         <div class="form-group input-field validate">
-          <input class="form-control" formControlName="nome" type="text">
-          <label for="last_name">Nome</label>
+          <input class="validate" formControlName="nome" type="text" placeholder="nome">
         </div>
 
         <div class="form-group input-field validate">
-          <input class="form-control" formControlName="setor" type="text">
-          <label for="last_name">Setor</label>
+          <input class="validate" formControlName="setor" type="text" placeholder="setor">
         </div>
 
 
 
-        <div class="form-group input-field validate">
+        <div>
+          <label for="inputTag">
+           
 
-          <input type="file" (change)="uploadFile($event)">
+            <input id="inputTagb" type="file"/>
+            <br/>
+            <span id="imageName"></span>
+          </label>
         </div>
+    
+        <script>
+            let input = document.getElementById("inputTagb");
+            let imageName = document.getElementById("imageName")
+    
+            input.addEventListener("change", ()=>{
+                let inputImage = document.querySelector("input[type=file]").files[0];
+    
+                imageName.innerText = inputImage.name;
+            })
+        </script>
+          <!--  <input type="file" (change)="uploadFile($event)" class="file-path validate">
+          <label for="arquivo">Enviar arquivo</label> -->
+
+        
         <div class="form-group input-field">
           <button class="btn btn-block btn-lg blue">Cadastrar</button>
 
@@ -49,8 +68,8 @@
 
         <tbody *ngFor="let colaborador of colaboradores">
           <tr>
-            <td> <img [attr.src]="colaborador.imagem_colaborador " alt=""
-                class="circle collection-item avatar" style="width:35px; height: 35px;">
+            <td> <img [attr.src]="colaborador.imagem_colaborador " alt="" class="circle collection-item avatar"
+                style="width:35px; height: 35px;">
             </td>
             <td>{{colaborador.nome}}</td>
             <td>{{colaborador.setor}}</td>
@@ -61,6 +80,6 @@
 
     </div>
   </div>
- 
- 
+
+
 </div>
