@@ -13,7 +13,7 @@ export class PixService {
   pagamentos: ListaPagamentos;
 
 
-  public URL = 'https://app-lucaback-end.herokuapp.com'
+  public URL = 'https://api-integracao-mercadopago.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 

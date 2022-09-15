@@ -170,7 +170,7 @@ export class PixComponent implements OnInit {
       this.alertService.error(httpError.error.mensagem);
     }
 
-    this.buscaPagamentoAprovado = setTimeout(() => {
+     this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
 
         res => {
@@ -191,7 +191,7 @@ export class PixComponent implements OnInit {
         }
       )
 
-    }, 10000)
+    }, 10000) 
   }
 
   cancelarQr() {
