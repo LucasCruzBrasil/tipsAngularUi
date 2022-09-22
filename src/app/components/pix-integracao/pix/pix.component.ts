@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { error } from 'protractor';
 import { retryWhen } from 'rxjs/operators';
+import { Colaborador } from 'src/app/model/colaborador';
 import { ListaPagamentos } from 'src/app/model/listaPagamentos';
 import { Pix } from 'src/app/model/pix';
 import { responsePix } from 'src/app/model/responsePix';
 import { AlertService } from 'src/app/service/alert.service';
 import { PixService } from 'src/app/service/pix.service';
 import { Validacoes } from '../validacoes';
+import { GrujaService } from 'src/app/service/gruja.service';
+
 
 
 
@@ -51,12 +54,17 @@ export class PixComponent implements OnInit {
   recebedorTips: any;
   valorTips: any;
   n: any;
+  colaborador:Colaborador[]
 
   buscaPagamentoAprovado: any;
+  fotoDoRecebedor:any;
 
-  constructor(private pixService: PixService, private alertService: AlertService) { }
+  constructor(private pixService: PixService, 
+    private alertService: AlertService,
+    private service: GrujaService) { }
 
   ngOnInit(): void {
+    this.listaColaborador();
     this.listaPagamentosCliente();
     this.creatForm();
     this.formPix = new FormGroup({
@@ -191,7 +199,7 @@ export class PixComponent implements OnInit {
         }
       )
 
-    }, 10000) 
+    }, 40000) 
   }
 
   cancelarQr() {
@@ -200,6 +208,11 @@ export class PixComponent implements OnInit {
 
   }
 
+  listaColaborador() {
+    this.service.listColaborador().subscribe(
+      colaboradorData => this.colaborador = colaboradorData.colaboradores
 
+    )
+  }
 
 }
