@@ -35,15 +35,22 @@
 
                 <div class="input-field">
                     <div class="col s12">
-                        <mat-form-field>
+                       
+                        <mat-form-field style="width: 100%;">
                             <mat-label>Escolher Colaborador</mat-label>
                             <mat-select formControlName="description">
-                                <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.nome" >
+                                <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.nome">
                                     <img width="40px" height="40px" style="border-radius: 100%;"
-                                        src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}} 
+                                        src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
+                      
+                        <label for="icon_prefix"></label>
+                        <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
+                            class="alert alert-danger">
+                            É preciso escolher o colaborador
+                        </div>
                     </div>
 
                     <!-- 
@@ -59,12 +66,13 @@
                     <!--  <i class="material-icons prefix">favorite_border</i>
                     <input placeholder="Colaborador" id="icon_prefix" type="text" class="validate"
                         formControlName="description"> -->
-                    <label for="icon_prefix"></label>
+                    <!--  <label for="icon_prefix"></label>
                     <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
                         class="alert alert-danger">
                         È preciso escolher o colaborador
-                    </div>
-
+                    </div> -->
+                    <!--                     <mat-error  *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"> É preciso escolher o colaborador</mat-error>
+ -->
                 </div>
 
                 <div formGroupName="payer">
@@ -150,7 +158,7 @@
             <div class="card">
                 <div class="card-image">
                     <img class="qr_img" src="data:image/png;base64,{{qr}}">
-                    
+
                 </div>
                 <div class="card-content">
                     <blockquote>
