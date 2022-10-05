@@ -40,7 +40,7 @@
                             <mat-label>Escolher Colaborador</mat-label>
                             <mat-select formControlName="description">
                                 <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.nome">
-                                    <img width="40px" height="40px" style="border-radius: 100%;"
+                                    <img width="40px" height="40px" style="border-radius: 100%; border-color: darkblue; border: 1px solid;"
                                         src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}}
                                 </mat-option>
                             </mat-select>
