@@ -199,7 +199,7 @@ export class PixComponent implements OnInit {
         }
       )
 
-    }, 40000) 
+    }, 20000) 
   }
 
   cancelarQr() {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { interval, Observable, throwError, TimeInterval, timer } from 'rxjs';
-import { catchError, concatMap, delay, delayWhen, map, retry, retryWhen, take, tap } from 'rxjs/operators';
+import { catchError, concatMap, delay, delayWhen, map, retry, retryWhen, scan, take, tap } from 'rxjs/operators';
 import { ListaPagamentos } from '../model/listaPagamentos';
 import { Pix } from '../model/pix';
 
@@ -33,15 +33,25 @@ export class PixService {
     return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos/' + id_pagamento)
     .pipe(
       tap(console.log),
-      
-      retryWhen(errors =>
-        errors.pipe(
+      retryWhen(err => err.pipe(
+        tap(value => console.log('Ainda nao pagou')),
+        scan(retryCount => {
+          if (retryCount > 25) throw err;
+          else {
+            retryCount++;
+            return retryCount;
+          }
+        }, 0),
+        delayWhen(() => timer(2000))
+      ))
+    //  retryWhen(errors =>
+    //    errors.pipe(
           // log error message
-          tap(value => console.log('Ainda nao pagou')),
+     //     tap(value => console.log('Ainda nao pagou')),
           // restart in 5 seconds
           //delayWhen(value => timer(value * 1000))
-        )
-      )
+    //    )
+   //   )
     
       /* catchError(this.handleError) */
   
