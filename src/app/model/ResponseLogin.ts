@@ -1,3 +1,3 @@
 export class ResponseLogin {
-    public jwt: string;
+    public token: string;
 }

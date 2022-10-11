@@ -19,6 +19,8 @@ export class LoginService {
       .pipe(
         tap((loginResponse) => (
           this.authService.loginResponse = loginResponse,
+          this.authService.salvaLocal(loginResponse.token),
+        
           console.log(this.authService.loginResponse)
           ))
       ) 

@@ -11,8 +11,14 @@ export class AuthGuardService implements CanActivate {
   constructor(private authService: AuthService) { }
  
   canActivate(): boolean  {
-    console.log(this.authService.isAuthenticate())
-     return this.authService.isAuthenticate()
+
+    
+   console.log(this.authService.isAuthenticate())
+    
+      return this.authService.isAuthenticate() 
+    
+    
+    
   }
 
 }

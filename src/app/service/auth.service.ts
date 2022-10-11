@@ -12,7 +12,13 @@ export class AuthService {
   }
 
   public isAuthenticate(): boolean {
-
-    return Boolean(this.loginResponse['token'])
+    return Boolean(this.loginResponse?.token)
   }
+
+  public salvaLocal(token:string) {
+    localStorage.setItem('token', token)
+    
+  }
+
+  
 }
