@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { title } from 'process';
 import { Usuario } from 'src/app/model/usuario';
 import { AlertService } from 'src/app/service/alert.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private alertService: AlertService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
         (data) => {
          this.router.navigate(['dashboard']);
          this.alertService.sucess("logado","Bem vindo");
-
+         this.authService.salvaLocal(data.token)
       },
         (httpError) => {
           this.alertService.error(httpError.error.mensagem);
