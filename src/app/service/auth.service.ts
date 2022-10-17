@@ -20,5 +20,10 @@ export class AuthService {
     
   }
 
+  public loggedIn(){
+    return localStorage.getItem('token')
+
+  }
+
   
 }

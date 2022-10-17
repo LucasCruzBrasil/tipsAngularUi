@@ -9,8 +9,15 @@
     display: none;
 }
 
-
-
+.my-card {
+   
+    margin-top: 2px;
+    float: right;
+    width: 50%;
+    height: 50%;
+    
+}
+.material-icons.grenn600 { color: greenyellow; }
 @media only screen and (min-width: 320px) and (max-width: 576px) {
     .qr_img {
         width: 100%;
@@ -20,3 +27,4 @@
 
   
 }
+

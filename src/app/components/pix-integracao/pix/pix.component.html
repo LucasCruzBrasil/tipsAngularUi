@@ -35,17 +35,18 @@
 
                 <div class="input-field">
                     <div class="col s12">
-                       
+
                         <mat-form-field style="width: 100%;">
                             <mat-label>Escolher Colaborador</mat-label>
                             <mat-select formControlName="description">
                                 <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.nome">
-                                    <img width="40px" height="40px" style="border-radius: 100%; border-color: darkblue; border: 1px solid;"
+                                    <img width="40px" height="40px"
+                                        style="border-radius: 100%; border-color: darkblue; border: 1px solid;"
                                         src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                      
+
                         <label for="icon_prefix"></label>
                         <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
                             class="alert alert-danger">
@@ -178,7 +179,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!--  <div class="row">
         <div class="col s12 m6">
             <div class="card grey darken-4">
                 <div class="card-content white-text grey darken-4">
@@ -187,6 +188,7 @@
                         Pagamentos aprovados .</p>
 
                 </div>
+          
                 <div>
                     <table class="table responsive-table white-text grey darken-4">
                         <thead>
@@ -210,8 +212,31 @@
 
                         </tbody>
                     </table>
-                </div>
+                </div> 
             </div>
         </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card  col s12 m12 grey darken-4" *ngFor="let lista of listaPagamentos" style="margin-left: 1px;">
+                <div>
+                    <div class="my-card white-text grey darken-4">
+                        <span class="card-title center"> <i class="material-icons grenn600">check</i></span>
+                        <p>Pedido:{{lista.date_created |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}} </p>
+                        <p>Pagamento:{{lista.date_approved |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}} </p>
+                    </div>
+                    <div class="my-card white-text grey darken-4">
+                        <span class="card-title center">Aprovado</span>
+                       
+                        <p>Nome : {{lista.description}}</p>
+                        <p>Valor : ${{lista.transaction_amount}} </p>
+                      
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 </div>

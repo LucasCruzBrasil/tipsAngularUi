@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
         (data) => {
          this.router.navigate(['dashboard']);
          this.alertService.sucess("logado","Bem vindo");
-         this.authService.salvaLocal(data.token)
+         this.authService.salvaLocal(data.token);
+         this.authService.loggedIn()
       },
         (httpError) => {
           this.alertService.error(httpError.error.mensagem);
