@@ -167,8 +167,8 @@
                         QR no valor de : {{valorTips | currency : 'BRL'}}
                     </blockquote>
                     <blockquote>
-                       
-                    Copia e cola : {{pixCopiaCola}}
+
+                        Copia e cola : {{pixCopiaCola}}
                     </blockquote>
 
                 </div>
@@ -222,7 +222,8 @@
 
     <div class="row">
         <div class="col s12 m6">
-            <div class="card  col s12 m12 grey darken-4" *ngFor="let lista of listaPagamentos" style="margin-left: 1px;">
+            <div class="card  col s12 m12 grey darken-4" *ngFor="let lista of listaPagamentos"
+                style="margin-left: 1px;">
                 <div>
                     <div class="my-card white-text grey darken-4">
                         <span class="card-title center"> <i class="material-icons grenn600">check</i></span>
@@ -231,10 +232,10 @@
                     </div>
                     <div class="my-card white-text grey darken-4">
                         <span class="card-title center">Aprovado</span>
-                       
+
                         <p>Nome : {{lista.description}}</p>
                         <p>Valor : ${{lista.transaction_amount}} </p>
-                      
+
                     </div>
                 </div>
             </div>
