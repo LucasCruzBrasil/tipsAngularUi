@@ -7,5 +7,6 @@ export class responsePix extends Pix {
     status: string
     detail:string
     qrCodeBase64:string
+    qrCode: string
 
 }

@@ -47,6 +47,7 @@ export class PixComponent implements OnInit {
   m: Ipix[];
   respostaPix: responsePix
   qr: responsePix['qrCodeBase64']
+  pixCopiaCola: responsePix['qrCode']
   external_reference: responsePix
   on: boolean = false;
   listaPagamentos: ListaPagamentos[];
@@ -171,6 +172,7 @@ export class PixComponent implements OnInit {
         this.qr = this.respostaPix.qrCodeBase64
         this.recebedorTips = this.respostaPix.description
         this.valorTips = this.respostaPix.amount
+        this.pixCopiaCola = this.respostaPix.qrCode
         console.log(this.qr);
       }
 
