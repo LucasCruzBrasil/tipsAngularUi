@@ -17,8 +17,8 @@
 
 
         <div class="col s12 m6">
-          <div id="cut-diamond"></div>
-
+<!--           <div id="cut-diamond"></div>
+ -->
           <div class="card-panel grey darken-3">
             <label for="first_name">Email</label>
             <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="email"
@@ -35,7 +35,9 @@
                 Campo de senha obrigatório !!
              </span> -->
 
-            <a (click)="fazerLogin()" class="waves-effect waves-light btn-small purple lighten-3">Login</a>
+            <a (click)="fazerLogin()" class="waves-effect waves-light btn-small purple lighten-3" 
+            [class.spinner]="loading"
+           >Login</a>
           </div>
 
         </div>
@@ -67,7 +69,8 @@
     <div class="col s12">
       <div class="card" style="border:none;">
         <div class="card-content  purple darken-3">
-          <p class="flow-text white-text text-center" style="font-size: 16px;">Versão beta desenvolvido por Lucas Ferreira 2022</p>
+          <p class="flow-text white-text text-center" style="font-size: 16px;">Versão beta desenvolvido por Lucas
+            Ferreira 2022</p>
 
         </div>
       </div>

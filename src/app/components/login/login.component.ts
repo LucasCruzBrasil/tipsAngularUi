@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
   meuFormGroup: FormGroup;
-
+  loading = false;
+  someBotao = true;
   constructor(
     private loginService: LoginService,
     private alertService: AlertService,
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
     this.usuario = new Usuario()
 
     this.meuFormGroup = this.formBuilder.group({
@@ -37,15 +39,19 @@ export class LoginComponent implements OnInit {
 
   }
   fazerLogin() {
-
+    this.loading = true;
+    
     if (this.meuFormGroup.valid) {
+     
       console.log("Formulário válido", this.meuFormGroup.value);
       this.loginService.fazerLogin(this.usuario).subscribe(
         (data) => {
+       
          this.router.navigate(['dashboard']);
          this.alertService.sucess("logado","Bem vindo");
          this.authService.salvaLocal(data.token);
          this.authService.loggedIn()
+        
       },
         (httpError) => {
           this.alertService.error(httpError.error.mensagem);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { error } from 'protractor';
-import { retryWhen } from 'rxjs/operators';
+import { concatMap, filter, map, retryWhen } from 'rxjs/operators';
 import { Colaborador } from 'src/app/model/colaborador';
 import { ListaPagamentos } from 'src/app/model/listaPagamentos';
 import { Pix } from 'src/app/model/pix';
@@ -10,6 +10,8 @@ import { AlertService } from 'src/app/service/alert.service';
 import { PixService } from 'src/app/service/pix.service';
 import { Validacoes } from '../validacoes';
 import { GrujaService } from 'src/app/service/gruja.service';
+import { combineLatest, forkJoin } from 'rxjs';
+import { join } from 'path';
 
 
 
@@ -67,6 +69,7 @@ export class PixComponent implements OnInit {
   ngOnInit(): void {
     this.listaColaborador();
     this.listaPagamentosCliente();
+   // this.concatListaValoresWithColaboradores();
     this.creatForm();
     this.formPix = new FormGroup({
 
@@ -91,6 +94,8 @@ export class PixComponent implements OnInit {
 
 
     })
+
+   
 
   }
 
@@ -129,6 +134,28 @@ export class PixComponent implements OnInit {
       }
     )
   }
+ 
+ 
+   
+     concatListaValoresWithColaboradores(){
+       let t = [];
+       let x = [];
+       forkJoin({
+        listaValores:  this.pixService.listaValores(),
+        listaColaborador: this.service.listColaborador()
+       }).subscribe(
+             
+        res => {
+          t = res['listaValores'],
+          x = res['listaColaborador']
+          var concat = [...t, ...x]
+          console.log(t);
+          console.log(x);
+          console.log(concat)
+        }
+             
+       )
+  } 
 
   onRefresh() {
     this.pixService.listaValores().subscribe(
