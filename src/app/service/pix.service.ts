@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { interval, Observable, throwError, TimeInterval, timer } from 'rxjs';
 import { catchError, concatMap, delay, delayWhen, map, retry, retryWhen, scan, take, tap } from 'rxjs/operators';
+import { joinPagamentos } from '../model/joinPagamentos';
 import { ListaPagamentos } from '../model/listaPagamentos';
 import { Pix } from '../model/pix';
 
@@ -25,6 +26,13 @@ export class PixService {
 
   listaValores(): Observable<ListaPagamentos[]> {
     return this.http.get<ListaPagamentos[]>(this.URL + '/pagamentos').pipe(
+      tap(console.log)
+    )
+  }
+
+
+  listaPagamentosJoin(): Observable<joinPagamentos[]> {
+    return this.http.get<joinPagamentos[]>(this.URL + '/join').pipe(
       tap(console.log)
     )
   }

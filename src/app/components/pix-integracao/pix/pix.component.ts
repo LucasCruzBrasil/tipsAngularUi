@@ -12,6 +12,7 @@ import { Validacoes } from '../validacoes';
 import { GrujaService } from 'src/app/service/gruja.service';
 import { combineLatest, forkJoin } from 'rxjs';
 import { join } from 'path';
+import { joinPagamentos } from 'src/app/model/joinPagamentos';
 
 
 
@@ -61,7 +62,7 @@ export class PixComponent implements OnInit {
   valorTips: any;
   n: any;
   colaborador: Colaborador[]
-
+  joinPagamentos: joinPagamentos[]
   buscaPagamentoAprovado: any;
   fotoDoRecebedor: any;
 
@@ -70,6 +71,7 @@ export class PixComponent implements OnInit {
     private service: GrujaService) { }
 
   ngOnInit(): void {
+    this.listaJoin();
     this.listaColaborador();
     this.listaPagamentosCliente();
     // this.concatListaValoresWithColaboradores();
@@ -144,33 +146,22 @@ export class PixComponent implements OnInit {
   }
 
 
-
-  concatListaValoresWithColaboradores() {
-    let t = [];
-    let x = [];
-    forkJoin({
-      listaValores: this.pixService.listaValores(),
-      listaColaborador: this.service.listColaborador()
-    }).subscribe(
-
-      res => {
-        t = res['listaValores'],
-          x = res['listaColaborador']
-        var concat = [...t, ...x]
-        console.log(t);
-        console.log(x);
-        console.log(concat)
-      }
-
-    )
-  }
-
+listaJoin(){
+  this.pixService.listaPagamentosJoin().subscribe(
+    res => {
+      this.joinPagamentos = res['pagamentosJoin']
+    }
+  )
+}
+ 
   onRefresh() {
     this.pixService.listaValores().subscribe(
       pagamentos => {
         this.listaPagamentos = pagamentos['pagamentos']
       }
     )
+
+   
   }
 
   resetForm() {
@@ -224,7 +215,9 @@ export class PixComponent implements OnInit {
           this.on = false
           this.formPix.reset({ transaction_amount: 0 });
           this.resetForm();
+          this.listaJoin();
           this.onRefresh();
+          
 
           console.log('salvou')
         },

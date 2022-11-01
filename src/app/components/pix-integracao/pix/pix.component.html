@@ -107,12 +107,12 @@
                                 CPF invalido
                             </div>
                         </div>
-                       
 
-                       
+
+
                     </div>
 
-                   
+
 
                 </div>
                 <div formGroupName="metadata">
@@ -222,7 +222,7 @@
         </div>
     </div> -->
 
-   <!--  <div class="row">
+    <!--  <div class="row">
         <div class="col s12 m6">
             <div class="card  col s12 m12 grey darken-4" *ngFor="let lista of listaPagamentos"
                 style="margin-left: 1px;">
@@ -245,4 +245,21 @@
         </div>
     </div> -->
 
+    <div class="card" *ngFor="let join of joinPagamentos">
+        <div class="card-content">
+
+
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src='{{join.imagem_colaborador}}' alt="" class="circle">
+                    <span class="title">Title</span>
+                    <p>{{join.nome}} <br>
+                        {{join.date_approved}}<br>
+                        {{join.transaction_amount}}
+                    </p>
+                   
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
