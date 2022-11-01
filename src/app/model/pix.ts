@@ -12,4 +12,8 @@ export class Pix {
             number: number
         }
     }
+
+    metadata: {id_colaborador: number}
+
+    
 }

@@ -28,7 +28,10 @@ export interface Ipix {
       type: "CPF",
       number: number
     }
-  }
+  },
+
+  metadata: {id_colaborador: number}
+
 }
 
 
@@ -57,24 +60,26 @@ export class PixComponent implements OnInit {
   recebedorTips: any;
   valorTips: any;
   n: any;
-  colaborador:Colaborador[]
+  colaborador: Colaborador[]
 
   buscaPagamentoAprovado: any;
-  fotoDoRecebedor:any;
+  fotoDoRecebedor: any;
 
-  constructor(private pixService: PixService, 
+  constructor(private pixService: PixService,
     private alertService: AlertService,
     private service: GrujaService) { }
 
   ngOnInit(): void {
     this.listaColaborador();
     this.listaPagamentosCliente();
-   // this.concatListaValoresWithColaboradores();
+    // this.concatListaValoresWithColaboradores();
     this.creatForm();
     this.formPix = new FormGroup({
 
       transaction_amount: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      description: new FormControl('Tips'),
+
+      //description: new FormControl('', [Validators.required, Validators.minLength(1)]),
       payment_method_id: new FormControl('Pix'),
 
       payer: new FormGroup({
@@ -85,17 +90,18 @@ export class PixComponent implements OnInit {
 
         identification: new FormGroup({
           type: new FormControl('CPF'),
-          number: new FormControl('03850973027', [Validators.required, Validacoes.ValidaCpf])
+          number: new FormControl('03802790537', [Validators.required, Validacoes.ValidaCpf])
         })
 
       })
-
-
+      , metadata: new FormGroup({
+        id_colaborador: new FormControl('', [Validators.required, Validators.minLength(1)])
+      })
 
 
     })
 
-   
+
 
   }
 
@@ -103,7 +109,7 @@ export class PixComponent implements OnInit {
     this.formPix = new FormGroup({
 
       transaction_amount: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      description: new FormControl('alguém'),
       payment_method_id: new FormControl('Pix'),
 
       payer: new FormGroup({
@@ -120,7 +126,9 @@ export class PixComponent implements OnInit {
       })
 
 
-
+      , metadata: new FormGroup({
+        id_colaborador: new FormControl('', [Validators.required, Validators.minLength(1)])
+      })
 
     })
 
@@ -134,28 +142,28 @@ export class PixComponent implements OnInit {
       }
     )
   }
- 
- 
-   
-     concatListaValoresWithColaboradores(){
-       let t = [];
-       let x = [];
-       forkJoin({
-        listaValores:  this.pixService.listaValores(),
-        listaColaborador: this.service.listColaborador()
-       }).subscribe(
-             
-        res => {
-          t = res['listaValores'],
+
+
+
+  concatListaValoresWithColaboradores() {
+    let t = [];
+    let x = [];
+    forkJoin({
+      listaValores: this.pixService.listaValores(),
+      listaColaborador: this.service.listColaborador()
+    }).subscribe(
+
+      res => {
+        t = res['listaValores'],
           x = res['listaColaborador']
-          var concat = [...t, ...x]
-          console.log(t);
-          console.log(x);
-          console.log(concat)
-        }
-             
-       )
-  } 
+        var concat = [...t, ...x]
+        console.log(t);
+        console.log(x);
+        console.log(concat)
+      }
+
+    )
+  }
 
   onRefresh() {
     this.pixService.listaValores().subscribe(
@@ -179,7 +187,8 @@ export class PixComponent implements OnInit {
             type: "CPF",
             number: '37905027038'
           }
-        }
+        },
+        metadata: { id_colaborador: 100 }
       }
     );
   }
@@ -207,7 +216,7 @@ export class PixComponent implements OnInit {
       this.alertService.error(httpError.error.mensagem);
     }
 
-     this.buscaPagamentoAprovado = setTimeout(() => {
+    this.buscaPagamentoAprovado = setTimeout(() => {
       this.pixService.carregarPeloId(this.external_reference).subscribe(
 
         res => {
@@ -216,7 +225,7 @@ export class PixComponent implements OnInit {
           this.formPix.reset({ transaction_amount: 0 });
           this.resetForm();
           this.onRefresh();
-         
+
           console.log('salvou')
         },
 
@@ -228,7 +237,7 @@ export class PixComponent implements OnInit {
         }
       )
 
-    }, 20000) 
+    }, 20000)
   }
 
   cancelarQr() {
