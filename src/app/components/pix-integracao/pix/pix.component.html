@@ -245,21 +245,26 @@
         </div>
     </div> -->
 
-    <div class="card" *ngFor="let join of joinPagamentos">
-        <div class="card-content">
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="col s12 m4"  *ngFor="let join of joinPagamentos">
+                <div class="card">
+                        
+                     
+                    
+                    <div class="card-content">
+                        <img src='{{join.imagem_colaborador}}' alt="" class="foto">
+                        <span class="card-title center">{{join.nome}}</span>
+                        <div>{{join.transaction_amount}}</div>
+                        <div>{{join.date_approved}}</div>
 
-
-            <ul class="collection">
-                <li class="collection-item avatar">
-                    <img src='{{join.imagem_colaborador}}' alt="" class="circle">
-                    <span class="title">Title</span>
-                    <p>{{join.nome}} <br>
-                        {{join.date_approved}}<br>
-                        {{join.transaction_amount}}
-                    </p>
-                   
-                </li>
-            </ul>
+                           
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
 </div>
