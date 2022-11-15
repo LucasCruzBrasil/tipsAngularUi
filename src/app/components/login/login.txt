@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<div class="container">
+
+
+
+
+  <div class="row">
+    <div class="col s12" style="margin-top: 10%;">
+      <form [formGroup]="meuFormGroup">
+
+
+        <div class="col s12 m3">
+
+
+        </div>
+
+
+        <div class="col s12 m6">
+<!--           <div id="cut-diamond"></div>
+ -->
+          <div class="card-panel grey darken-3">
+            <label for="first_name">Email</label>
+            <input [(ngModel)]="usuario.email" placeholder="Email" id="first_name" type="email"
+              class="validate white-text" formControlName="email">
+            <!--   <span *ngIf="meuFormGroup.controls.email.errors">
+                Campo obrigatório
+             </span> -->
+            <label for="first_name">Senha</label>
+
+            <input [(ngModel)]="usuario.senha" placeholder="Senha" id="first_name" type="password"
+              class=" white-text validate" formControlName="senha">
+
+            <!--  <span *ngIf="meuFormGroup.controls.senha.errors">
+                Campo de senha obrigatório !!
+             </span> -->
+
+            <a (click)="fazerLogin()" class="waves-effect waves-light btn-small purple lighten-3" 
+            [class.spinner]="loading"
+           >Login</a>
+          </div>
+
+        </div>
+        <!--   <div class="col s6" style=" margin-left: 50px; background-color:#2962ff ">
+
+          <div class="card-panel" style="margin-top:150px;">
+
+
+            <label for="first_name">Email</label>
+
+            <input [(ngModel)]="usuario.email" placeholder="Placeholder" id="first_name" type="text" class="validate">
+
+            <label for="first_name">Senha</label>
+            <input [(ngModel)]="usuario.senha" placeholder="Placeholder" id="first_name" type="password"
+              class="validate">
+
+            <a (click)="cadastrar()" class="waves-effect waves-light btn-small blue lighten-1">cadastar</a>
+          </div>
+
+          </div> -->
+      </form>
+
+    </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card" style="border:none;">
+        <div class="card-content  purple darken-3">
+          <p class="flow-text white-text text-center" style="font-size: 16px;">Versão beta desenvolvido por Lucas
+            Ferreira 2022</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
