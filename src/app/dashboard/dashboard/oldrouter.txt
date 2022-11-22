@@ -1,0 +1,29 @@
+{
+    path: '', component: LoginComponent
+  },
+
+
+  {
+    path: 'grafico', component: GraficoComponent
+  },
+  {
+    path: 'colaborador', component: FormColaboradorComponent
+  },
+  { path: 'Tips', component:GrujaListaComponent }
+ 
+
+  , {
+    path: 'Tips/Novo', component: FormComponent,
+    resolve: { gorjeta: GrujaResolverGuard }
+  },
+
+  {
+    path: 'Tips/editar/:id_gruja', component: FormComponent,
+    resolve: { gorjeta: GrujaResolverGuard }
+  }
+   ,
+
+  {
+    path: 'valores', component: ValoresComponent,
+    resolve: { gorjeta: GrujaResolverGuard }
+  }

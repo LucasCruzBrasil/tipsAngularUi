@@ -47,8 +47,10 @@ export class FormColaboradorComponent implements OnInit {
       this.server.listColaborador().subscribe(data => this.colaboradores = data.colaboradores)
 
     }
-
+    
   }
+
+  listar(){this.server.listColaborador().subscribe(data => this.colaboradores = data.colaboradores)}
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -68,7 +70,13 @@ export class FormColaboradorComponent implements OnInit {
 
 
     this.http.post('https://app-lucaback-end.herokuapp.com/colaborador/upload', formData).subscribe(
-      (response) => this.alertService.sucess("colaborador criado com sucesso", "resposta"),
+      (response) => {
+        this.alertService.sucess("colaborador criado com sucesso", "resposta")
+        this.listar()
+        this.form.reset()
+        
+      },
+      
       (error) => console.log(error)
     )
   }

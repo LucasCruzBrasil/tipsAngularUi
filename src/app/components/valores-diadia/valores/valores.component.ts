@@ -140,6 +140,7 @@ export class ValoresComponent implements OnInit {
         this.alertService.sucess("Valor Salvo", "Resposta");
         this.formValores.reset();
         this.onRefresh();
+        this.listaTotal()
       },
       
 
@@ -162,6 +163,7 @@ export class ValoresComponent implements OnInit {
         console.log('excluído com sucesso', id)
         this.modalService.hide();
         this.onRefresh();
+        this.listaTotal();
       }
     )
 

@@ -1,57 +1,37 @@
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
- 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!-- <script type="text/javascript" src="js/materialize.min.js"></script>
- --> 
-
-
-
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-
-    <h1>Projeto Tips</h1>
-    <span class="menu-spacer"></span>
-    <div>
-      <!--    <a mat-button routerLink="/Tips"> <i class="material-icons">search</i> </a>
-      <a mat-button routerLink="/valores"> <i class="material-icons">credit_card</i> </a>
-
-      <a mat-button [routerLink]="['/colaborador']"><i class="material-icons">group_add</i> </a>
-      <a mat-button routerLink="/grafico"><i class="material-icons">assessment</i> </a>
- -->
-
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page"  [routerLink]="['/grafico']">Grafico</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/valores']">Valores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/colaborador']">Colaborador</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/pix']">Área Pix</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/equipe']">Equipe</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </mat-toolbar-row>
-
-  <mat-toolbar-row>
-    <span style="font-size: 12px;">Teste da minha primeira api</span>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-sidenav-container>
-  <mat-sidenav #sidenav>
-
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div style="height: 88vh;">
-      <mat-tab-group>
-        <mat-tab label="Estatística">
-          <app-grafico></app-grafico>
-        </mat-tab>
-        <mat-tab label="Valores">
-          <app-valores (atualizaGrafico)="valorB($event)" (enviarValorParaOpai)="valor($event)"></app-valores>
-        </mat-tab>
-        <mat-tab label="Equipe">
-          <app-equipe></app-equipe>
-        </mat-tab>
-        <mat-tab label="Colaborador">
-          <app-form-colaborador></app-form-colaborador>
-        </mat-tab>
-        <mat-tab label="Área Pix">
-          <app-pix></app-pix>
-        </mat-tab>
-      </mat-tab-group>
-
-
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
+  </div>
+</nav>

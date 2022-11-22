@@ -1,0 +1,282 @@
+ <div class="row">
+        <div class="col s12 m6">
+            <div class="card grey darken-4">
+                <div class="card-content white-text">
+                    <span class="card-title">Gerar uma Tips :)</span>
+                    <p>
+                        prencha o formulário para gerar o QR de pagamento.</p>
+                </div>
+
+                <div class="card-action">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field col s12  card" [formGroup]="formPix">
+
+                <div class="input-field">
+                    <i class="material-icons prefix">local_atm</i>
+                    <input placeholder="Valor da gorjeta" id="icon_prefix" type="number" class="validate"
+                        formControlName="transaction_amount">
+                    <label for="icon_prefix"></label>
+                    <div *ngIf="formPix.get('transaction_amount')?.errors && formPix.get('transaction_amount').touched"
+                        class="alert alert-danger">
+                        È preciso informar o valor :)
+                    </div>
+
+                </div>
+
+                <div class="input-field">
+                    <div class="col s12">
+
+                        <mat-form-field style="width: 100%;" class="escondido">
+                            <mat-label>Escolher Colaborador</mat-label>
+                            <mat-select formControlName="description">
+                                <mat-option *ngFor="let colaboradores of colaborador" [value]="colaboradores.nome">
+                                    <img width="40px" height="40px"
+                                        style="border-radius: 100%; border-color: darkblue; border: 1px solid;"
+                                        src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <label for="icon_prefix"></label>
+                        <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
+                            class="alert alert-danger">
+                            É preciso escolher o colaborador
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div formGroupName="payer">
+                    <div class="input-field" class="escondido">
+                        <i class="material-icons prefix">card_membership</i>
+                        <input placeholder="email" id="icon_prefix" type="email" class="validate"
+                            formControlName="email" value="teste@gmail.com">
+                        <label for="icon_prefix"></label>
+
+                        <div *ngIf="formPix.get('payer.email').touched && formPix.get('payer.email')?.errors"
+                            class="alert alert-danger">
+                            Email invalido
+                        </div>
+                    </div>
+
+
+                    <div class="input-field" class="escondido">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input placeholder="Nome" id="icon_prefix" type="text" class="validate"
+                            formControlName="first_name" value="teste">
+                        <label for="icon_prefix"></label>
+                        <div *ngIf="formPix.get('payer.first_name').touched && formPix.get('payer.first_name')?.errors"
+                            class="alert alert-danger">
+                            Nome obrigatorio
+                        </div>
+                    </div>
+
+                    <div class="input-field" class="escondido">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input placeholder="Sobrenome" id="icon_prefix" type="text" class="validate"
+                            formControlName="last_name" value="testeano">
+                        <label for="icon_prefix"></label>
+
+                        <div *ngIf="formPix.get('payer.last_name').touched && formPix.get('payer.last_name')?.errors"
+                            class="alert alert-danger">
+                            Nome obrigatorio
+                        </div>
+                    </div>
+
+                    <div formGroupName="identification">
+                        <div class="input-field" class="escondido">
+                            <i class="material-icons prefix">confirmation_number
+                            </i>
+                            <input id="icon_prefix" placeholder="CPF" type="text" class="validate"
+                                formControlName="number" value="25896390537">
+                            <label for="icon_prefix"></label>
+
+                            <div *ngIf="formPix.get('payer.identification.number').touched && formPix.get('payer.identification.number')?.errors"
+                                class="alert alert-danger">
+                                CPF invalido
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+                <div formGroupName="metadata">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Escolher Colaborador</mat-label>
+                        <mat-select formControlName="id_colaborador">
+                            <mat-option *ngFor="let colaboradores of colaborador"
+                                [value]="colaboradores.id_colaborador">
+                                <img width="40px" height="40px"
+                                    style="border-radius: 100%; border-color: darkblue; border: 1px solid;"
+                                    src='{{colaboradores.imagem_colaborador}}'> {{colaboradores.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <label for="icon_prefix"></label>
+                    <div *ngIf="formPix.get('description')?.errors && formPix.get('description').touched"
+                        class="alert alert-danger">
+                        É preciso escolher o colaborador
+                    </div>
+                </div>
+                <div class="input-field">
+                    <button class="btn waves-effect waves-light black" type="submit" name="action"
+                        (click)="gerarQr(pix)" [disabled]="formPix.invalid">Gerar Qr
+
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--  <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <img src="data:image/png;base64,{{qr}}">
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="row" *ngIf="on">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img class="qr_img" src="data:image/png;base64,{{qr}}">
+
+                </div>
+                <div class="card-content">
+                    <blockquote>
+                        QR esperando o pagamento gerado para: {{recebedorTips}},<br>
+                        QR no valor de : {{valorTips | currency : 'BRL'}}
+                    </blockquote>
+                    <blockquote>
+
+                        Copia e cola : <strong>{{pixCopiaCola}}</strong>
+                    </blockquote>
+                </div>
+                <div class="card-action">
+                    <button (click)="cancelarQr()" class="btn red accent-4" type="submit" name="action">Cancelar
+                        <i class="material-icons right">close</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  <div class="row">
+        <div class="col s12 m6">
+            <div class="card grey darken-4">
+                <div class="card-content white-text grey darken-4">
+                    <span class="card-title">Lista de Pagamentos :)</span>
+                    <p>
+                        Pagamentos aprovados .</p>
+
+                </div>
+          
+                <div>
+                    <table class="table responsive-table white-text grey darken-4">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Data Criação</th>
+                                <th>Data Aprovação</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let lista of listaPagamentos">
+                                <td>{{lista.description}}</td>
+                                <td>${{lista.transaction_amount}}</td>
+                                <td>{{lista.date_created |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}}</td>
+                                <td>{{lista.date_approved |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </div> -->
+
+    <!--  <div class="row">
+        <div class="col s12 m6">
+            <div class="card  col s12 m12 grey darken-4" *ngFor="let lista of listaPagamentos"
+                style="margin-left: 1px;">
+                <div>
+                    <div class="my-card white-text grey darken-4">
+                        <span class="card-title center"> <i class="material-icons grenn600">check</i></span>
+                        <p>Pedido:{{lista.date_created |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}} </p>
+                        <p>Pagamento:{{lista.date_approved |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}} </p>
+                    </div>
+                    <div class="my-card white-text grey darken-4">
+                        <span class="card-title center">Aprovado</span>
+
+                        <p>Nome : {{lista.description}}</p>
+                        <p>Valor : ${{lista.transaction_amount}} </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="col s12 m4" *ngFor="let join of joinPagamentos">
+                <div class="card grey darken-4">
+
+
+
+                    <div class="card-content white-text">
+                        <img src='{{join.imagem_colaborador}}' alt="" class="foto">
+                        <hr class="hr">
+
+                        <div class="col s12">
+                            <ul class="collection grey darken-4">
+                                <li class="collection-item grey darken-4">
+                                    <div><i class="material-icons grenn600 secondary-content">mood</i>{{join.nome}}
+                                    </div>
+                                </li>
+
+                                <li class="collection-item grey darken-4">
+                                    <div><i class="material-icons grenn600 secondary-content">event_available</i>{{join.date_approved |date : 'dd/MM/yyyy, h:mm a ' : '+01:00'}}</div>
+                                </li>
+                                <li class="collection-item grey darken-4">
+                                    <div><i class="material-icons grenn600 secondary-content">monetization_on</i>{{join.transaction_amount | currency : 'BRL'}}</div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                            
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

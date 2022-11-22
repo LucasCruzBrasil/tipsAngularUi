@@ -1,171 +1,261 @@
+<app-dashboard></app-dashboard>
+
 <div class="container">
-    <div class="row">
-        <div class="col s12 card" style="margin-top: 15px;" id="dashboard">
-            <div class="row">
-                <form class="col s12" [formGroup]="formValores">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">payment</i>
-                            <input id="icon_prefix" placeholder="Valor Cartao" type="text" class="validate"
-                                formControlName="valor_cartao">
-                            <!--  <label for="icon_prefix">Cartão</label> -->
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">local_atm</i>
-                            <input id="icon_telephone" placeholder="Valor Dinheiro" type="text" class="validate"
-                                formControlName="valor_dinheiro">
-                            <!--  <label for="icon_telephone">Dinheiro</label> -->
-                        </div>
+
+
+
+
+    <div>
+        <div class="row" style="margin-top: 5px; ">
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto; padding: 2px;">
+                    <div class="card-header">Cartão</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{cartao | currency : 'BRL'}}</h5>
+                        <p class="card-text">total cartão</p>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">swap_calls</i>
-                            <input id="icon_prefix" placeholder="Valor pix" type="text" class="validate"
-                                formControlName="valor_pix">
-                            <!--   <label for="icon_prefix">Pix</label> -->
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">tag_faces</i>
-                            <input id="icon_telephone" placeholder="Valor Pic-Pay" type="text" class="validate"
-                                formControlName="valor_pic_pay">
-                            <!--   <label for="icon_telephone">Pic-pay</label> -->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">date_range</i>
-                            <input id="icon_prefix" type="date" formControlName="data_valor">
-                            <!--      <label for="icon_prefix">Data</label> -->
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">group</i>
-                            <input id="icon_telephone" placeholder="Quantidade de Pessoas" type="text" class="validate"
-                                formControlName="qtd_pessoas">
-                            <!--   <label for="icon_telephone">Pessoas</label> -->
-                        </div>
-                    </div>
-                    <div>
-                        <button *ngIf="botaoValorSalvar" class="accent-4 btn waves-effect waves-light grey darken-4"
-                            type="submit" name="action" (click)="salvarValores()">Salvar
-                            <i class="material-icons right">send</i>
-                        </button>
-
-
-                        {{''}}
-                        {{''}}
-                        <button *ngIf="botaoValorAtrualizar" (click)="atualizarValor(valores)"
-                            class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Atualizar
-                            <i class="material-icons right">create</i>
-                        </button>
-                        {{''}}
-                        {{''}}
-                        <button *ngIf="botaoValorAtrualizar" (click)=" limparForm()"
-                            class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Limpar
-                            <i class="material-icons right">clear</i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card  grey darken-4">
-                <span class="card-title center white-text">Cartão</span>
-                <p class="flow-text center white-text">{{cartao | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-        <div class="col s12 m6">
-            <div class="card grey darken-4">
-                <span class="card-title center white-text">Dinheiro</span>
-                <p class="flow-text center white-text">{{dinheiro | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-        <div class="col s12 m6">
-            <div class="card grey darken-4">
-                <span class="card-title center white-text">Pix</span>
-                <p class="flow-text center white-text">{{pix | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-        <div class="col s12 m6">
-            <div class="card  grey darken-4">
-                <span class="card-title center white-text">PicPay</span>
-                <p class="flow-text center white-text">{{picPay | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-        <div class="col s12 m6">
-            <div class="card grey darken-4">
-                <span class="card-title center white-text">Vales</span>
-                <p class="flow-text center white-text">{{vales | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-        <div class="col s12 m6">
-            <div class="card grey darken-4">
-                <span class="card-title center white-text">Total</span>
-                <p class="flow-text center white-text"> {{total | currency : 'BRL'}}</p>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col s12 m6 card">
-
-            <table class="table responsive-table" style="margin-top:20px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Dia</th>
-                        <th scope="col">Cartão</th>
-                        <th scope="col">Dinheiro</th>
-                        <th scope="col">Pix</th>
-                        <th scope="col">Pic-Pay</th>
-                        <th scope="col"> Total</th>
-                        <th scope="col">Pessoas</th>
-                        <th scope="col">Valor Individual</th>
-                        <th scope="col">Alterar</th>
-                        <th scope="col">Apagar</th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr
-                        *ngFor="let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index ">
-                        <td class="text-center">{{valor.data_valor |date : 'dd/MM/yyyy ' : '+00:00' }}</td>
-                        <td class="text-center">{{valor.valor_cartao}}</td>
-                        <td class="text-center">{{valor.valor_dinheiro}}</td>
-                        <td class="text-center">{{valor.valor_pix}}</td>
-                        <td class="text-center">{{valor.valor_pic_pay}}</td>
-                        <td class="text-center">{{valor.total | currency : 'BRL'}}</td>
-                        <td class="text-center"> {{valor.qtd_pessoas}}</td>
-                        <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
-                        <td class="text-center" href="#dashboard"><a type="submit" (click)="editarValor(valor)"><i
-                                    class="material-icons text-center">create</i></a></td>
-                        <td class="text-center"><a (click)="onDelete(valor)"><i
-                                    class="material-icons text-center">delete_forever</i></a></td>
-                    </tr>
-
-                </tbody>
-
-                <div style="float: right;">
-                    <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
                 </div>
-            </table>
+            </div>
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto; padding: 2px;">
+                    <div class="card-header">Dinheiro</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{dinheiro | currency : 'BRL'}}</h5>
+                        <p class="card-text">total dinheiro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto; padding: 2px;">
+                    <div class="card-header">Pix</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{pix | currency : 'BRL'}}</h5>
+                        <p class="card-text">total pix</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto; padding: 2px;">
+                    <div class="card-header">Pic-pay</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{picPay | currency : 'BRL'}}</h5>
+                        <p class="card-text">total picPay</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto; padding: 2px;">
+                    <div class="card-header">Adiantamentos</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{vales | currency : 'BRL'}}</h5>
+                        <p class="card-text">total adiantamentos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto;">
+                    <div class="card-header">Total</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{total | currency : 'BRL'}}</h5>
+                        <p class="card-text">total</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  <div class="card" style="margin-top:10px; padding: 5px;">
 
+        <form [formGroup]="formValores">
+
+            <div class="row">
+
+                <div class="col">
+                    <label for="icon_prefix">Cartão</label>
+                    <input id="icon_prefix" placeholder="Valor Cartao" type="text" class="form-control"
+                        formControlName="valor_cartao">
+
+                </div>
+
+                <div class="col">
+                    <label for="icon_prefix">Dinheiro</label>
+
+                    <input id="icon_telephone" placeholder="Valor Dinheiro" type="text" class="form-control"
+                        formControlName="valor_dinheiro">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="icon_prefix">Pix</label>
+
+                    <input id="icon_prefix" placeholder="Valor pix" type="text" class="form-control"
+                        formControlName="valor_pix">
+                </div>
+                <div class="input-field col s6">
+                    <label for="icon_telephone">Pic-pay</label>
+
+                    <input id="icon_telephone" placeholder="Valor Pic-Pay" type="text" class="form-control"
+                        formControlName="valor_pic_pay">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="icon_prefix">Data</label>
+                    <input class="form-control" id="icon_prefix" type="date" formControlName="data_valor">
+
+                </div>
+                <div class="input-field col s6">
+                    <label for="icon_prefix">QTD</label>
+                    <input id="icon_telephone" placeholder="Quantidade de Pessoas" type="text" class="form-control"
+                        formControlName="qtd_pessoas">
+                      <label for="icon_telephone">Pessoas</label> 
+                </div>
+            </div>
+            <div style="margin-top: 5px;">
+                <button *ngIf="botaoValorSalvar" class="btn btn-primary" type="submit" name="action"
+                    (click)="salvarValores()">Salvar
+                </button>
+
+
+                {{''}}
+                {{''}}
+                <button *ngIf="botaoValorAtrualizar" (click)="atualizarValor(valores)"
+                    class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Atualizar
+                    <i class="material-icons right">create</i>
+                </button>
+                {{''}}
+                {{''}}
+                <button *ngIf="botaoValorAtrualizar" (click)=" limparForm()"
+                    class="accent-4 btn waves-effect  grey darken-4" type="submit" name="action">Limpar
+                    <i class="material-icons right">clear</i>
+                </button>
+            </div>
+
+        </form>
+
+    </div> -->
+    <div [formGroup]="formValores" style=" background-color: rgb(194, 206, 206); padding: 5px;">
+        <div class="alert alert-secondary" role="alert">
+            <h4 class="alert-heading">Aqui salvamos valores </h4>
+            <p>Preencha os campos abaixo inserindo os valores</p>
+            <hr>
+            <p class="mb-0">Atulize ou exclua no icone da lista abaixo (lixeira e lápis)</p>
+        </div>
+        <div class="row">
+
+
+
+            <div class="col-sm">
+                <label for="icon_prefix">Cartão</label>
+                <input id="icon_prefix" placeholder="Valor Cartao" type="text" class="form-control"
+                    formControlName="valor_cartao">
+            </div>
+            <div class="col-sm">
+                <label for="icon_prefix">Dinheiro</label>
+
+                <input id="icon_telephone" placeholder="Valor Dinheiro" type="text" class="form-control"
+                    formControlName="valor_dinheiro">
+
+            </div>
+            <div class="col-sm">
+                <label for="icon_prefix">Pix</label>
+
+                <input id="icon_prefix" placeholder="Valor pix" type="text" class="form-control"
+                    formControlName="valor_pix">
+            </div>
 
         </div>
 
+        <div class="row">
+            <div class="col-sm">
+                <label for="icon_telephone">Pic-pay</label>
 
+                <input id="icon_telephone" placeholder="Valor Pic-Pay" type="text" class="form-control"
+                    formControlName="valor_pic_pay">
+            </div>
+            <div class="col-sm">
+                <label for="icon_prefix">Data</label>
+                <input class="form-control" id="icon_prefix" type="date" formControlName="data_valor">
+
+            </div>
+            <div class="col-sm">
+                <label for="icon_prefix">QTD</label>
+                <input id="icon_telephone" placeholder="Quantidade de Pessoas" type="text" class="form-control"
+                    formControlName="qtd_pessoas">
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <button *ngIf="botaoValorSalvar" class="btn btn-primary" type="submit" name="action"
+                        (click)="salvarValores()" style="margin-top: 5px; margin-bottom: 5px;">Salvar
+                    </button>
+                    <button *ngIf="botaoValorAtrualizar" (click)="atualizarValor(valores)" class="btn btn-primary"
+                        type="submit" name="action" style="margin-top: 5px; margin-bottom: 5px;">Atualizar
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    {{''}}
+                    <button *ngIf="botaoValorAtrualizar" (click)=" limparForm()" class="btn btn-primary" type="submit"
+                        name="action" style="margin-top: 5px; margin-bottom: 5px;">Limpar
+
+                        <i class="bi bi-eraser-fill"></i>
+                    </button>
+                </div>
+                <div class="col-sm">
+
+                </div>
+                <div class="col-sm">
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
+
+
+    <div class="table-responsive-sm" style="margin-top: 5px;">
+        <table class="table">
+            ... <thead>
+                <tr>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Cartão</th>
+                    <th scope="col">Dinheiro</th>
+                    <th scope="col">Pix</th>
+                    <th scope="col">Pic-Pay</th>
+                    <th scope="col"> Total</th>
+                    <th scope="col">Pessoas</th>
+                    <th scope="col">Valor Individual</th>
+                    <th scope="col">Alterar</th>
+                    <th scope="col">Apagar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let valor of valores | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index ">
+                    <td class="text-center">{{valor.data_valor |date : 'dd/MM/yyyy ' : '+00:00' }}</td>
+                    <td class="text-center">{{valor.valor_cartao}}</td>
+                    <td class="text-center">{{valor.valor_dinheiro}}</td>
+                    <td class="text-center">{{valor.valor_pix}}</td>
+                    <td class="text-center">{{valor.valor_pic_pay}}</td>
+                    <td class="text-center">{{valor.total | currency : 'BRL'}}</td>
+                    <td class="text-center"> {{valor.qtd_pessoas}}</td>
+                    <td class="text-center">{{valor.valor_individual | currency : 'BRL'}}</td>
+                    <td class="text-center" href="#dashboard"><a type="submit" (click)="editarValor(valor)"><i
+                                class="bi bi-pencil-fill"></i></a></td>
+                    <td class="text-center"><a (click)="onDelete(valor)"><i class="bi bi-trash"></i></a></td>
+                </tr>
+
+            </tbody>
+
+            <div style="float: right;">
+                <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+            </div>
+
+        </table>
+    </div>
 
 </div>
 <!-- //<img src="https://tipspictures.s3.sa-east-1.amazonaws.com/2022-09-12T23-30-50.781Zvacina.jpeg" alt="W3Schools.com">
