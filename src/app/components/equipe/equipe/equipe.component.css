@@ -1,3 +1,16 @@
+.mat-form-field{
+
+  width:100%;
+}
+
+.formfilter{
+  width: 50%;
+ 
+  padding: 25px;
+}
+.mat-label{
+  border: 1px solid tomato;
+}
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -9,3 +22,8 @@
     width: 100%;
    
   }
+
+  table {
+    width: 100%;
+  }
+  

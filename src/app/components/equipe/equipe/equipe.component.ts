@@ -20,6 +20,7 @@ interface X {
   valor_individual: number
   valor_total: number
   vale_do_dia: number
+  pessoa_vale:number
 }
 
 

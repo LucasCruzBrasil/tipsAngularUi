@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   valores: Valores[]
   gruja: Gruja[];
   equipe: Equipe[];
- 
+  chart:Chart
    @ViewChild(EquipeComponent) filhoEquipe: EquipeComponent
    @ViewChild(GraficoComponent) filhoGrafico: GraficoComponent
    @ViewChild(ValoresComponent) filhoValor: ValoresComponent
