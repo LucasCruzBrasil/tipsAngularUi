@@ -18,7 +18,7 @@ import localePT from '@angular/common/locales/pt';
 import { EquipeComponent } from 'src/app/components/equipe/equipe/equipe.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {MatTableModule} from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
@@ -78,7 +78,10 @@ registerLocaleData(localePT);
     MatListModule,
     MatTabsModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
+
   
 
     
